@@ -1,0 +1,74 @@
+﻿html{
+    margin: -8px;
+}
+
+body {
+    font: 400 1rem/1 'Oswald', sans-serif;
+}
+
+ul{
+    padding-left: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+footer{
+    background-color: #83b0e1;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.page-wrap,
+.nav,
+.nav ul,
+.container{
+    display: flex; 
+}
+
+.page-wrap{
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.side-bar{
+    color: #fff;
+    background-color: #71a5de;
+}
+
+.main{
+    flex-grow: 2;
+}
+
+.nav,
+.nav ul{
+    flex-direction: column;
+}
+
+.header,
+.nav ul{
+    text-align: center;
+}
+
+.nav ul li{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #aecbeb;
+    text-decoration: none;
+}
+
+

@@ -1,0 +1,67 @@
+﻿@{ 
+    var applicationName = "Gym Tracker";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@applicationName</title>
+    <link href="~/Content/Site.css" rel="stylesheet" runat="server" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(applicationName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="page-wrap">
+
+        <div class="side-bar">
+
+            <div class="header">
+                <h1>@applicationName</h1>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Exercises</a></li>
+                    <li><a href="#">My Routines</a></li>
+                    <li><a href="#">Add Routine</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+
+        </div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Ismael Liriano</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
