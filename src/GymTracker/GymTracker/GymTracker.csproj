@@ -104,17 +104,9 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\RoutineController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Data\Context.cs" />
-    <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Exercise.cs" />
-    <Compile Include="Models\MuscleGroup.cs" />
-    <Compile Include="Models\Routine.cs" />
-    <Compile Include="Models\ExerciseDay.cs" />
-    <Compile Include="Models\TrainingDay.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GymTrackerShared\GymTrackerShared.csproj">
+      <Project>{1594ea47-e0a4-47f2-8f7c-18f4cc036fdd}</Project>
+      <Name>GymTrackerShared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

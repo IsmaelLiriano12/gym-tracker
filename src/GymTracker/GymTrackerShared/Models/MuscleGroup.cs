@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GymTracker.Models
+namespace GymTrackerShared.Models
 {
     public class MuscleGroup
     {
@@ -14,8 +14,12 @@ namespace GymTracker.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ExerciseId { get; set; }
 
         public ICollection<Exercise> Exercises { get; set; }
+
+        public void AddExercise(Exercise exercise)
+        {
+            Exercises.Add(exercise);
+        }
     }
 }

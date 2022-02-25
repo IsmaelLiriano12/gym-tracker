@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using GymTracker.Models;
+using GymTrackerShared.Models;
 
-namespace GymTracker.Data
+namespace GymTrackerShared.Data
 {
-    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DatabaseInitializer : DropCreateDatabaseAlways<Context>
     {
         protected override void Seed(Context context)
         {
@@ -27,18 +27,6 @@ namespace GymTracker.Data
             context.TrainingDays.Add(day6);
             context.TrainingDays.Add(day7);
 
-            var chest = new MuscleGroup() { Name = "Chest" };
-            var back = new MuscleGroup() { Name = "Back" };
-            var shoulders = new MuscleGroup() { Name = "Shoulders" };
-            var abdomen = new MuscleGroup() { Name = "Abdomen" };
-            var legs = new MuscleGroup() { Name = "Legs" };
-
-            context.MuscleGroups.Add(chest);
-            context.MuscleGroups.Add(back);
-            context.MuscleGroups.Add(shoulders);
-            context.MuscleGroups.Add(abdomen);
-            context.MuscleGroups.Add(legs);
-
             var exercise1 = new Exercise()
             {
                 Name = "Press de Banca",
@@ -46,7 +34,6 @@ namespace GymTracker.Data
                 Weight = 100,
                 Sets = 3
             };
-            exercise1.AddMuscleGroup(chest);
 
             var exercise2 = new Exercise()
             {
@@ -55,16 +42,14 @@ namespace GymTracker.Data
                 Weight = 100,
                 Sets = 3
             };
-            exercise1.AddMuscleGroup(legs);
 
             var exercise3 = new Exercise()
-            { 
+            {
                 Name = "Remo",
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
             };
-            exercise1.AddMuscleGroup(back);
 
             var exercise4 = new Exercise()
             {
@@ -73,18 +58,41 @@ namespace GymTracker.Data
                 Weight = 100,
                 Sets = 3
             };
-            exercise1.AddMuscleGroup(legs);
+
+            var chest = new MuscleGroup() { Name = "Chest" };
+            chest.AddExercise(exercise1);
+            var back = new MuscleGroup() { Name = "Back" };
+            back.AddExercise(exercise3);
+            var shoulders = new MuscleGroup() { Name = "Shoulders" };
+            var abdomen = new MuscleGroup() { Name = "Abdomen" };
+            var legs = new MuscleGroup() { Name = "Legs" };
+            legs.AddExercise(exercise2);
+            legs.AddExercise(exercise4);
+
+            context.MuscleGroups.Add(chest);
+            context.MuscleGroups.Add(back);
+            context.MuscleGroups.Add(shoulders);
+            context.MuscleGroups.Add(abdomen);
+            context.MuscleGroups.Add(legs);
 
             var myRoutine = new Routine()
             {
                 Name = "Torso Pierna"
             };
-            myRoutine.AddTrainingDaysAndExercises(exercise1, day1);
-            myRoutine.AddTrainingDaysAndExercises(exercise2, day2);
-            myRoutine.AddTrainingDaysAndExercises(exercise3, day3);
-            myRoutine.AddTrainingDaysAndExercises(exercise4, day4);
+            myRoutine.AddExerciseAndDay(exercise1, day1);
+            myRoutine.AddExerciseAndDay(exercise2, day2);
+            myRoutine.AddExerciseAndDay(exercise3, day3);
+            myRoutine.AddExerciseAndDay(exercise4, day4);
 
             context.Routines.Add(myRoutine);
+
+            var user1 = new User()
+            {
+                Name = "Ismael",
+                Routine = myRoutine
+            };
+
+            context.Users.Add(user1);
 
             context.SaveChanges();
         }

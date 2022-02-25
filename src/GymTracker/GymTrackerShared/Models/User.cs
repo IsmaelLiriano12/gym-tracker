@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GymTracker.Models
+namespace GymTrackerShared.Models
 {
     public class User
     {
-        public User()
-        {
-            Routines = new List<Routine>();
-        }
         public int Id { get; set; }
         public string Name { get; set; }
         public int RoutineId { get; set; }
 
-        public ICollection<Routine> Routines { get; set; }
+        public Routine Routine { get; set; }
     }
 }

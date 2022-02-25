@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GymTracker.Models
+namespace GymTrackerShared.Models
 {
     public class Routine
     {
         public Routine()
         {
-            Exercises = new List<Exercise>();
             ExerciseDays = new List<ExerciseDay>();
+            Users = new List<User>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
-        public int TrainingDaysId { get; set; }
-        public int ExerciseId { get; set; }
-
-        public ICollection<Exercise> Exercises { get; set; }
         public ICollection<ExerciseDay> ExerciseDays { get; set; }
+        public ICollection<User> Users { get; set; }
 
-        public void AddTrainingDaysAndExercises(Exercise exercise, TrainingDay trainingday)
+        public void AddExerciseAndDay(Exercise exercise, TrainingDay trainingDay)
         {
             ExerciseDays.Add(new ExerciseDay()
             {
                 Exercise = exercise,
-                TrainingDay = trainingday
+                TrainingDay = trainingDay
             });
         }
     }
