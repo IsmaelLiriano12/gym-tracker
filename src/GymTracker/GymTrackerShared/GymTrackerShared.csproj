@@ -51,14 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
+    <Compile Include="Data\ExercisesRepository.cs" />
+    <Compile Include="Data\RoutinesRepository.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\ExerciseDay.cs" />
     <Compile Include="Models\MuscleGroup.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\TrainingDay.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

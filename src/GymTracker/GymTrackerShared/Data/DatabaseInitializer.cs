@@ -7,7 +7,7 @@ using GymTrackerShared.Models;
 
 namespace GymTrackerShared.Data
 {
-    public class DatabaseInitializer : DropCreateDatabaseAlways<Context>
+    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<Context>
     {
         protected override void Seed(Context context)
         {
@@ -85,14 +85,6 @@ namespace GymTrackerShared.Data
             myRoutine.AddExerciseAndDay(exercise4, day4);
 
             context.Routines.Add(myRoutine);
-
-            var user1 = new User()
-            {
-                Name = "Ismael",
-                Routine = myRoutine
-            };
-
-            context.Users.Add(user1);
 
             context.SaveChanges();
         }

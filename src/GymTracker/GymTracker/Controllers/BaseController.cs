@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         private bool _disposed = false;
         protected Context Context { get; private set; }

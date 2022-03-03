@@ -10,12 +10,10 @@ namespace GymTrackerShared.Models
         public Routine()
         {
             ExerciseDays = new List<ExerciseDay>();
-            Users = new List<User>();
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<ExerciseDay> ExerciseDays { get; set; }
-        public ICollection<User> Users { get; set; }
 
         public void AddExerciseAndDay(Exercise exercise, TrainingDay trainingDay)
         {

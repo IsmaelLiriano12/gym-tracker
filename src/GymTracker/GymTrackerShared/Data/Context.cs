@@ -10,7 +10,6 @@ namespace GymTrackerShared.Data
 {
     public class Context : DbContext
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<TrainingDay> TrainingDays { get; set; }

@@ -7,12 +7,13 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
-    public class RoutineController : BaseController
+    public class ExerciseController : BaseController
     {
-        private RoutinesRepository _routinesRepository = null;
-        public RoutineController() 
+        private ExercisesRepository _exercisesRepository = null;
+
+        public ExerciseController()
         {
-            _routinesRepository = new RoutinesRepository(Context);
+            _exercisesRepository = new ExercisesRepository(Context);
         }
 
         public ActionResult Detail(int? id)
@@ -20,9 +21,9 @@ namespace GymTracker.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            var routine = _routinesRepository.Get(1);
+            var exercise = _exercisesRepository.Get((int)id);
 
-            return View(routine);
+            return View(exercise);
         }
     }
 }
