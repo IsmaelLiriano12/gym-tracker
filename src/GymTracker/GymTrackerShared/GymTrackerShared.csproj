@@ -55,6 +55,7 @@
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\ExercisesRepository.cs" />
+    <Compile Include="Data\MuscleGroupsRepository.cs" />
     <Compile Include="Data\RoutinesRepository.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\ExerciseDay.cs" />

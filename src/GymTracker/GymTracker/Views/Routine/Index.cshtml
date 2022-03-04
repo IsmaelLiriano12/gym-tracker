@@ -1,0 +1,22 @@
+﻿@model List<GymTrackerShared.Models.Routine>
+
+@{
+    ViewBag.Title = "Routines";
+}
+
+<div class="routine-index">
+    <h2>@ViewBag.Title</h2>
+
+    <ul class="routine-list">
+        <li>@Html.ActionLink("Add Routine", "Add", "Routine", new { @class = "routine-item"})</li>
+        @foreach (var routine in Model)
+        {
+            <li>
+                @Html.ActionLink(routine.Name, "Detail", "Routine", new { Id = routine.Id }, new { @class = "routine-item" })
+            </li>
+        }
+    </ul>
+</div>
+
+
+

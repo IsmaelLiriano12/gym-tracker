@@ -14,6 +14,7 @@ namespace GymTrackerShared.Data
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<TrainingDay> TrainingDays { get; set; }
         public DbSet<MuscleGroup> MuscleGroups { get; set; }
+        public DbSet<ExerciseDay> ExerciseDays { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

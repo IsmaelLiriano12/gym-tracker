@@ -6,7 +6,7 @@
         .GroupBy(ed => ed.TrainingDay);
 }
 
-<h2>@Model.Name</h2>
+<h2 class="routine-header">@Model.Name</h2>
 
 <div class="column">
         @foreach (var trainingDay in orderedExercises)

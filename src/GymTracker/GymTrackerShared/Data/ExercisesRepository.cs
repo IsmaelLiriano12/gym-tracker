@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public class ExercisesRepository
+    public class ExercisesRepository : BaseRepository<ExercisesRepository>
     {
-        private Context _context = null;
-
         public ExercisesRepository(Context context)
+            : base(context)
         {
-            _context = context;
         }
+
 
         public Exercise Get(int id)
         {
-            return _context.Exercises
+            return Context.Exercises
                 .Include(e => e.MuscleGroup)
                 .Where(e => e.Id == id)
                 .SingleOrDefault();

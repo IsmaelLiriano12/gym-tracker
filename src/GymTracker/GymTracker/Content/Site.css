@@ -1,15 +1,17 @@
 ﻿html{
-    margin: -8px;
+    margin: -6px -6px -8px 0;
     color: #fff;
 }
 
 body {
+    margin: 0;
     font: 400 1rem/1 'Oswald', sans-serif;
     background-color: #002137;
 }
 
-h1{
+h1 {
     font-size: 2.5rem;
+    text-shadow: 2px 2px 7px #001A2C;
 }
 
 h2{
@@ -20,12 +22,15 @@ ul{
     padding-left: 0;
 }
 
+li{
+    list-style: none;
+}
 
 a{
     text-decoration: none;
 }
 
-footer {
+footer{
     background-color: #003356;
 }
 
@@ -80,9 +85,41 @@ textarea {
     text-decoration: none;
 }
 
+.side-bar-footer{
+    display: none;
+}
+
 .container{
     flex-grow: 2;
 }
+
+.container a {
+    color: #00406c;
+}
+
+.container a:hover {
+    color: #05667c;
+}
+
+/*---Routine Index Page-------*/
+
+.routine-index h2 {
+    font-size: 2.2em;
+    text-align: center;
+}
+
+.routine-list:first-child{
+    color: #56ab91;
+}
+
+.routine-item{
+    display: inline-block;
+    margin-bottom: 6%;
+    font-size: 2em;
+}
+
+
+/*------------------------------------/
 
 /*---Routine Detail Page-------*/
 
@@ -91,16 +128,22 @@ textarea {
     flex-direction: column;
 }
 
-.column li {
-    list-style: none;
-}
 
-.column a{
-    color: #00406c;
+.routine-header,
+.exercises-column{
+    text-align: center;
 }
 
 
 /*--------------------------------------*/
+
+
+/*--------Exercise Index Page--------*/
+
+
+/*--------------------------------------*/
+
+
 
 
 /*--------Exercise Detail Page--------*/
@@ -125,3 +168,36 @@ textarea {
 }
 
 /*-------------------------------------*/
+
+
+
+@media screen and (min-width: 600px){
+    .page-wrap{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .side-bar{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .side-bar .nav{
+       flex-grow: 2;
+    }
+
+    .container{
+        flex-grow: 6;
+    }
+
+    .side-bar-footer {
+        display: initial;
+        margin-top: auto;
+        background-color: #00406C;
+    }
+
+    footer{
+        display: none;
+    }
+}

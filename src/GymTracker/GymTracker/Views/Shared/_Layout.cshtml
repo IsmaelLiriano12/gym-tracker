@@ -38,17 +38,18 @@
         <div class="side-bar">
 
             <div class="header">
-                <h1>@applicationName</h1>
+                <h1>@Html.ActionLink(applicationName, "Index", "Routine")</h1>
             </div>
             <div class="nav">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Exercises</a></li>
-                    <li><a href="#">My Routines</a></li>
-                    <li><a href="#">Add Routine</a></li>
+                    <li>@Html.ActionLink("Home", "Index", "Routine")</li>
+                    <li>@Html.ActionLink("Exercises", "Index", "Exercise")</li>
+                    <li><a href="#">Add Exercise</a></li>
                 </ul>
             </div>
-
+            <div class="side-bar-footer">
+                <p>&copy; @DateTime.Now.Year - Ismael Liriano</p>
+            </div>
 
         </div>
 

@@ -8,18 +8,22 @@ using System.Data.Entity;
 
 namespace GymTrackerShared.Data
 {
-    public class RoutinesRepository
+    public class RoutinesRepository : BaseRepository<Routine>
     {
-        private Context _context = null;
-
         public RoutinesRepository(Context context)
+            : base(context)
         {
-            _context = context;
+        }
+
+        public IList<Routine> GetList()
+        {
+            return Context.Routines
+                .ToList();
         }
 
         public Routine Get(int id)
         {
-            return _context.Routines
+            return Context.Routines
                 .Include(r => r.ExerciseDays.Select(e => e.Exercise))
                 .Include(r => r.ExerciseDays.Select(t => t.TrainingDay))
                 .Where(r => r.Id == id)

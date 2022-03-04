@@ -15,6 +15,13 @@ namespace GymTracker.Controllers
             _routinesRepository = new RoutinesRepository(Context);
         }
 
+        public ActionResult Index()
+        {
+            var routines = _routinesRepository.GetList();
+
+            return View(routines);
+        }
+
         public ActionResult Detail(int? id)
         {
             if (id == null)

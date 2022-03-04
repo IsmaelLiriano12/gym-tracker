@@ -116,6 +116,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Routine\Detail.cshtml" />
     <Content Include="Views\Exercise\Detail.cshtml" />
+    <Content Include="Views\Exercise\Index.cshtml" />
+    <Content Include="Views\Routine\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

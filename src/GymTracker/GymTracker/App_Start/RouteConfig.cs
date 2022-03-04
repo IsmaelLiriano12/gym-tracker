@@ -16,7 +16,7 @@ namespace GymTracker
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Routine", action = "Detail", id = UrlParameter.Optional }
+                defaults: new { controller = "Routine", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
