@@ -103,11 +103,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ExerciseController.cs" />
+    <Compile Include="Controllers\ExerciseDaysController.cs" />
     <Compile Include="Controllers\RoutineController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ExerciseDaysAddViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -118,6 +120,8 @@
     <Content Include="Views\Exercise\Detail.cshtml" />
     <Content Include="Views\Exercise\Index.cshtml" />
     <Content Include="Views\Routine\Index.cshtml" />
+    <Content Include="Views\Routine\Add.cshtml" />
+    <Content Include="Views\ExerciseDays\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

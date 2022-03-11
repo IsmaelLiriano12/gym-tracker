@@ -1,0 +1,25 @@
+﻿@model GymTrackerShared.Models.Routine
+
+@{
+    ViewBag.Title = "Add Routine";
+}
+
+<h2>Add Routine</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(r => r.Name, new { @class = "form-label" })
+        @Html.TextBoxFor(r => r.Name, new { @class = "form-control" })
+    </div>
+    
+    <div>
+        @Html.LabelFor(r => r.NumberOfDays, new { @class = "form-label" })
+        @Html.TextBoxFor(r => r.NumberOfDays, new { @class = "form-control" })
+    </div>
+    
+
+    
+    <button type="submit" class="button">Save</button>
+}
+

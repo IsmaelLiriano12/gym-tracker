@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace GymTrackerShared.Data
 {
-    public class RoutinesRepository : BaseRepository<Routine>
+    public class RoutinesRepository : Repository<Routine>
     {
         public RoutinesRepository(Context context)
             : base(context)

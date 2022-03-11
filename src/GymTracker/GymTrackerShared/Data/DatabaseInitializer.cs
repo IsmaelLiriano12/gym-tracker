@@ -27,6 +27,20 @@ namespace GymTrackerShared.Data
             context.TrainingDays.Add(day6);
             context.TrainingDays.Add(day7);
 
+            
+
+            var chest = new MuscleGroup() { Name = "Chest" };
+            var back = new MuscleGroup() { Name = "Back" };
+            var shoulders = new MuscleGroup() { Name = "Shoulders" };
+            var abdomen = new MuscleGroup() { Name = "Abdomen" };
+            var legs = new MuscleGroup() { Name = "Legs" };
+
+            context.MuscleGroups.Add(chest);
+            context.MuscleGroups.Add(back);
+            context.MuscleGroups.Add(shoulders);
+            context.MuscleGroups.Add(abdomen);
+            context.MuscleGroups.Add(legs);
+
             var exercise1 = new Exercise()
             {
                 Name = "Press de Banca",
@@ -59,25 +73,20 @@ namespace GymTrackerShared.Data
                 Sets = 3
             };
 
-            var chest = new MuscleGroup() { Name = "Chest" };
+            context.Exercises.Add(exercise1);
+            context.Exercises.Add(exercise2);
+            context.Exercises.Add(exercise3);
+            context.Exercises.Add(exercise4);
+
             chest.AddExercise(exercise1);
-            var back = new MuscleGroup() { Name = "Back" };
             back.AddExercise(exercise3);
-            var shoulders = new MuscleGroup() { Name = "Shoulders" };
-            var abdomen = new MuscleGroup() { Name = "Abdomen" };
-            var legs = new MuscleGroup() { Name = "Legs" };
             legs.AddExercise(exercise2);
             legs.AddExercise(exercise4);
 
-            context.MuscleGroups.Add(chest);
-            context.MuscleGroups.Add(back);
-            context.MuscleGroups.Add(shoulders);
-            context.MuscleGroups.Add(abdomen);
-            context.MuscleGroups.Add(legs);
-
             var myRoutine = new Routine()
             {
-                Name = "Torso Pierna"
+                Name = "Torso Pierna",
+                NumberOfDays = 4
             };
             myRoutine.AddExerciseAndDay(exercise1, day1);
             myRoutine.AddExerciseAndDay(exercise2, day2);

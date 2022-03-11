@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public class ExercisesRepository : BaseRepository<ExercisesRepository>
+    public class ExercisesRepository : Repository<Exercise>
     {
         public ExercisesRepository(Context context)
             : base(context)

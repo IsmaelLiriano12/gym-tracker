@@ -1,0 +1,42 @@
+﻿@model GymTracker.ViewModels.ExerciseDaysAddViewModel
+
+@{
+    ViewBag.Title = "Add Exercise";
+}
+
+<h2>Add Exercise</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(vm => vm.MuscleGroupId, new { @class = "form-label" })
+        @Html.DropDownListFor(vm => vm.MuscleGroupId,
+                            Model.MuscleGroupListItems, "", new { @class = "dropdown-lists" })
+    </div>
+    <div>
+        @Html.LabelFor(vm => vm.Exercise.Name, new { @class = "form-label" })
+        @Html.TextBoxFor(vm => vm.Exercise.Name, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(vm => vm.Exercise.Weight, new { @class = "form-label" })
+        @Html.TextBoxFor(vm => vm.Exercise.Weight, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(vm => vm.Exercise.Repetitions, new { @class = "form-label" })
+        @Html.TextBoxFor(vm => vm.Exercise.Repetitions, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(vm => vm.Exercise.Sets, new { @class = "form-label" })
+        @Html.TextBoxFor(vm => vm.Exercise.Sets, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(vm => vm.TrainingDayId, new { @class = "form-label" })
+        @Html.DropDownListFor(vm => vm.TrainingDayId,
+                            Model.TrainingDaysListItems, "", new { @class = "dropdown-lists" })
+    </div>
+
+    <div>
+        <button type="submit">Add Exercise</button>
+    </div>
+}
+
+

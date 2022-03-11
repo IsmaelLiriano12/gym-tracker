@@ -2,27 +2,35 @@
 
 @{
     ViewBag.Title = "Detail";
-    var orderedExercises = Model.ExerciseDays
-        .GroupBy(ed => ed.TrainingDay);
+    var trainindDayId = 0;
 }
 
 <h2 class="routine-header">@Model.Name</h2>
 
-<div class="column">
-        @foreach (var trainingDay in orderedExercises)
-        {
-            <div class="exercises-column">
-                <h3>@trainingDay.Key.Name</h3>
+@TempData["Message"]
 
-                <ul>
-                    @foreach (var exercise in trainingDay)
-                    {
-                        <li>@Html.ActionLink(exercise.Exercise.Name, "Detail", "Exercise",
-                           new { Id = exercise.Exercise.Id}, new { @class = "exercise"})</li>
-                    }
-                </ul>
-            </div>
-        }
-    
+<div class="column">
+
+    @foreach (var trainingDay in Model.ExerciseDays.GroupBy(ed => ed.TrainingDay))
+    {
+        <div class="exercises-column">
+            <h3>@trainingDay.Key.Name</h3>
+
+            <ul class="list-exercises">
+                @foreach (var exercise in trainingDay)
+                {
+                    trainindDayId = exercise.TrainingDayId;
+                    <li>
+                        @Html.ActionLink(exercise.Exercise.Name, "Detail", "Exercise",
+                        new { Id = exercise.Exercise.Id }, new { @class = "exercise" })
+                    </li>
+                }
+                <li class="add-exercise-link">@Html.ActionLink("Add Exercise", "Add", "ExerciseDays"
+                                             , new { routineId = Model.Id, dayId = trainindDayId}
+                                             , new { @class = "add-exercise-button"})</li>
+            </ul>
+        </div>
+    }
+
 </div>
 

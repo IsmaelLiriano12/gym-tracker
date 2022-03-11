@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@applicationName</title>
+    <title>@ViewBag.Title - @applicationName</title>
     <link href="~/Content/Site.css" rel="stylesheet" runat="server" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +44,7 @@
                 <ul>
                     <li>@Html.ActionLink("Home", "Index", "Routine")</li>
                     <li>@Html.ActionLink("Exercises", "Index", "Exercise")</li>
+                    <li>@Html.ActionLink("Add Routine", "Add", "Routine")</li>
                     <li><a href="#">Add Exercise</a></li>
                 </ul>
             </div>

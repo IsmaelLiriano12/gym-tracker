@@ -8,18 +8,36 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public class MuscleGroupsRepository : BaseRepository<MuscleGroupsRepository>
+    public class MuscleGroupsRepository
     {
+        private Context _context = null;
         public MuscleGroupsRepository(Context context) 
-            : base(context)
-        {
+        { 
+            _context = context;
         }
 
-        public IList<MuscleGroup> GetList()
+        public IList<MuscleGroup> GetList(bool includeExercises = true)
         {
-            return Context.MuscleGroups
-                .Include(m => m.Exercises)
-                .ToList();
+            var muscleGroups = _context.MuscleGroups.AsQueryable();
+            if (includeExercises)
+            {
+                muscleGroups.Include(m => m.Exercises);
+            }
+            return muscleGroups.OrderBy(m => m.Name).ToList();
+        }
+
+        public MuscleGroup Get(int id)
+        {
+            return _context.MuscleGroups
+                .Where(m => m.Id == id)
+                .SingleOrDefault();
+        }
+
+        public void AddExercise(int id, Exercise exercise)
+        {
+            var muscleGroup = Get(id);
+            muscleGroup.AddExercise(exercise);
+            _context.SaveChanges();
         }
     }
 }

@@ -20,8 +20,8 @@ namespace GymTracker.Controllers
 
         public ActionResult Index()
         {
-            var exercisesPerMuscleGroup = _muscleGroupsRepository.GetList();
-            return View(exercisesPerMuscleGroup);
+            var exercises = _muscleGroupsRepository.GetList();
+            return View(exercises);
         }
 
         public ActionResult Detail(int? id)

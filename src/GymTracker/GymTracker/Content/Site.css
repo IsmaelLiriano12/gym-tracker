@@ -97,16 +97,16 @@ textarea {
     color: #00406c;
 }
 
+.container h2 {
+    text-align: center;
+    font-size: 2.2em;
+}
+
 .container a:hover {
     color: #05667c;
 }
 
 /*---Routine Index Page-------*/
-
-.routine-index h2 {
-    font-size: 2.2em;
-    text-align: center;
-}
 
 .routine-list:first-child{
     color: #56ab91;
@@ -126,12 +126,31 @@ textarea {
 .column{
     display: flex;
     flex-direction: column;
+    min-height: 50vh;
 }
 
 
 .routine-header,
 .exercises-column{
     text-align: center;
+}
+.exercises-column {
+    margin-bottom: 30px;
+    border: 2px solid #00111C;
+    border-radius: 10px;
+    background-color: #00111C;
+}
+
+.add-exercise-link a {
+    border-radius: 3px;
+    padding: 3px;
+    color: #001523;
+    background-color: #165e6c;
+}
+
+.add-exercise-link {
+    margin-top: 40px;
+    margin-bottom: 5px;
 }
 
 
@@ -195,6 +214,16 @@ textarea {
         display: initial;
         margin-top: auto;
         background-color: #00406C;
+    }
+
+    .column{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+
+    .exercises-column{
+        flex: 1; 
     }
 
     footer{
