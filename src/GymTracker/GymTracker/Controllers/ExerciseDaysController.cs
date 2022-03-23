@@ -51,13 +51,8 @@ namespace GymTracker.Controllers
 
             if (ModelState.IsValid)
             {
-                var exercise = new Exercise()
-                {
-                    Name = viewModel.Exercise.Name,
-                    Weight = viewModel.Exercise.Weight,
-                    Repetitions = viewModel.Exercise.Repetitions,
-                    Sets = viewModel.Exercise.Sets
-                };
+                var exercise = viewModel.Exercise;
+
                 _muscleGroupsRepository.AddExercise(viewModel.MuscleGroupId, exercise);
 
                 var exerciseDay = new ExerciseDay()

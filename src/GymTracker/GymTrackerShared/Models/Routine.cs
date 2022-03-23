@@ -13,8 +13,9 @@ namespace GymTrackerShared.Models
             ExerciseDays = new List<ExerciseDay>();
         }
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
-        [Display(Name = "Days")]
+        [Display(Name = "Days"), Required]
         public int NumberOfDays { get; set; }
         public ICollection<ExerciseDay> ExerciseDays { get; set; }
 
@@ -26,22 +27,5 @@ namespace GymTrackerShared.Models
                 TrainingDay = trainingDay
             });
         }
-        public void AddExerciseAndDay(Exercise exercise, int trainingDayId)
-        {
-            ExerciseDays.Add(new ExerciseDay()
-            {
-                Exercise = exercise,
-                TrainingDayId = trainingDayId
-            });
-        }
-        public void AddExerciseAndDay(int exerciseId, int trainingDayId)
-        {
-            ExerciseDays.Add(new ExerciseDay()
-            {
-                ExerciseId = exerciseId,
-                TrainingDayId = trainingDayId
-            });
-        }
-        
     }
 }

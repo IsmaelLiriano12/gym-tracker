@@ -73,15 +73,45 @@ namespace GymTrackerShared.Data
                 Sets = 3
             };
 
+            var exercise5 = new Exercise()
+            {
+                Name = "Sit ups",
+                Repetitions = 5,
+                Weight = 100,
+                Sets = 3
+            };
+
+            var exercise6 = new Exercise()
+            {
+                Name = "Dominadas",
+                Repetitions = 5,
+                Weight = 100,
+                Sets = 3
+            };
+
+            var exercise7 = new Exercise()
+            {
+                Name = "Prensa",
+                Repetitions = 5,
+                Weight = 100,
+                Sets = 3
+            };
+
             context.Exercises.Add(exercise1);
             context.Exercises.Add(exercise2);
             context.Exercises.Add(exercise3);
             context.Exercises.Add(exercise4);
+            context.Exercises.Add(exercise5);
+            context.Exercises.Add(exercise6);
+            context.Exercises.Add(exercise7);
 
             chest.AddExercise(exercise1);
             back.AddExercise(exercise3);
             legs.AddExercise(exercise2);
             legs.AddExercise(exercise4);
+            abdomen.AddExercise(exercise5);
+            back.AddExercise(exercise6);
+            legs.AddExercise(exercise7);
 
             var myRoutine = new Routine()
             {

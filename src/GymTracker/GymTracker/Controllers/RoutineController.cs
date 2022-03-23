@@ -12,10 +12,12 @@ namespace GymTracker.Controllers
     {
         private RoutinesRepository _routinesRepository = null;
         private TrainingDaysRepository _trainingDaysRepository = null;
+        private ExerciseDaysRepository _exerciseDaysRepository = null;
         public RoutineController() 
         {
             _routinesRepository = new RoutinesRepository(Context);
             _trainingDaysRepository = new TrainingDaysRepository(Context);
+            _exerciseDaysRepository = new ExerciseDaysRepository(Context);
         }
 
         public ActionResult Index()
@@ -49,10 +51,49 @@ namespace GymTracker.Controllers
             if (ModelState.IsValid)
             {
                 _routinesRepository.Add(routine);
+
+                for (int i = 1; i <= routine.NumberOfDays; i++)
+                {
+                    var exerciseDay = new ExerciseDay()
+                    {
+                        RoutineId = routine.Id,
+                        TrainingDayId = i,
+                        ExerciseId = i
+                    };
+                    _exerciseDaysRepository.Add(exerciseDay);
+                }
+
                 return RedirectToAction("Detail", new { id = routine.Id});
             }
 
             return View(routine);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+
+            var routine = _routinesRepository.Get((int)id);
+
+            if (routine == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(routine);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            _routinesRepository.Delete(id);
+
+            TempData["Message"] = "The routine was successfully deleted";
+
+            return RedirectToAction("Index");
         }
 
         private void ValidateRoutine(Routine routine)

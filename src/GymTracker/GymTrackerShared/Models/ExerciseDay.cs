@@ -5,6 +5,9 @@ using System.Web;
 
 namespace GymTrackerShared.Models
 {
+    /// <summary>
+    /// Defines a many-to-many relationship between routines, exercises, and training days.
+    /// </summary>
     public class ExerciseDay
     {
 

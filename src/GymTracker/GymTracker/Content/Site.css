@@ -50,7 +50,8 @@ textarea {
 .page-wrap,
 .nav,
 .nav ul,
-.exercise-attributes {
+.exercise-attributes,
+.container{
     display: flex; 
 }
 
@@ -91,6 +92,7 @@ textarea {
 
 .container{
     flex-grow: 2;
+    flex-direction: column;
 }
 
 .container a {
@@ -105,6 +107,8 @@ textarea {
 .container a:hover {
     color: #05667c;
 }
+
+
 
 /*---Routine Index Page-------*/
 
@@ -135,10 +139,15 @@ textarea {
     text-align: center;
 }
 .exercises-column {
+    width: 70%;
+    margin: 0 auto 30px auto;
     margin-bottom: 30px;
-    border: 2px solid #00111C;
     border-radius: 10px;
-    background-color: #00111C;
+    background-color: #001A2C;
+}
+
+.exercises-column li{
+    margin-bottom: 17%;
 }
 
 .add-exercise-link a {
@@ -151,6 +160,15 @@ textarea {
 .add-exercise-link {
     margin-top: 40px;
     margin-bottom: 5px;
+}
+
+.delete-button {
+    align-self: flex-end;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #9d0208;
 }
 
 
@@ -189,6 +207,40 @@ textarea {
 /*-------------------------------------*/
 
 
+/*---------- Form styles --------------*/
+
+input{
+    display: block;
+}
+
+
+.form-control {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.form-control,
+.dropdown-lists{
+    border: none;
+    margin-bottom: 15px;
+    background-color: #001523;
+    color: #fff;
+}
+
+button[type="submit"]{
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: green;
+}
+
+
+
+/*-------------------------------------*/
+
+
+
 
 @media screen and (min-width: 600px){
     .page-wrap{
@@ -223,7 +275,7 @@ textarea {
     }
 
     .exercises-column{
-        flex: 1; 
+        flex: 1;
     }
 
     footer{

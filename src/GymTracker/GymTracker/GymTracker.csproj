@@ -122,6 +122,7 @@
     <Content Include="Views\Routine\Index.cshtml" />
     <Content Include="Views\Routine\Add.cshtml" />
     <Content Include="Views\ExerciseDays\Add.cshtml" />
+    <Content Include="Views\Routine\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,17 @@
+﻿@model GymTrackerShared.Models.Routine
+
+@{
+    ViewBag.Title = "Delete Routine";
+}
+
+<h2>Delete Routine</h2>
+
+<p>Are you sure you want to delete @Model.Name?</p>
+
+@using (Html.BeginForm())
+{
+    <button type="submit">Yes</button>
+
+    @Html.ActionLink("Cancel", "Detail", new { id = Model.Id}, new { @class = "cancel-button"})
+}
+
