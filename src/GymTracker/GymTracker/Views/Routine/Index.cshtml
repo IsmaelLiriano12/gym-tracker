@@ -4,20 +4,29 @@
     ViewBag.Title = "Routines";
 }
 
-@TempData["Message"]
-<div class="routine-index">
-    <h2>@ViewBag.Title</h2>
 
-    <ul class="routine-list">
-        <li>@Html.ActionLink("Add Routine", "Add", "Routine", new { @class = "routine-item"})</li>
-        @foreach (var routine in Model)
-        {
-            <li>
-                @Html.ActionLink(routine.Name, "Detail", "Routine", new { Id = routine.Id }, new { @class = "routine-item" })
-            </li>
-        }
-    </ul>
-</div>
+<h2 class="text-center h2">@ViewBag.Title</h2>
+
+@Html.Partial("_Message")
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Days</th>
+        </tr>
+    </thead>
+    @foreach (var routine in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(routine.Name, "Detail", new { id = routine.Id }, new {@class = "link-dark"})</td>
+            <td>@routine.NumberOfDays</td>
+            <td><a href="/Routine/Delete/@routine.Id"><span class="fa-regular fa-trash-can"></span></a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Routine/Add"><span class="fa-solid fa-circle-plus fa-3x"></span></a>
 
 
 

@@ -6,12 +6,12 @@
 
 <h2>Delete Routine</h2>
 
-<p>Are you sure you want to delete @Model.Name?</p>
+<div class="alert alert-danger" role="alert">Are you sure you want to delete @Model.Name?</div>
 
 @using (Html.BeginForm())
 {
-    <button type="submit">Yes</button>
+    @Html.ActionLink("Cancel", "Index", new { @class = "btn btn-outline-gray" })
 
-    @Html.ActionLink("Cancel", "Detail", new { id = Model.Id}, new { @class = "cancel-button"})
+    <button type="submit" class = "btn btn-outline-primary">Yes</button>
 }
 
