@@ -13,7 +13,6 @@ namespace GymTracker.Controllers
     {
         private RoutinesRepository _routinesRepository = null;
         private ExercisesRepository _exercisesRepository = null;
-        private MuscleGroupsRepository _muscleGroupsRepository = null;
         private ExerciseDaysRepository _exerciseDaysRepository = null;
         private TrainingDaysRepository _trainingDaysRepository = null;
 
@@ -21,7 +20,6 @@ namespace GymTracker.Controllers
         {
             _routinesRepository = new RoutinesRepository(Context);
             _exercisesRepository= new ExercisesRepository(Context);
-            _muscleGroupsRepository = new MuscleGroupsRepository(Context);
             _exerciseDaysRepository = new ExerciseDaysRepository(Context);
             _trainingDaysRepository = new TrainingDaysRepository(Context);
         }
@@ -39,7 +37,7 @@ namespace GymTracker.Controllers
                 Routine = routine
             };
 
-            viewModel.Init(Context, _muscleGroupsRepository, _trainingDaysRepository, dayId);
+            viewModel.Init(Context, _trainingDaysRepository, dayId);
 
             return View(viewModel);
         }
@@ -53,7 +51,7 @@ namespace GymTracker.Controllers
             {
                 var exercise = viewModel.Exercise;
 
-                _muscleGroupsRepository.AddExercise(viewModel.MuscleGroupId, exercise);
+                _exercisesRepository.Add(exercise);
 
                 var exerciseDay = new ExerciseDay()
                 {

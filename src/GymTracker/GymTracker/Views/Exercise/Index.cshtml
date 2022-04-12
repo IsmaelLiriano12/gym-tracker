@@ -1,23 +1,18 @@
-﻿@model List<GymTrackerShared.Models.MuscleGroup>
+﻿@model List<GymTrackerShared.Models.Exercise>
 
 @{
     ViewBag.Title = "Exercises";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Exercises</h2>
 
-@foreach(var musclegroup in Model)
-{
-    <h3>@musclegroup.Name</h3>
-
-    <ul>
-        @foreach (var exercise in musclegroup.Exercises)
-        {
+<ul>
+    @foreach (var exercise in Model)
+    {
         <li>
             @Html.ActionLink(exercise.Name, "Detail", "Exercise",
-            new { Id = exercise.Id}, new { @class = "exercise"})
+            new { Id = exercise.Id })
         </li>
-        }
-    </ul>
-}
+    }
+</ul>
 

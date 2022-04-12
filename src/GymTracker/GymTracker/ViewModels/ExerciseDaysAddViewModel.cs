@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using static GymTrackerShared.Models.Exercise;
 
 namespace GymTracker.ViewModels
 {
@@ -23,21 +25,22 @@ namespace GymTracker.ViewModels
         public Exercise Exercise { get; set; }
         [Display(Name = "Training Day")]
         public int TrainingDayId { get; set; }
-        [Display(Name = "Muscle Group")]
-        public int MuscleGroupId { get; set; }
 
-        public SelectList MuscleGroupListItems { get; set; }
+        public SelectList MuscleGroups { get; set; }
         public SelectList TrainingDaysListItems { get; set; }
 
-        public void Init(Context context, MuscleGroupsRepository muscleGroupsRepository,TrainingDaysRepository trainingDaysRepository ,int trainingDayId)
+        public void Init(Context context,TrainingDaysRepository trainingDaysRepository ,int trainingDayId)
         {
             TrainingDaysListItems = new SelectList(
                 trainingDaysRepository.GetList(trainingDayId),
                 "Id", "Name");
 
-            MuscleGroupListItems = new SelectList(
-                muscleGroupsRepository.GetList(includeExercises: false),
-                "Id", "Name");
+            MuscleGroups = new SelectList(Enum.GetValues(typeof(MuscleGroup)).Cast<MuscleGroup>()
+                .Select(m => new SelectListItem
+                {
+                    Text = m.ToString(),
+                    Value = ((int)m).ToString()
+                }).ToList(), "Value", "Text");
         }
     }
 }

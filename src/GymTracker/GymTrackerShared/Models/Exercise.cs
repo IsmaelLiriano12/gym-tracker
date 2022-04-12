@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GymTrackerShared.Models
 {
-    public class Exercise
+    public partial class Exercise
     {
         public Exercise()
         {
@@ -14,7 +14,6 @@ namespace GymTrackerShared.Models
         }
 
         public int Id { get; set; }
-        public int MuscleGroupId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -25,8 +24,16 @@ namespace GymTrackerShared.Models
         [Required]
         public int Sets { get; set; }
 
-        public MuscleGroup MuscleGroup { get; set; }
-        public ICollection<ExerciseDay> Routines { get; set; }
+        public string DisplayName
+        {
+            get
+            {
+                return $"{Name} - {MuscleTrained}";
+            }
+        }
+        [Display(Name = "Muscle Group")]
+        public MuscleGroup MuscleTrained { get; set; }
 
+        public ICollection<ExerciseDay> Routines { get; set; }
     }
 }

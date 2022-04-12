@@ -15,11 +15,16 @@ namespace GymTrackerShared.Data
         {
         }
 
+        public IList<Exercise> GetList()
+        {
+            return Context.Exercises
+                .OrderBy(e => e.MuscleTrained)
+                .ToList();
+        }
 
         public Exercise Get(int id)
         {
             return Context.Exercises
-                .Include(e => e.MuscleGroup)
                 .Where(e => e.Id == id)
                 .SingleOrDefault();
         }

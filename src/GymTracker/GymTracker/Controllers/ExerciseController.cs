@@ -10,17 +10,15 @@ namespace GymTracker.Controllers
     public class ExerciseController : BaseController
     {
         private ExercisesRepository _exercisesRepository = null;
-        private MuscleGroupsRepository _muscleGroupsRepository = null;
 
         public ExerciseController()
         {
             _exercisesRepository = new ExercisesRepository(Context);
-            _muscleGroupsRepository = new MuscleGroupsRepository(Context);
         }
 
         public ActionResult Index()
         {
-            var exercises = _muscleGroupsRepository.GetList();
+            var exercises = _exercisesRepository.GetList();
             return View(exercises);
         }
 

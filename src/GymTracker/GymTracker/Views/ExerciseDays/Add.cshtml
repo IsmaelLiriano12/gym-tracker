@@ -8,9 +8,9 @@
 @using (Html.BeginForm())
 {
     <div>
-        @Html.LabelFor(vm => vm.MuscleGroupId, new { @class = "form-label" })
-        @Html.DropDownListFor(vm => vm.MuscleGroupId,
-                            Model.MuscleGroupListItems, "", new { @class = "dropdown-lists" })
+        @Html.LabelFor(vm => vm.Exercise.MuscleTrained, new { @class = "form-label" })
+        @Html.DropDownListFor(vm => vm.Exercise.MuscleTrained,
+                            Model.MuscleGroups, "", new { @class = "dropdown-lists" })
     </div>
     <div>
         @Html.LabelFor(vm => vm.Exercise.Name, new { @class = "form-label" })

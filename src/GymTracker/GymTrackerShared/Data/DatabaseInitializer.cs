@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using GymTrackerShared.Models;
+using static GymTrackerShared.Models.Exercise;
 
 namespace GymTrackerShared.Data
 {
@@ -27,23 +28,10 @@ namespace GymTrackerShared.Data
             context.TrainingDays.Add(day6);
             context.TrainingDays.Add(day7);
 
-            
-
-            var chest = new MuscleGroup() { Name = "Chest" };
-            var back = new MuscleGroup() { Name = "Back" };
-            var shoulders = new MuscleGroup() { Name = "Shoulders" };
-            var abdomen = new MuscleGroup() { Name = "Abdomen" };
-            var legs = new MuscleGroup() { Name = "Legs" };
-
-            context.MuscleGroups.Add(chest);
-            context.MuscleGroups.Add(back);
-            context.MuscleGroups.Add(shoulders);
-            context.MuscleGroups.Add(abdomen);
-            context.MuscleGroups.Add(legs);
-
             var exercise1 = new Exercise()
             {
-                Name = "Press de Banca",
+                Name = "Bench Press",
+                MuscleTrained = MuscleGroup.Chest,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -51,7 +39,8 @@ namespace GymTrackerShared.Data
 
             var exercise2 = new Exercise()
             {
-                Name = "Sentadilla",
+                Name = "Squat",
+                MuscleTrained = MuscleGroup.Chest,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -59,7 +48,8 @@ namespace GymTrackerShared.Data
 
             var exercise3 = new Exercise()
             {
-                Name = "Remo",
+                Name = "Row",
+                MuscleTrained = MuscleGroup.Back,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -67,7 +57,8 @@ namespace GymTrackerShared.Data
 
             var exercise4 = new Exercise()
             {
-                Name = "Peso Muerto",
+                Name = "Deadlift",
+                MuscleTrained = MuscleGroup.Legs,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -76,6 +67,7 @@ namespace GymTrackerShared.Data
             var exercise5 = new Exercise()
             {
                 Name = "Sit ups",
+                MuscleTrained = MuscleGroup.Abdomen,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -83,7 +75,8 @@ namespace GymTrackerShared.Data
 
             var exercise6 = new Exercise()
             {
-                Name = "Dominadas",
+                Name = "Pull ups",
+                MuscleTrained = MuscleGroup.Back,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -91,7 +84,8 @@ namespace GymTrackerShared.Data
 
             var exercise7 = new Exercise()
             {
-                Name = "Prensa",
+                Name = "Leg Press",
+                MuscleTrained = MuscleGroup.Legs,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3
@@ -105,17 +99,9 @@ namespace GymTrackerShared.Data
             context.Exercises.Add(exercise6);
             context.Exercises.Add(exercise7);
 
-            chest.AddExercise(exercise1);
-            back.AddExercise(exercise3);
-            legs.AddExercise(exercise2);
-            legs.AddExercise(exercise4);
-            abdomen.AddExercise(exercise5);
-            back.AddExercise(exercise6);
-            legs.AddExercise(exercise7);
-
             var myRoutine = new Routine()
             {
-                Name = "Torso Pierna",
+                Name = "Upper-Lower",
                 NumberOfDays = 4
             };
             myRoutine.AddExerciseAndDay(exercise1, day1);
