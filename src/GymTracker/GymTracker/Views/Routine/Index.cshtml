@@ -5,7 +5,7 @@
 }
 
 
-<h2 class="text-center h2">@ViewBag.Title</h2>
+<h2 class="text-center h2">Routines</h2>
 
 @Html.Partial("_Message")
 
@@ -22,11 +22,12 @@
             <td>@Html.ActionLink(routine.Name, "Detail", new { id = routine.Id }, new {@class = "link-dark"})</td>
             <td>@routine.NumberOfDays</td>
             <td><a href="/Routine/Delete/@routine.Id"><span class="fa-regular fa-trash-can"></span></a></td>
+            <td><a href="/Routine/Edit/@routine.Id"><span class="fa-regular fa-pen-to-square"></span></a></td>
         </tr>
     }
 </table>
 
-<a href="/Routine/Add"><span class="fa-solid fa-circle-plus fa-3x"></span></a>
+<a href="@Url.Action("Add")"><span class="fa-solid fa-circle-plus fa-3x"></span></a>
 
 
 

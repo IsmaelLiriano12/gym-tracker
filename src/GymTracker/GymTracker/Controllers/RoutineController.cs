@@ -10,9 +10,9 @@ namespace GymTracker.Controllers
 {
     public class RoutineController : BaseController
     {
-        private RoutinesRepository _routinesRepository = null;
-        private TrainingDaysRepository _trainingDaysRepository = null;
-        private ExerciseDaysRepository _exerciseDaysRepository = null;
+        private readonly RoutinesRepository _routinesRepository = null;
+        private readonly TrainingDaysRepository _trainingDaysRepository = null;
+        private readonly ExerciseDaysRepository _exerciseDaysRepository = null;
         public RoutineController() 
         {
             _routinesRepository = new RoutinesRepository(Context);
@@ -64,6 +64,32 @@ namespace GymTracker.Controllers
                 }
 
                 return RedirectToAction("Detail", new { id = routine.Id});
+            }
+
+            return View(routine);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var routine = _routinesRepository.Get((int)id);
+            return View(routine);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, string name)
+        {
+            var routine = _routinesRepository.Get(id);
+            //ValidateRoutine(routine);
+
+            if (ModelState.IsValid)
+            {
+                routine.Name = name;
+                _routinesRepository.Update(routine);
+                return RedirectToAction("Index");
             }
 
             return View(routine);

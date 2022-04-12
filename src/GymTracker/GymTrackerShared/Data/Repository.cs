@@ -23,6 +23,13 @@ namespace GymTrackerShared.Data
             Context.SaveChanges();
         }
 
+        public void Update(TEntity entity)
+        {
+            var entitySet = Context.Set<TEntity>().Attach(entity);
+            Context.Entry(entitySet).State = EntityState.Modified;
+            Context.SaveChanges();
+        }
+
         public void Delete(int id)
         {
             var set = Context.Set<TEntity>();
