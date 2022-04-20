@@ -23,6 +23,16 @@ namespace GymTracker.Controllers
             _exerciseDaysRepository = new ExerciseDaysRepository(Context);
             _trainingDaysRepository = new TrainingDaysRepository(Context);
         }
+
+        public ActionResult Detail(int? id, int? routineId, int? dayId)
+        {
+            if (id == null || routineId == null || dayId == null) { return HttpNotFound(); }
+
+            var exerciseDay = _exerciseDaysRepository.Get((int)id, (int)routineId, (int)dayId);
+
+            return View(exerciseDay);
+        }
+
         public ActionResult Add(int routineId, int dayId)
         {
             var routine = _routinesRepository.Get(routineId);
@@ -67,6 +77,46 @@ namespace GymTracker.Controllers
             }
 
             return View(viewModel);
+        }
+
+        public ActionResult Edit(int? id, int? routineId, int? dayId)
+        {
+            if (id == null || routineId == null || dayId == null) { return HttpNotFound(); }
+
+            var exerciseDay = _exerciseDaysRepository.Get((int)id, (int)routineId, (int)dayId);
+
+            var viewModel = new ExerciseDaysAddViewModel()
+            {
+                Exercise = exerciseDay.Exercise,
+                RoutineId = exerciseDay.RoutineId,
+                ExerciseId = exerciseDay.ExerciseId
+            };
+
+            viewModel.Init(Context, _trainingDaysRepository, (int)dayId);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ExerciseDaysAddViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _exercisesRepository.Update(viewModel.Exercise);
+
+                return RedirectToAction("Detail", new { Id = viewModel.Exercise.Id, routineId = viewModel.RoutineId, dayId = viewModel.TrainingDayId });
+            }
+
+            return View(viewModel);
+        }
+
+        private ActionResult GetExerciseDayEntity(int? id, int? routineId, int? dayId)
+        {
+            if (id == null || routineId == null || dayId == null) { return HttpNotFound(); }
+
+            var exerciseDay = _exerciseDaysRepository.Get((int)id, (int)routineId, (int)dayId);
+
+            return View(exerciseDay);
         }
 
         private void ValidateExerciseDay(ExerciseDaysAddViewModel viewModel)

@@ -25,8 +25,7 @@ namespace GymTrackerShared.Data
 
         public void Update(TEntity entity)
         {
-            var entitySet = Context.Set<TEntity>().Attach(entity);
-            Context.Entry(entitySet).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
             Context.SaveChanges();
         }
 

@@ -131,7 +131,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Routine\Detail.cshtml" />
-    <Content Include="Views\Exercise\Detail.cshtml" />
     <Content Include="Views\Exercise\Index.cshtml" />
     <Content Include="Views\Routine\Index.cshtml" />
     <Content Include="Views\Routine\Add.cshtml" />
@@ -139,6 +138,9 @@
     <Content Include="Views\Routine\Delete.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Routine\Edit.cshtml" />
+    <Content Include="Views\ExerciseDays\Detail.cshtml" />
+    <Content Include="Views\ExerciseDays\Edit.cshtml" />
+    <Content Include="Views\Shared\_ExerciseDaysAddEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

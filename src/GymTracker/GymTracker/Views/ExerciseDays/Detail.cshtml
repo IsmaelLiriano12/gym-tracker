@@ -1,0 +1,29 @@
+﻿@model GymTrackerShared.Models.ExerciseDay
+@{
+    ViewBag.Title = "Detail";
+}
+
+<a href="@Url.Action("Detail","Routine", new { id = Model.RoutineId })" 
+         class="d-block mt-3"><i class="fa-regular fa-circle-left fa-lg"></i></a>
+
+<h2>@Model.Exercise.DisplayName</h2>
+
+<div class="exercise-attributes">
+
+    <div class="border rounded-circle">
+        <h3>Weight</h3>
+        <p>@Model.Exercise.Weight lbs</p>
+    </div>
+
+    <div class="border rounded-circle">
+        <h3>Repetitions</h3>
+        <p>@Model.Exercise.Repetitions</p>
+    </div>
+
+    <div class="border rounded-circle">
+        <h3>Sets</h3>
+        <p>@Model.Exercise.Sets sets</p>
+    </div>
+
+</div>
+

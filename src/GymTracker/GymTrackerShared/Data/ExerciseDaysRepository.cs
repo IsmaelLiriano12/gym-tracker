@@ -1,9 +1,6 @@
 ﻿using GymTrackerShared.Models;
-using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
@@ -14,5 +11,14 @@ namespace GymTrackerShared.Data
         {
         }
 
+        public ExerciseDay Get(int id, int routineId, int dayId)
+        {
+            return Context.ExerciseDays
+                .Include(e => e.Exercise)
+                .Include(e => e.Routine)
+                .Include(e => e.TrainingDay)
+                .Where(e => e.ExerciseId == id && e.RoutineId == routineId && e.TrainingDayId == dayId)
+                .SingleOrDefault();
+        }
     }
 }

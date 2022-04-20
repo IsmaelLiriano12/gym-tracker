@@ -20,6 +20,12 @@ namespace GymTracker.ViewModels
             set { Routine.Id = value; }
         }
 
+        public int ExerciseId
+        {
+            get { return Exercise.Id; }
+            set { Exercise.Id = value; }
+        }
+
         public Routine Routine { get; set; } = new Routine(); 
         
         public Exercise Exercise { get; set; }

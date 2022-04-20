@@ -21,7 +21,7 @@ namespace GymTrackerShared.Models
         public decimal Weight { get; set; }
         [Required]
         public int Repetitions { get; set; }
-        [Required]
+        [Required, Range(1, 10)]
         public int Sets { get; set; }
 
         public string DisplayName

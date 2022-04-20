@@ -18,19 +18,27 @@
         <div class="col-lg-3 card text-center mb-3 bg-secondary" style="min-width: 200px">
             <h3 class="card-header">@trainingDay.Key.Name</h3>
 
-            <ul class="list-unstyled">
+            <table class="table">
                 @foreach (var exercise in trainingDay)
                 {
                     trainindDayId = exercise.TrainingDayId;
-                    <li class="mb-2">
-                        @Html.ActionLink(exercise.Exercise.Name, "Detail", "Exercise",
-                        new { Id = exercise.Exercise.Id }, new { @class = "link-primary" })
-                    </li>
+                    <tr>
+                        <td class="mb-2">
+                            @Html.ActionLink(exercise.Exercise.Name, "Detail", "ExerciseDays",
+                            new { Id = exercise.Exercise.Id, routineId = exercise.RoutineId, dayId = exercise.TrainingDayId }, new { @class = "link-primary" })
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "ExerciseDays",
+                                    new { Id = exercise.Exercise.Id, routineId = exercise.RoutineId, dayId = exercise.TrainingDayId })">
+                                <span class="fa-regular fa-pen-to-square"></span>
+                            </a>
+                        </td>
+                    </tr>
                 }
-                <li class="mt-4">@Html.ActionLink("Add Exercise", "Add", "ExerciseDays"
-                                             , new { routineId = Model.Id, dayId = trainindDayId}
-                                             , new { @class = "btn btn-primary"})</li>
-            </ul>
+
+            </table>
+          
+            <a href="@Url.Action("Add", "ExerciseDays", new { routineId = Model.Id, dayId = trainindDayId })"><span class="fa-solid fa-circle-plus fa-2x"></span></a>
         </div>
     }
 </div>
