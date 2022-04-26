@@ -3,27 +3,33 @@
     ViewBag.Title = "Detail";
 }
 
-<a href="@Url.Action("Detail","Routine", new { id = Model.RoutineId })" 
-         class="d-block mt-3"><i class="fa-regular fa-circle-left fa-lg"></i></a>
-
-<h2>@Model.Exercise.DisplayName</h2>
-
-<div class="exercise-attributes">
-
-    <div class="border rounded-circle">
-        <h3>Weight</h3>
-        <p>@Model.Exercise.Weight lbs</p>
-    </div>
-
-    <div class="border rounded-circle">
-        <h3>Repetitions</h3>
-        <p>@Model.Exercise.Repetitions</p>
-    </div>
-
-    <div class="border rounded-circle">
-        <h3>Sets</h3>
-        <p>@Model.Exercise.Sets sets</p>
-    </div>
-
+<div>
+    <a href="@Url.Action("Detail","Routine", new { id = Model.RoutineId })"
+       class="d-block mt-3"><i class="fa-regular fa-circle-left fa-lg"></i></a>
 </div>
+
+<div class="mt-5">
+    <h1 class="text-center mb-3 mb-lg-5">@Model.Exercise.DisplayName</h1>
+
+    <div class="table-responsive table-primary">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Weight (pounds)</th>
+                    <th>Repetitions</th>
+                    <th>Sets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Exercise.Weight</td>
+                    <td>@Model.Exercise.Repetitions</td>
+                    <td>@Model.Exercise.Sets</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 

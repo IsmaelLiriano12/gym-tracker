@@ -4,6 +4,10 @@ body {
     font: 400 1rem/1 'Oswald', sans-serif;
 }
 
+h1 {
+    font: 400 3rem/1 'Anton', sans-serif;
+}
+
 a{
     text-decoration: none;
 }
@@ -43,6 +47,10 @@ textarea {
 @media screen and (min-width: 992px) {
     body {
         font-size: 1.4rem;
+    }
+
+    h1{
+        font-size: 3.8rem;
     }
 
     .navbar-brand {

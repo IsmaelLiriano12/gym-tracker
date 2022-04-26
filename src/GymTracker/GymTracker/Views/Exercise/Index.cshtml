@@ -4,15 +4,12 @@
     ViewBag.Title = "Exercises";
 }
 
-<h2>Exercises</h2>
+<h2 class="text-center">Exercises</h2>
 
-<ul>
+<ul class="list-unstyled">
     @foreach (var exercise in Model)
     {
-        <li>
-            @Html.ActionLink(exercise.Name, "Detail", "Exercise",
-            new { Id = exercise.Id })
-        </li>
+        <li class="mb-2">@exercise.DisplayName</li>
     }
 </ul>
 

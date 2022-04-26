@@ -89,7 +89,6 @@ namespace GymTracker.Controllers
             {
                 Exercise = exerciseDay.Exercise,
                 RoutineId = exerciseDay.RoutineId,
-                ExerciseId = exerciseDay.ExerciseId
             };
 
             viewModel.Init(Context, _trainingDaysRepository, (int)dayId);

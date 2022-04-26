@@ -13,14 +13,14 @@
     <script src="https://kit.fontawesome.com/552a1cbc28.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald&display=swap" rel="stylesheet">
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
 
     <div class="d-flex flex-column flex-lg-row min-vh-100">
 
-        <div class="side-bar d-lg-flex flex-lg-column justify-content-lg-between bg-primary">
+        <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between bg-primary">
             <div class="navbar navbar-expand-sm navbar-dark">
                 <div class="container-fluid flex-lg-column">
                     @Html.ActionLink(applicationName, "Index", "Routine", new { area = "" }, new { @class = "navbar-brand" })
@@ -31,7 +31,7 @@
                         <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
                             <li class="nav-item">@Html.ActionLink("Home", "Index", "Routine", new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("Exercises", "Index", "Exercise", new { @class = "nav-link" })</li>
-                            <li class="nav-item">@Html.ActionLink("Add Routine", "Add", "Routine", new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Routines", "Index", "Routine", new { @class = "nav-link" })</li>
                         </ul>
                     </div>
                 </div>
@@ -41,7 +41,8 @@
             </div>
         </div>
 
-        <div class="flex-grow-1">
+
+        <div class="col-lg-10 flex-grow-1">
             <div class="container body-content h-75">
                 @RenderBody()
 

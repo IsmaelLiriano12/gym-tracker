@@ -6,10 +6,11 @@ using System.Web;
 
 namespace GymTrackerShared.Models
 {
-    public partial class Exercise
+    public partial class Exercise : PhysicalActivity
     {
         public Exercise()
         {
+            ProgressiveOverloads = new List<ProgressiveOverload>();
             Routines = new List<ExerciseDay>();
         }
 
@@ -17,12 +18,6 @@ namespace GymTrackerShared.Models
 
         [Required]
         public string Name { get; set; }
-        [Required]
-        public decimal Weight { get; set; }
-        [Required]
-        public int Repetitions { get; set; }
-        [Required, Range(1, 10)]
-        public int Sets { get; set; }
 
         public string DisplayName
         {
@@ -34,6 +29,13 @@ namespace GymTrackerShared.Models
         [Display(Name = "Muscle Group")]
         public MuscleGroup MuscleTrained { get; set; }
 
+        public ICollection<ProgressiveOverload> ProgressiveOverloads { get; set; }
         public ICollection<ExerciseDay> Routines { get; set; }
+
+
+        public void AddProgress(ProgressiveOverload progress)
+        {
+            ProgressiveOverloads.Add(progress);
+        }
     }
 }

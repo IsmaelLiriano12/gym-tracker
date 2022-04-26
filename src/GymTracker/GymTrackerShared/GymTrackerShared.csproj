@@ -60,6 +60,8 @@
     <Compile Include="Data\TrainingDaysRepository.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\ExerciseDay.cs" />
+    <Compile Include="Models\PhysicalActivity.cs" />
+    <Compile Include="Models\ProgressiveOverload.cs" />
     <Compile Include="Models\MuscleGroup.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\TrainingDay.cs" />
