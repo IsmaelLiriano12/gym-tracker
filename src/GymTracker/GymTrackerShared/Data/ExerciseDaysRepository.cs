@@ -15,6 +15,7 @@ namespace GymTrackerShared.Data
         {
             return Context.ExerciseDays
                 .Include(e => e.Exercise)
+                .Include(e => e.Exercise.ProgressiveOverloads)
                 .Include(e => e.Routine)
                 .Include(e => e.TrainingDay)
                 .Where(e => e.ExerciseId == id && e.RoutineId == routineId && e.TrainingDayId == dayId)

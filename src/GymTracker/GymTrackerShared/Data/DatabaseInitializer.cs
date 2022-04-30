@@ -37,6 +37,16 @@ namespace GymTrackerShared.Data
                 Sets = 3
             };
 
+            var progress1 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise1.AddProgress(progress1);
+
             var exercise2 = new Exercise()
             {
                 Name = "Squat",
@@ -45,6 +55,16 @@ namespace GymTrackerShared.Data
                 Weight = 100,
                 Sets = 3
             };
+
+            var progress2 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise2.AddProgress(progress2);
 
             var exercise3 = new Exercise()
             {
@@ -55,6 +75,16 @@ namespace GymTrackerShared.Data
                 Sets = 3
             };
 
+            var progress3 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise3.AddProgress(progress3);
+
             var exercise4 = new Exercise()
             {
                 Name = "Deadlift",
@@ -63,6 +93,16 @@ namespace GymTrackerShared.Data
                 Weight = 100,
                 Sets = 3
             };
+
+            var progress4 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise4.AddProgress(progress4);
 
             var exercise5 = new Exercise()
             {
@@ -73,6 +113,16 @@ namespace GymTrackerShared.Data
                 Sets = 3
             };
 
+            var progress5 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise5.AddProgress(progress5);
+
             var exercise6 = new Exercise()
             {
                 Name = "Pull ups",
@@ -82,6 +132,16 @@ namespace GymTrackerShared.Data
                 Sets = 3
             };
 
+            var progress6 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise6.AddProgress(progress6);
+
             var exercise7 = new Exercise()
             {
                 Name = "Leg Press",
@@ -90,6 +150,16 @@ namespace GymTrackerShared.Data
                 Weight = 100,
                 Sets = 3
             };
+
+            var progress7 = new ProgressiveOverload()
+            {
+                DateCreated = DateTime.Now,
+                Weight = exercise1.Weight,
+                Repetitions = exercise1.Repetitions,
+                Sets = exercise1.Sets
+            };
+
+            exercise7.AddProgress(progress7);
 
             context.Exercises.Add(exercise1);
             context.Exercises.Add(exercise2);

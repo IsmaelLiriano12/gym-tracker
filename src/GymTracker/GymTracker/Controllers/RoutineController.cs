@@ -11,12 +11,10 @@ namespace GymTracker.Controllers
     public class RoutineController : BaseController
     {
         private readonly RoutinesRepository _routinesRepository = null;
-        private readonly TrainingDaysRepository _trainingDaysRepository = null;
         private readonly ExerciseDaysRepository _exerciseDaysRepository = null;
         public RoutineController() 
         {
             _routinesRepository = new RoutinesRepository(Context);
-            _trainingDaysRepository = new TrainingDaysRepository(Context);
             _exerciseDaysRepository = new ExerciseDaysRepository(Context);
         }
 

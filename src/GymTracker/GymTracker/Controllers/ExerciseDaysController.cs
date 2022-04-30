@@ -1,4 +1,5 @@
 ﻿using GymTracker.ViewModels;
+using GymTrackerShared.Commands;
 using GymTrackerShared.Data;
 using GymTrackerShared.Models;
 using System;
@@ -11,17 +12,15 @@ namespace GymTracker.Controllers
 {
     public class ExerciseDaysController : BaseController
     {
-        private RoutinesRepository _routinesRepository = null;
-        private ExercisesRepository _exercisesRepository = null;
-        private ExerciseDaysRepository _exerciseDaysRepository = null;
-        private TrainingDaysRepository _trainingDaysRepository = null;
+        private readonly RoutinesRepository _routinesRepository = null;
+        private readonly ExercisesRepository _exercisesRepository = null;
+        private readonly ExerciseDaysRepository _exerciseDaysRepository = null;
 
         public ExerciseDaysController()
         {
             _routinesRepository = new RoutinesRepository(Context);
             _exercisesRepository= new ExercisesRepository(Context);
             _exerciseDaysRepository = new ExerciseDaysRepository(Context);
-            _trainingDaysRepository = new TrainingDaysRepository(Context);
         }
 
         public ActionResult Detail(int? id, int? routineId, int? dayId)
@@ -47,7 +46,7 @@ namespace GymTracker.Controllers
                 Routine = routine
             };
 
-            viewModel.Init(Context, _trainingDaysRepository, dayId);
+            viewModel.Init(Context, dayId);
 
             return View(viewModel);
         }
@@ -60,6 +59,16 @@ namespace GymTracker.Controllers
             if (ModelState.IsValid)
             {
                 var exercise = viewModel.Exercise;
+
+                var progress = new ProgressiveOverload()
+                {
+                    DateCreated = DateTime.Now,
+                    Weight = exercise.Weight,
+                    Repetitions = exercise.Repetitions,
+                    Sets = exercise.Sets
+                };
+
+                exercise.AddProgress(progress);
 
                 _exercisesRepository.Add(exercise);
 
@@ -91,7 +100,7 @@ namespace GymTracker.Controllers
                 RoutineId = exerciseDay.RoutineId,
             };
 
-            viewModel.Init(Context, _trainingDaysRepository, (int)dayId);
+            viewModel.Init(Context, (int)dayId);
 
             return View(viewModel);
         }
@@ -101,7 +110,12 @@ namespace GymTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                _exercisesRepository.Update(viewModel.Exercise);
+                var exercise = viewModel.Exercise;
+                var progress = new AddProgressiveOverloadCommand(Context)
+                    .Execute(exercise.Id, exercise.Weight, exercise.Repetitions, exercise.Sets);
+                exercise.AddProgress(progress);
+
+                _exercisesRepository.Update(exercise);
 
                 return RedirectToAction("Detail", new { Id = viewModel.Exercise.Id, routineId = viewModel.RoutineId, dayId = viewModel.TrainingDayId });
             }

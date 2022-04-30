@@ -2,6 +2,7 @@
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(vm => vm.Exercise.Id)
     <div class="mb-2">
         @Html.LabelFor(vm => vm.Exercise.MuscleTrained, new { @class = "form-label" })
         @Html.DropDownListFor(vm => vm.Exercise.MuscleTrained,

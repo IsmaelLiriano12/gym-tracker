@@ -21,14 +21,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>@Model.Exercise.Weight</td>
-                    <td>@Model.Exercise.Repetitions</td>
-                    <td>@Model.Exercise.Sets</td>
-                </tr>
+                @foreach (var progress in Model.Exercise.ProgressiveOverloads)
+                {
+                    <tr>
+                        <td>@progress.Weight</td>
+                        <td>@progress.Repetitions</td>
+                        <td>@progress.Sets</td>
+                        <td>@progress.DateCreated.ToShortDateString()</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
+    @Html.ActionLink("View Summary", "Summary",
+    new { id = Model.Exercise.Id, routineId = Model.RoutineId, dayId = Model.TrainingDayId}, new { @class = "btn btn-primary" })
 </div>
 
 

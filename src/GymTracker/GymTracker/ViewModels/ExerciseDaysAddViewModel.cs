@@ -1,5 +1,6 @@
 ﻿using GymTrackerShared.Data;
 using GymTrackerShared.Models;
+using GymTrackerShared.Queries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,10 +36,10 @@ namespace GymTracker.ViewModels
         public SelectList MuscleGroups { get; set; }
         public SelectList TrainingDaysListItems { get; set; }
 
-        public void Init(Context context,TrainingDaysRepository trainingDaysRepository ,int trainingDayId)
+        public void Init(Context context, int trainingDayId)
         {
             TrainingDaysListItems = new SelectList(
-                trainingDaysRepository.GetList(trainingDayId),
+                new GetTrainingDayListQuery(context).Execute(trainingDayId),
                 "Id", "Name");
 
             MuscleGroups = new SelectList(Enum.GetValues(typeof(MuscleGroup)).Cast<MuscleGroup>()
