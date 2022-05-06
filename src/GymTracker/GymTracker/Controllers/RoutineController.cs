@@ -1,4 +1,5 @@
-﻿using GymTrackerShared.Data;
+﻿using GymTracker.ViewModels;
+using GymTrackerShared.Data;
 using GymTrackerShared.Models;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace GymTracker.Controllers
     public class RoutineController : BaseController
     {
         private readonly RoutinesRepository _routinesRepository = null;
-        private readonly ExerciseDaysRepository _exerciseDaysRepository = null;
+        private readonly ExercisesRepository _exercisesRepository = null;
         public RoutineController() 
         {
             _routinesRepository = new RoutinesRepository(Context);
-            _exerciseDaysRepository = new ExerciseDaysRepository(Context);
+            _exercisesRepository = new ExercisesRepository(Context);
         }
 
         public ActionResult Index()
@@ -32,7 +33,14 @@ namespace GymTracker.Controllers
 
             var routine = _routinesRepository.Get((int)id);
 
-            return View(routine);
+            var viewModel = new RoutineDetailViewModel()
+            {
+                Routine = routine
+            };
+
+            viewModel.Init(Context, routine.Id);
+
+            return View(viewModel);
         }
 
         public ActionResult Add()
@@ -52,13 +60,12 @@ namespace GymTracker.Controllers
 
                 for (int i = 1; i <= routine.NumberOfDays; i++)
                 {
-                    var exerciseDay = new ExerciseDay()
-                    {
-                        RoutineId = routine.Id,
-                        TrainingDayId = i,
-                        ExerciseId = i
-                    };
-                    _exerciseDaysRepository.Add(exerciseDay);
+ 
+                    
+
+                    //_exerciseDaysRepository.Add(exerciseDay);
+
+                    //routine.AddExercise();
                 }
 
                 return RedirectToAction("Detail", new { id = routine.Id});

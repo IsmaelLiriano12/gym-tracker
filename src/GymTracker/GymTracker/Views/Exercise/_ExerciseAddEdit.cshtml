@@ -5,8 +5,7 @@
     @Html.HiddenFor(vm => vm.Exercise.Id)
     <div class="mb-2">
         @Html.LabelFor(vm => vm.Exercise.MuscleTrained, new { @class = "form-label" })
-        @Html.DropDownListFor(vm => vm.Exercise.MuscleTrained,
-                            Model.MuscleGroups, "", new { @class = "form-select" })
+        @Html.EnumDropDownListFor(vm => vm.Exercise.MuscleTrained, new { @class = "form-select" })
     </div>
     <div class="mb-2">
         @Html.LabelFor(vm => vm.Exercise.Name, new { @class = "form-label" })
@@ -25,9 +24,8 @@
         @Html.TextBoxFor(vm => vm.Exercise.Sets, new { @class = "form-control" })
     </div>
     <div class="mb-2">
-        @Html.LabelFor(vm => vm.TrainingDayId, new { @class = "form-label" })
-        @Html.DropDownListFor(vm => vm.TrainingDayId,
-                            Model.TrainingDaysListItems, "", new { @class = "form-select" })
+        @Html.LabelFor(vm => vm.Exercise.DayOfTraining, new { @class = "form-label" })
+        @Html.EnumDropDownListFor(vm => vm.Exercise.DayOfTraining, new { @class = "form-select" })
     </div>
 
     <div>

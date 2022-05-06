@@ -1,10 +1,7 @@
 ﻿using GymTrackerShared.Models;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace GymTrackerShared.Data
 {
@@ -22,10 +19,20 @@ namespace GymTrackerShared.Data
                 .ToList();
         }
 
-        public Exercise Get(int id)
+        public IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> GetGroupedExercises(int routineId)
+        {
+            var listOfExercises = Context.Exercises
+                .Where(e => e.RoutineId == routineId).ToList();
+
+            return listOfExercises.GroupBy(e => e.DayOfTraining);
+                
+        }
+
+        public Exercise Get(int id, int routineId)
         {
             return Context.Exercises
-                .Where(e => e.Id == id)
+                .Include(e => e.ProgressiveOverloads)
+                .Where(e => e.Id == id && e.RoutineId == routineId)
                 .SingleOrDefault();
         }
     }

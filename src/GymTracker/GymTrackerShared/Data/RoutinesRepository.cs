@@ -18,14 +18,14 @@ namespace GymTrackerShared.Data
         public IList<Routine> GetList()
         {
             return Context.Routines
+                .Include(r => r.Exercises)
                 .ToList();
         }
 
         public Routine Get(int id)
         {
             return Context.Routines
-                .Include(r => r.ExerciseDays.Select(e => e.Exercise))
-                .Include(r => r.ExerciseDays.Select(t => t.TrainingDay))
+                .Include(r => r.Exercises)
                 .Where(r => r.Id == id)
                 .SingleOrDefault();
         }

@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace GymTrackerShared.Models
+﻿namespace GymTrackerShared.Models
 {
-    public class TrainingDay
+    public partial class Routine
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
+        public enum TrainingDay
+        {
+            First = 1,
+            Second,
+            Third,
+            Fourth,
+            Fifth,
+            Sixth,
+            Seventh
+        }
     }
 }

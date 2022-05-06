@@ -6,27 +6,27 @@ using System.Web;
 
 namespace GymTrackerShared.Models
 {
-    public class Routine
+    public partial class Routine
     {
         public Routine()
         {
-            ExerciseDays = new List<ExerciseDay>();
+            Exercises = new List<Exercise>();
         }
         public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Display(Name = "Days"), Required]
         [Range(1, 7, ErrorMessage = "The number of days must be between 1 and 7")]
         public int NumberOfDays { get; set; }
-        public ICollection<ExerciseDay> ExerciseDays { get; set; }
 
-        public void AddExerciseAndDay(Exercise exercise, TrainingDay trainingDay)
+
+        public ICollection<Exercise> Exercises { get; set; }
+
+        public void AddExercise(Exercise exercise)
         {
-            ExerciseDays.Add(new ExerciseDay()
-            {
-                Exercise = exercise,
-                TrainingDay = trainingDay
-            });
+            Exercises.Add(exercise);
         }
     }
 }

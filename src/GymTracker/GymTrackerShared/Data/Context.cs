@@ -13,8 +13,6 @@ namespace GymTrackerShared.Data
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<ProgressiveOverload> ProgressiveOverloads { get; set; }
-        public DbSet<TrainingDay> TrainingDays { get; set; }
-        public DbSet<ExerciseDay> ExerciseDays { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

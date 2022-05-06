@@ -9,10 +9,10 @@ namespace GymTrackerShared.Models
         public Exercise()
         {
             ProgressiveOverloads = new List<ProgressiveOverload>();
-            Routines = new List<ExerciseDay>();
         }
 
         public int Id { get; set; }
+        public int RoutineId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -26,10 +26,11 @@ namespace GymTrackerShared.Models
         }
         [Display(Name = "Muscle Group")]
         public MuscleGroup MuscleTrained { get; set; }
+        [Display(Name = "Training Day")]
+        public Routine.TrainingDay DayOfTraining { get; set; }
 
+        public Routine Routine { get; set; }
         public ICollection<ProgressiveOverload> ProgressiveOverloads { get; set; }
-        public ICollection<ExerciseDay> Routines { get; set; }
-
 
         public void AddProgress(ProgressiveOverload progress)
         {

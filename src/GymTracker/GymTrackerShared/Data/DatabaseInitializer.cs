@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using GymTrackerShared.Models;
 using static GymTrackerShared.Models.Exercise;
+using static GymTrackerShared.Models.Routine;
 
 namespace GymTrackerShared.Data
 {
@@ -12,21 +13,27 @@ namespace GymTrackerShared.Data
     {
         protected override void Seed(Context context)
         {
-            var day1 = new TrainingDay() { Name = "Day 1" };
-            var day2 = new TrainingDay() { Name = "Day 2" };
-            var day3 = new TrainingDay() { Name = "Day 3" };
-            var day4 = new TrainingDay() { Name = "Day 4" };
-            var day5 = new TrainingDay() { Name = "Day 5" };
-            var day6 = new TrainingDay() { Name = "Day 6" };
-            var day7 = new TrainingDay() { Name = "Day 7" };
+            //var day1 = new TrainingDay() { Name = "Day 1" };
+            //var day2 = new TrainingDay() { Name = "Day 2" };
+            //var day3 = new TrainingDay() { Name = "Day 3" };
+            //var day4 = new TrainingDay() { Name = "Day 4" };
+            //var day5 = new TrainingDay() { Name = "Day 5" };
+            //var day6 = new TrainingDay() { Name = "Day 6" };
+            //var day7 = new TrainingDay() { Name = "Day 7" };
 
-            context.TrainingDays.Add(day1);
-            context.TrainingDays.Add(day2);
-            context.TrainingDays.Add(day3);
-            context.TrainingDays.Add(day4);
-            context.TrainingDays.Add(day5);
-            context.TrainingDays.Add(day6);
-            context.TrainingDays.Add(day7);
+            //context.TrainingDays.Add(day1);
+            //context.TrainingDays.Add(day2);
+            //context.TrainingDays.Add(day3);
+            //context.TrainingDays.Add(day4);
+            //context.TrainingDays.Add(day5);
+            //context.TrainingDays.Add(day6);
+            //context.TrainingDays.Add(day7);
+
+            var myRoutine = new Routine()
+            {
+                Name = "Upper-Lower",
+                NumberOfDays = 4
+            };
 
             var exercise1 = new Exercise()
             {
@@ -34,7 +41,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Chest,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.First
             };
 
             var progress1 = new ProgressiveOverload()
@@ -53,7 +61,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Chest,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.Second
             };
 
             var progress2 = new ProgressiveOverload()
@@ -72,7 +81,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Back,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.Third
             };
 
             var progress3 = new ProgressiveOverload()
@@ -91,7 +101,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Legs,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.Fourth
             };
 
             var progress4 = new ProgressiveOverload()
@@ -110,7 +121,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Abdomen,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.Fifth
             };
 
             var progress5 = new ProgressiveOverload()
@@ -129,7 +141,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Back,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.Sixth
             };
 
             var progress6 = new ProgressiveOverload()
@@ -148,7 +161,8 @@ namespace GymTrackerShared.Data
                 MuscleTrained = MuscleGroup.Legs,
                 Repetitions = 5,
                 Weight = 100,
-                Sets = 3
+                Sets = 3,
+                DayOfTraining = TrainingDay.Seventh
             };
 
             var progress7 = new ProgressiveOverload()
@@ -169,15 +183,14 @@ namespace GymTrackerShared.Data
             context.Exercises.Add(exercise6);
             context.Exercises.Add(exercise7);
 
-            var myRoutine = new Routine()
-            {
-                Name = "Upper-Lower",
-                NumberOfDays = 4
-            };
-            myRoutine.AddExerciseAndDay(exercise1, day1);
-            myRoutine.AddExerciseAndDay(exercise2, day2);
-            myRoutine.AddExerciseAndDay(exercise3, day3);
-            myRoutine.AddExerciseAndDay(exercise4, day4);
+
+
+
+            
+            myRoutine.AddExercise(exercise1);
+            myRoutine.AddExercise(exercise2);
+            myRoutine.AddExercise(exercise3);
+            myRoutine.AddExercise(exercise4);
 
             context.Routines.Add(myRoutine);
 

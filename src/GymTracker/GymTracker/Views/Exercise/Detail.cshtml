@@ -1,4 +1,4 @@
-﻿@model GymTrackerShared.Models.ExerciseDay
+﻿@model GymTrackerShared.Models.Exercise
 @{
     ViewBag.Title = "Detail";
 }
@@ -9,7 +9,7 @@
 </div>
 
 <div class="mt-5">
-    <h1 class="text-center mb-3 mb-lg-5">@Model.Exercise.DisplayName</h1>
+    <h1 class="text-center mb-3 mb-lg-5">@Model.DisplayName</h1>
 
     <div class="table-responsive table-primary">
         <table class="table">
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var progress in Model.Exercise.ProgressiveOverloads)
+                @foreach (var progress in Model.ProgressiveOverloads)
                 {
                     <tr>
                         <td>@progress.Weight</td>
@@ -34,8 +34,5 @@
         </table>
     </div>
     @Html.ActionLink("View Summary", "Summary",
-    new { id = Model.Exercise.Id, routineId = Model.RoutineId, dayId = Model.TrainingDayId}, new { @class = "btn btn-primary" })
+    new { id = Model.Id, routineId = Model.RoutineId, dayId = Model.DayOfTraining }, new { @class = "btn btn-primary" })
 </div>
-
-
-
