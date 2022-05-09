@@ -21,8 +21,8 @@
         <tr>
             <td>@Html.ActionLink(routine.Name, "Detail", new { id = routine.Id }, new {@class = "link-dark"})</td>
             <td>@routine.NumberOfDays</td>
-            <td><a href="/Routine/Delete/@routine.Id"><span class="fa-regular fa-trash-can"></span></a></td>
-            <td><a href="/Routine/Edit/@routine.Id"><span class="fa-regular fa-pen-to-square"></span></a></td>
+            <td><a href="@Url.Action("Delete", new { id = routine.Id})"><span class="fa-regular fa-trash-can"></span></a></td>
+            <td><a href="@Url.Action("Edit", new { id = routine.Id})"><span class="fa-regular fa-pen-to-square"></span></a></td>
         </tr>
     }
 </table>

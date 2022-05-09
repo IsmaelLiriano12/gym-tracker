@@ -1,0 +1,38 @@
+﻿@model GymTrackerShared.Models.Exercise
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h1 class="mb-3 mt-lg-5 mb-lg-5">Delete Exercise</h1>
+
+<div class="alert alert-danger" role="alert">Are you sure you want to delete @Model.Name?</div>
+
+@using (Html.BeginForm())
+{
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+    </button>
+
+    @Html.ActionLink("Cancel", "Detail", "Routine", new { id = Model.RoutineId }, new { @class = "btn btn-outline-secondary" })
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Exercise</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Every progress will be deleted. Are you sure you want to continue?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

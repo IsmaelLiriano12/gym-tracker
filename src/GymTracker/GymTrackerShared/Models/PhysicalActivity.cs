@@ -4,7 +4,7 @@ namespace GymTrackerShared.Models
 {
     public abstract class PhysicalActivity
     {
-        [Required]
+        [Required, Range(1, 2000)]
         public decimal Weight { get; set; }
         [Required]
         public int Repetitions { get; set; }

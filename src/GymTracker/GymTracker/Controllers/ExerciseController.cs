@@ -13,12 +13,10 @@ namespace GymTracker.Controllers
     public class ExerciseController : BaseController
     {
         private ExercisesRepository _exercisesRepository = null;
-        private readonly RoutinesRepository _routinesRepository = null;
 
         public ExerciseController()
         {
             _exercisesRepository = new ExercisesRepository(Context);
-            _routinesRepository = new RoutinesRepository(Context);
         }
 
         public ActionResult Index()
@@ -37,34 +35,28 @@ namespace GymTracker.Controllers
             return View(exercise);
         }
 
-        public ActionResult Add(int routineId, int dayId)
+        public ActionResult Add(int? routineId)
         {
-            var routine = _routinesRepository.Get(routineId);
-
-            if (routine == null)
+            if (routineId == null)
             {
                 return HttpNotFound();
             }
 
-            var viewModel = new ExerciseDaysAddViewModel()
+            var exercise = new Exercise()
             {
-                Routine = routine
+                RoutineId = (int)routineId
             };
 
-            viewModel.Init(Context, dayId);
-
-            return View(viewModel);
+            return View(exercise);
         }
 
         [HttpPost]
-        public ActionResult Add(ExerciseDaysAddViewModel viewModel)
+        public ActionResult Add(Exercise exercise)
         {
             //ValidateExerciseDay(viewModel);
 
             if (ModelState.IsValid)
             {
-                var exercise = viewModel.Exercise;
-
                 var progress = new ProgressiveOverload()
                 {
                     DateCreated = DateTime.Now,
@@ -79,46 +71,66 @@ namespace GymTracker.Controllers
 
                 TempData["Message"] = $"{exercise.Name} was successfully added to the routine!";
 
-                return RedirectToAction("Detail", "Routine", new { id = viewModel.RoutineId });
+                return RedirectToAction("Detail", "Routine", new { id = exercise.RoutineId });
             }
 
-            return View(viewModel);
+            return View(exercise);
         }
 
-        public ActionResult Edit(int? id, int? routineId, int? dayId)
+        public ActionResult Edit(int? id, int? routineId)
         {
-            if (id == null || routineId == null || dayId == null) { return HttpNotFound(); }
+            if (id == null || routineId == null) 
+            { 
+                return HttpNotFound(); 
+            }
 
             var exercise = _exercisesRepository.Get((int)id, (int)routineId);
 
-            var viewModel = new ExerciseDaysAddViewModel()
-            {
-                Exercise = exercise,
-                RoutineId = exercise.RoutineId,
-            };
-
-            viewModel.Init(Context, (int)dayId);
-
-            return View(viewModel);
+            return View(exercise);
         }
 
         [HttpPost]
-        public ActionResult Edit(ExerciseDaysAddViewModel viewModel)
+        public ActionResult Edit(Exercise exercise)
         {
             if (ModelState.IsValid)
             {
-                var exercise = viewModel.Exercise;
-                exercise.RoutineId = viewModel.RoutineId;
                 var progress = new AddProgressiveOverloadCommand(Context)
                     .Execute(exercise.Id, exercise.Weight, exercise.Repetitions, exercise.Sets);
                 exercise.AddProgress(progress);
 
                 _exercisesRepository.Update(exercise);
 
-                return RedirectToAction("Detail", new { Id = viewModel.Exercise.Id, routineId = viewModel.RoutineId });
+                return RedirectToAction("Detail", new { Id = exercise .Id, routineId = exercise.RoutineId });
             }
 
-            return View(viewModel);
+            return View(exercise);
+        }
+
+        public ActionResult Delete(int? id, int? routineId)
+        {
+            if (id == null || routineId == null)
+            {
+                return HttpNotFound();
+            }
+
+            var exercise = _exercisesRepository.Get((int)id, (int)routineId);
+
+            if (exercise == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(exercise);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, int routineId)
+        {
+            _exercisesRepository.Delete(id);
+
+            TempData["Message"] = "The exercise was successfully deleted";
+
+            return RedirectToAction("Detail", "Routine", new { id = routineId});
         }
 
     }

@@ -1,31 +1,36 @@
-﻿@model GymTracker.ViewModels.ExerciseDaysAddViewModel
+﻿@model GymTrackerShared.Models.Exercise
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(vm => vm.Exercise.Id)
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.RoutineId)
+<div class="mb-2">
+    @Html.LabelFor(m => m.MuscleTrained, new { @class = "form-label" })
+    @Html.EnumDropDownListFor(m => m.MuscleTrained, new { @class = "form-select" })
+</div>
     <div class="mb-2">
-        @Html.LabelFor(vm => vm.Exercise.MuscleTrained, new { @class = "form-label" })
-        @Html.EnumDropDownListFor(vm => vm.Exercise.MuscleTrained, new { @class = "form-select" })
+        @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger fs-6" })
     </div>
     <div class="mb-2">
-        @Html.LabelFor(vm => vm.Exercise.Name, new { @class = "form-label" })
-        @Html.TextBoxFor(vm => vm.Exercise.Name, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Weight, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Weight, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Weight, "", new { @class = "text-danger fs-6" })
     </div>
     <div class="mb-2">
-        @Html.LabelFor(vm => vm.Exercise.Weight, new { @class = "form-label" })
-        @Html.TextBoxFor(vm => vm.Exercise.Weight, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Repetitions, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Repetitions, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Repetitions, "", new { @class = "text-danger fs-6" })
     </div>
     <div class="mb-2">
-        @Html.LabelFor(vm => vm.Exercise.Repetitions, new { @class = "form-label" })
-        @Html.TextBoxFor(vm => vm.Exercise.Repetitions, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Sets, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Sets, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Repetitions, "", new { @class = "text-danger fs-6" })
     </div>
     <div class="mb-2">
-        @Html.LabelFor(vm => vm.Exercise.Sets, new { @class = "form-label" })
-        @Html.TextBoxFor(vm => vm.Exercise.Sets, new { @class = "form-control" })
-    </div>
-    <div class="mb-2">
-        @Html.LabelFor(vm => vm.Exercise.DayOfTraining, new { @class = "form-label" })
-        @Html.EnumDropDownListFor(vm => vm.Exercise.DayOfTraining, new { @class = "form-select" })
+        @Html.LabelFor(m => m.DayOfTraining, new { @class = "form-label" })
+        @Html.EnumDropDownListFor(m => m.DayOfTraining, new { @class = "form-select" })
     </div>
 
     <div>

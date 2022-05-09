@@ -10,6 +10,8 @@
 
 @Html.Partial("_Message")
 
+@Html.ActionLink("Add Exercise", "Add", "Exercise", new { routineId = Model.Routine.Id }, new { @class = "btn btn-primary mb-3" })
+
 <div class="d-lg-flex justify-content-lg-between flex-lg-wrap h-75">
 
     @foreach (var trainingDay in Model.Exercises)
@@ -27,16 +29,20 @@
                         </td>
                         <td>
                             <a href="@Url.Action("Edit", "Exercise",
-                                    new { Id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining })">
+                                            new { Id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining })">
                                 <span class="fa-regular fa-pen-to-square"></span>
                             </a>
                         </td>
+                        <td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Exercise", 
+                                    new { Id = exercise.Id, routineId = exercise.RoutineId })">
+                            <span class="fa-regular fa-trash-can"></span></a></td>
+   
                     </tr>
                 }
 
             </table>
-          
-            <a href="@Url.Action("Add", "Exercise", new { routineId = Model.Routine.Id, dayId = trainingDay.Key })"><span class="fa-solid fa-circle-plus fa-2x"></span></a>
         </div>
     }
 </div>
