@@ -12,39 +12,45 @@
 
 @Html.ActionLink("Add Exercise", "Add", "Exercise", new { routineId = Model.Routine.Id }, new { @class = "btn btn-primary mb-3" })
 
-<div class="d-lg-flex justify-content-lg-between flex-lg-wrap h-75">
+<div class="">
 
     @foreach (var trainingDay in Model.Exercises)
     {
-        <div class="col-lg-3 card text-center mb-3 bg-secondary mx-lg-1" style="min-width: 200px">
-            <h3 class="card-header">@trainingDay.Key Day</h3>
+     
+        <h3>@trainingDay.Key Day</h3>
 
-            <table class="table">
-                @foreach (var exercise in trainingDay)
-                {
-                    <tr>
-                        <td class="mb-2">
-                            @Html.ActionLink(exercise.Name, "Detail", "Exercise",
-                            new { Id = exercise.Id, routineId = exercise.RoutineId }, new { @class = "link-primary" })
-                        </td>
-                        <td>
-                            <a href="@Url.Action("Edit", "Exercise",
+        <table class="table table-hover">
+            @foreach (var exercise in trainingDay)
+            {
+                <tr>
+                    <td class="w-50">@exercise.Name</td>
+
+                    <td class="w-25">
+                        <a href="@Url.Action("Detail", "Exercise",
                                             new { Id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining })">
-                                <span class="fa-regular fa-pen-to-square"></span>
-                            </a>
-                        </td>
-                        <td>
-                        <td>
-                            <a href="@Url.Action("Delete", "Exercise", 
+                            <span class="fa-solid fa-magnifying-glass"></span>
+                        </a>
+                    </td>
+                    <td class="w-25">
+                        <a href="@Url.Action("Edit", "Exercise",
+                                            new { Id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining })">
+                            <span class="fa-regular fa-pen-to-square"></span>
+                        </a>
+                    </td>
+                    <td class="w-25">
+                        <a href="@Url.Action("Delete", "Exercise",
                                     new { Id = exercise.Id, routineId = exercise.RoutineId })">
-                            <span class="fa-regular fa-trash-can"></span></a></td>
-   
-                    </tr>
-                }
+                            <span class="fa-regular fa-trash-can"></span>
+                        </a>
+                    </td>
 
-            </table>
-        </div>
+                </tr>
+            }
+
+        </table>
     }
+
+
 </div>
 
 

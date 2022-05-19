@@ -32,8 +32,7 @@ namespace GymTrackerShared.Data
         {
             return Context.Exercises
                 .Include(e => e.ProgressiveOverloads)
-                .Where(e => e.Id == id && e.RoutineId == routineId)
-                .SingleOrDefault();
+                .FirstOrDefault(e => e.Id == id && e.RoutineId == routineId);
         }
     }
 }

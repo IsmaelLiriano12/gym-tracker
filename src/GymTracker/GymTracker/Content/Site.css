@@ -2,14 +2,20 @@
 body {
     min-height: 100vh;
     font: 400 1rem/1 'Oswald', sans-serif;
+    background-color: #F5F3F4;
 }
 
 h1 {
     font: 400 3rem/1 'Anton', sans-serif;
 }
 
-a{
+a {
+    color: #161A1D;
     text-decoration: none;
+}
+
+a:hover {
+    color: #B1A7A6;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -26,16 +32,32 @@ textarea {
 }
 
 .bg-primary {
-    background-color: #121061 !important;
+    background-color: #660708 !important;
 }
 
-.bg-secondary{
-    background-color: #77acf1 !important;
+.btn-primary {
+    background-color: #161A1D !important;
+    border-color: #161A1D !important;
+}
+
+.bg-secondary {
+    background-color: #D3D3D3 !important;
+}
+
+.exercise-detail {
+    background-color: #f8f8f8;
+}
+
+.progress-history{
+    opacity: 0;
+    font-size: 0.1rem;
+    /*width: 10px;*/
+    text-align: center;
 }
 
 
 
-@media screen and (min-width: 640px){
+@media screen and (min-width: 640px) {
     body{
         font-size: 1.2rem;
     }

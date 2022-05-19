@@ -53,7 +53,7 @@ namespace GymTracker.Controllers
         [HttpPost]
         public ActionResult Add(Exercise exercise)
         {
-            //ValidateExerciseDay(viewModel);
+            AreSetsAndRepsGreaterThanZero(exercise);
 
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace GymTracker.Controllers
 
                 exercise.AddProgress(progress);
 
-                _exercisesRepository.Add(exercise);                
+                _exercisesRepository.Add(exercise);
 
                 TempData["Message"] = $"{exercise.Name} was successfully added to the routine!";
 
@@ -76,6 +76,8 @@ namespace GymTracker.Controllers
 
             return View(exercise);
         }
+
+       
 
         public ActionResult Edit(int? id, int? routineId)
         {
@@ -92,6 +94,8 @@ namespace GymTracker.Controllers
         [HttpPost]
         public ActionResult Edit(Exercise exercise)
         {
+            AreSetsAndRepsGreaterThanZero(exercise);
+
             if (ModelState.IsValid)
             {
                 var progress = new AddProgressiveOverloadCommand(Context)
@@ -131,6 +135,19 @@ namespace GymTracker.Controllers
             TempData["Message"] = "The exercise was successfully deleted";
 
             return RedirectToAction("Detail", "Routine", new { id = routineId});
+        }
+
+        private void AreSetsAndRepsGreaterThanZero(Exercise exercise)
+        {
+            if (exercise.Sets <= 0)
+            {
+                ModelState.AddModelError("Sets", "The number of sets must be greater than 0");
+            }
+
+            if (exercise.Repetitions <= 0)
+            {
+                ModelState.AddModelError("Repetitions", "The number of reps must be greater than 0");
+            }
         }
 
     }

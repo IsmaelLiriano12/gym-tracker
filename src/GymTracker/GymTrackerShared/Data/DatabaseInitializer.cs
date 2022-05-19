@@ -13,26 +13,10 @@ namespace GymTrackerShared.Data
     {
         protected override void Seed(Context context)
         {
-            //var day1 = new TrainingDay() { Name = "Day 1" };
-            //var day2 = new TrainingDay() { Name = "Day 2" };
-            //var day3 = new TrainingDay() { Name = "Day 3" };
-            //var day4 = new TrainingDay() { Name = "Day 4" };
-            //var day5 = new TrainingDay() { Name = "Day 5" };
-            //var day6 = new TrainingDay() { Name = "Day 6" };
-            //var day7 = new TrainingDay() { Name = "Day 7" };
-
-            //context.TrainingDays.Add(day1);
-            //context.TrainingDays.Add(day2);
-            //context.TrainingDays.Add(day3);
-            //context.TrainingDays.Add(day4);
-            //context.TrainingDays.Add(day5);
-            //context.TrainingDays.Add(day6);
-            //context.TrainingDays.Add(day7);
 
             var myRoutine = new Routine()
             {
-                Name = "Upper-Lower",
-                NumberOfDays = 4
+                Name = "Upper-Lower"
             };
 
             var exercise1 = new Exercise()
@@ -47,7 +31,7 @@ namespace GymTrackerShared.Data
 
             var progress1 = new ProgressiveOverload()
             {
-                DateCreated = DateTime.Now,
+                DateCreated = new DateTime(2022, 4, 25, 12, 30, 5 ),
                 Weight = exercise1.Weight,
                 Repetitions = exercise1.Repetitions,
                 Sets = exercise1.Sets
@@ -114,78 +98,6 @@ namespace GymTrackerShared.Data
             };
 
             exercise4.AddProgress(progress4);
-
-            var exercise5 = new Exercise()
-            {
-                Name = "Sit ups",
-                MuscleTrained = MuscleGroup.Abdomen,
-                Repetitions = 5,
-                Weight = 100,
-                Sets = 3,
-                DayOfTraining = TrainingDay.Fifth
-            };
-
-            var progress5 = new ProgressiveOverload()
-            {
-                DateCreated = DateTime.Now,
-                Weight = exercise1.Weight,
-                Repetitions = exercise1.Repetitions,
-                Sets = exercise1.Sets
-            };
-
-            exercise5.AddProgress(progress5);
-
-            var exercise6 = new Exercise()
-            {
-                Name = "Pull ups",
-                MuscleTrained = MuscleGroup.Back,
-                Repetitions = 5,
-                Weight = 100,
-                Sets = 3,
-                DayOfTraining = TrainingDay.Sixth
-            };
-
-            var progress6 = new ProgressiveOverload()
-            {
-                DateCreated = DateTime.Now,
-                Weight = exercise1.Weight,
-                Repetitions = exercise1.Repetitions,
-                Sets = exercise1.Sets
-            };
-
-            exercise6.AddProgress(progress6);
-
-            var exercise7 = new Exercise()
-            {
-                Name = "Leg Press",
-                MuscleTrained = MuscleGroup.Legs,
-                Repetitions = 5,
-                Weight = 100,
-                Sets = 3,
-                DayOfTraining = TrainingDay.Seventh
-            };
-
-            var progress7 = new ProgressiveOverload()
-            {
-                DateCreated = DateTime.Now,
-                Weight = exercise1.Weight,
-                Repetitions = exercise1.Repetitions,
-                Sets = exercise1.Sets
-            };
-
-            exercise7.AddProgress(progress7);
-
-            context.Exercises.Add(exercise1);
-            context.Exercises.Add(exercise2);
-            context.Exercises.Add(exercise3);
-            context.Exercises.Add(exercise4);
-            context.Exercises.Add(exercise5);
-            context.Exercises.Add(exercise6);
-            context.Exercises.Add(exercise7);
-
-
-
-
             
             myRoutine.AddExercise(exercise1);
             myRoutine.AddExercise(exercise2);

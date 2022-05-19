@@ -26,8 +26,7 @@ namespace GymTrackerShared.Data
         {
             return Context.Routines
                 .Include(r => r.Exercises)
-                .Where(r => r.Id == id)
-                .SingleOrDefault();
+                .FirstOrDefault(r => r.Id == id);
         }
     }
 }

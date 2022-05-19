@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,6 +25,39 @@ namespace GymTrackerShared.Models
                 return $"{Name} - {MuscleTrained}";
             }
         }
+
+        public ProgressiveOverload CurrentProgress
+        {
+            get
+            {
+                return ProgressiveOverloads
+                    .LastOrDefault();
+            }
+        }
+
+        public ProgressiveOverload LastPastMonthProgress
+        {
+            get
+            {
+                var progress = ProgressiveOverloads
+                        .Where(p => p.DateCreated.Month == DateTime.Now.Month - 1)
+                        .LastOrDefault();
+
+                if (progress == null)
+                {
+                    progress = new ProgressiveOverload()
+                    {
+                        Weight = 0,
+                        Repetitions = 0,
+                        Sets = 0
+                    };
+                }
+
+                return progress;
+            }
+        }
+
+
         [Display(Name = "Muscle Group")]
         public MuscleGroup MuscleTrained { get; set; }
         [Display(Name = "Training Day")]
@@ -31,6 +65,7 @@ namespace GymTrackerShared.Models
 
         public Routine Routine { get; set; }
         public ICollection<ProgressiveOverload> ProgressiveOverloads { get; set; }
+
 
         public void AddProgress(ProgressiveOverload progress)
         {

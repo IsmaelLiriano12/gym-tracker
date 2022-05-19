@@ -15,12 +15,6 @@
         @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
     </div>
 
-    @Html.LabelFor(r => r.NumberOfDays, new { @class = "form-label" })
-    <div class="form-group mb-3">
-        @Html.TextBoxFor(r => r.NumberOfDays, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.NumberOfDays, "", new { @class = "text-danger" })
-    </div>
-
     <button type="submit" class="btn btn-primary">Save</button>
     @Html.ActionLink("Cancel", "Index", new { @class = "btn btn-outline-secondary" })
 }

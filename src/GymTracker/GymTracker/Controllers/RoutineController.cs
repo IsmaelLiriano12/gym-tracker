@@ -58,17 +58,7 @@ namespace GymTracker.Controllers
             {
                 _routinesRepository.Add(routine);
 
-                for (int i = 1; i <= routine.NumberOfDays; i++)
-                {
- 
-                    
-
-                    //_exerciseDaysRepository.Add(exerciseDay);
-
-                    //routine.AddExercise();
-                }
-
-                return RedirectToAction("Detail", new { id = routine.Id});
+                return RedirectToAction("Detail", new { id = routine.Id });
             }
 
             return View(routine);
