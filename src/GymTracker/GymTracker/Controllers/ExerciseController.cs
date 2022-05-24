@@ -30,7 +30,7 @@ namespace GymTracker.Controllers
             if (id == null || routineId == null)
                 return HttpNotFound();
 
-            var exercise = _exercisesRepository.Get((int)id, (int)routineId);
+            var exercise = _exercisesRepository.Get((int)id);
 
             return View(exercise);
         }
@@ -86,7 +86,7 @@ namespace GymTracker.Controllers
                 return HttpNotFound(); 
             }
 
-            var exercise = _exercisesRepository.Get((int)id, (int)routineId);
+            var exercise = _exercisesRepository.Get((int)id);
 
             return View(exercise);
         }
@@ -117,7 +117,7 @@ namespace GymTracker.Controllers
                 return HttpNotFound();
             }
 
-            var exercise = _exercisesRepository.Get((int)id, (int)routineId);
+            var exercise = _exercisesRepository.Get((int)id);
 
             if (exercise == null)
             {

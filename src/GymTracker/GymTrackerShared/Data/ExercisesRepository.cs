@@ -5,18 +5,17 @@ using System.Data.Entity;
 
 namespace GymTrackerShared.Data
 {
-    public class ExercisesRepository : Repository<Exercise>
+    public class ExercisesRepository : Repository<Exercise>, IReadRepository<Exercise>
     {
         public ExercisesRepository(Context context)
             : base(context)
         {
         }
 
-        public IList<Exercise> GetList()
+        public IEnumerable<Exercise> GetList()
         {
             return Context.Exercises
-                .OrderBy(e => e.MuscleTrained)
-                .ToList();
+                .OrderBy(e => e.MuscleTrained);
         }
 
         public IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> GetGroupedExercises(int routineId)
@@ -28,11 +27,11 @@ namespace GymTrackerShared.Data
                 
         }
 
-        public Exercise Get(int id, int routineId)
+        public Exercise Get(int id)
         {
             return Context.Exercises
                 .Include(e => e.ProgressiveOverloads)
-                .FirstOrDefault(e => e.Id == id && e.RoutineId == routineId);
+                .FirstOrDefault(e => e.Id == id);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GymTrackerShared.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace GymTrackerShared.Data
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<IdentityUser>
     {
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }

@@ -50,8 +50,7 @@ textarea {
 
 .progress-history{
     opacity: 0;
-    font-size: 0.1rem;
-    /*width: 10px;*/
+    transform: scale(0.1);
     text-align: center;
 }
 

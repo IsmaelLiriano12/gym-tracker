@@ -8,18 +8,17 @@ using System.Data.Entity;
 
 namespace GymTrackerShared.Data
 {
-    public class RoutinesRepository : Repository<Routine>
+    public class RoutinesRepository : Repository<Routine>, IReadRepository<Routine>
     {
         public RoutinesRepository(Context context)
             : base(context)
         {
         }
 
-        public IList<Routine> GetList()
+        public IEnumerable<Routine> GetList()
         {
             return Context.Routines
-                .Include(r => r.Exercises)
-                .ToList();
+                .Include(r => r.Exercises);
         }
 
         public Routine Get(int id)
