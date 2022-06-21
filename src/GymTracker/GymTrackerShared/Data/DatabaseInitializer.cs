@@ -31,7 +31,7 @@ namespace GymTrackerShared.Data
 
             var progress1 = new ProgressiveOverload()
             {
-                DateCreated = new DateTime(2022, 4, 25, 12, 30, 5 ),
+                DateCreated = new DateTime(2022, 5, 25, 12, 30, 5 ),
                 Weight = exercise1.Weight,
                 Repetitions = exercise1.Repetitions,
                 Sets = exercise1.Sets

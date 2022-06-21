@@ -78,9 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\AddProgressiveOverloadCommand.cs" />
-    <Compile Include="Data\IReadRepository.cs" />
-    <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\AddProgressiveOverload.cs" />
+    <Compile Include="Data\IAddProgressiveOverload.cs" />
+    <Compile Include="Data\IExercisesRepository.cs" />
+    <Compile Include="Data\IRoutinesRepository.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\ExercisesRepository.cs" />
@@ -97,9 +98,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Queries\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

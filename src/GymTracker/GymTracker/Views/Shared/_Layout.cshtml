@@ -8,9 +8,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - @applicationName</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" runat="server" type="text/css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css" runat="server" type="text/css"/>
     <link href="~/Content/Site.css" rel="stylesheet" runat="server" type="text/css" />
     <script src="https://kit.fontawesome.com/552a1cbc28.js" crossorigin="anonymous"></script>
+    <script src="~/Scripts/chart.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald&display=swap" rel="stylesheet">
@@ -21,9 +22,9 @@
     <div class="d-flex flex-column flex-lg-row min-vh-100">
 
         <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between bg-primary">
-            <div class="navbar navbar-expand-sm navbar-dark">
+            <div class="navbar navbar-expand-sm navbar-light">
                 <div class="container-fluid flex-lg-column">
-                    @Html.ActionLink(applicationName, "Index", "Routine", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink(applicationName, "Index", "Routine", new { area = "" }, new { @class = "navbar-brand mt-lg-3" })
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -36,14 +37,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card-footer d-none d-lg-block">
-                <p class="text-light">&copy; @DateTime.Now.Year - Ismael Liriano</p>
+            <div class="card-footer d-none d-lg-block bg-primary">
+                <p class="">&copy; @DateTime.Now.Year Ismael Liriano</p>
             </div>
         </div>
 
 
         <div class="col-lg-10 flex-grow-1">
-            <div class="container body-content overflow-auto" style="max-height: 100vh">
+            <div class="container body-content overflow-content">
                 @RenderBody()
 
             </div>
@@ -51,11 +52,11 @@
 
         <footer class="d-flex justify-content-around mb-auto d-lg-none bg-primary">
             <div class="mt-3">
-                <p class="text-light">&copy; @DateTime.Now.Year - Ismael Liriano</p>
+                <p class="">&copy; @DateTime.Now.Year Ismael Liriano</p>
             </div>
             <div class="mt-3">
                 <p>
-                    <a class="text-light" href="https://github.com/ismaelliriano12/gym-tracker" target="_blank">
+                    <a class="text-dark" href="https://github.com/ismaelliriano12/gym-tracker" target="_blank">
                         <i class="fa-brands fa-github fa-lg"></i>
                     </a>
                 </p>
@@ -67,6 +68,7 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
-    
+
+
 </body>
 </html>

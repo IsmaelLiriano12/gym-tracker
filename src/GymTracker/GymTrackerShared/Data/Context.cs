@@ -20,7 +20,7 @@ namespace GymTrackerShared.Data
 
             modelBuilder.Entity<Exercise>()
                 .Property(e => e.Weight)
-                .HasPrecision(5, 2);
+                .HasPrecision(5, 1);
         }
     }
 }

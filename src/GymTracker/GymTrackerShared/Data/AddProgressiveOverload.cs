@@ -1,20 +1,19 @@
-﻿using GymTrackerShared.Data;
-using GymTrackerShared.Models;
+﻿using GymTrackerShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymTrackerShared.Commands
+namespace GymTrackerShared.Data
 {
-    public class AddProgressiveOverloadCommand
+    public class AddProgressiveOverload : IAddProgressiveOverload
     {
-        private readonly Context _context;
+        private readonly Context context;
 
-        public AddProgressiveOverloadCommand(Context context)
+        public AddProgressiveOverload(Context context)
         {
-            this._context = context;
+            this.context = context;
         }
 
         public ProgressiveOverload Execute(int exerciseId, decimal weight, int reps, int sets)
@@ -28,8 +27,8 @@ namespace GymTrackerShared.Commands
                 Sets = sets
             };
 
-            _context.ProgressiveOverloads.Add(progress);
-            _context.SaveChanges();
+            context.ProgressiveOverloads.Add(progress);
+            context.SaveChanges();
 
             return progress;
         }

@@ -9,17 +9,20 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
-    public class RoutineController : BaseController
+    public class RoutineController : Controller
     {
-        private readonly RoutinesRepository _routinesRepository = null;
-        public RoutineController() 
+        private readonly IRoutinesRepository routinesRepository;
+        private readonly IExercisesRepository exercisesRepository;
+
+        public RoutineController(IRoutinesRepository routinesRepository, IExercisesRepository exercisesRepository) 
         {
-            _routinesRepository = new RoutinesRepository(Context);
+            this.routinesRepository = routinesRepository;
+            this.exercisesRepository = exercisesRepository;
         }
 
         public ActionResult Index()
         {
-            var routines = _routinesRepository.GetList();
+            var routines = routinesRepository.GetList();
 
             return View(routines);
         }
@@ -29,14 +32,14 @@ namespace GymTracker.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            var routine = _routinesRepository.Get((int)id);
+            var routine = routinesRepository.Get((int)id);
 
             var viewModel = new RoutineDetailViewModel()
             {
                 Routine = routine
             };
 
-            viewModel.Init(Context, routine.Id);
+            viewModel.Init(exercisesRepository, routine.Id);
 
             return View(viewModel);
         }
@@ -54,7 +57,7 @@ namespace GymTracker.Controllers
 
             if (ModelState.IsValid)
             {
-                _routinesRepository.Add(routine);
+                routinesRepository.Add(routine);
 
                 return RedirectToAction("Detail", new { id = routine.Id });
             }
@@ -68,20 +71,20 @@ namespace GymTracker.Controllers
             {
                 return HttpNotFound();
             }
-            var routine = _routinesRepository.Get((int)id);
+            var routine = routinesRepository.Get((int)id);
             return View(routine);
         }
 
         [HttpPost]
         public ActionResult Edit(int id, string name)
         {
-            var routine = _routinesRepository.Get(id);
+            var routine = routinesRepository.Get(id);
             //ValidateRoutine(routine);
 
             if (ModelState.IsValid)
             {
                 routine.Name = name;
-                _routinesRepository.Update(routine);
+                routinesRepository.Update(routine);
                 return RedirectToAction("Index");
             }
 
@@ -95,7 +98,7 @@ namespace GymTracker.Controllers
                 return HttpNotFound();
             }
 
-            var routine = _routinesRepository.Get((int)id);
+            var routine = routinesRepository.Get((int)id);
 
             if (routine == null)
             {
@@ -108,7 +111,7 @@ namespace GymTracker.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            _routinesRepository.Delete(id);
+            routinesRepository.Delete(id);
 
             TempData["Message"] = "The routine was successfully deleted";
 

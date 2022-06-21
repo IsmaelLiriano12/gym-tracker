@@ -15,9 +15,9 @@ namespace GymTracker.ViewModels
         public IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> Exercises { get; set; }
 
 
-        public void Init(Context context, int routineId) 
+        public void Init(IExercisesRepository exercisesRepository, int routineId) 
         {
-            Exercises = new ExercisesRepository(context).GetGroupedExercises(routineId);
+            Exercises = exercisesRepository.GetGroupedExercises(routineId);
         }
     }
 }

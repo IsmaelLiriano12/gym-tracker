@@ -13,6 +13,7 @@ namespace GymTracker
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ContainerConfig.RegisterContainer();
         }
     }
 }

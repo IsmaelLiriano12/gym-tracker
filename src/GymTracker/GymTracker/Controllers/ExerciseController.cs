@@ -1,5 +1,4 @@
 ﻿using GymTracker.ViewModels;
-using GymTrackerShared.Commands;
 using GymTrackerShared.Data;
 using GymTrackerShared.Models;
 using System;
@@ -10,18 +9,20 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
-    public class ExerciseController : BaseController
+    public class ExerciseController : Controller
     {
-        private ExercisesRepository _exercisesRepository = null;
+        private readonly IExercisesRepository exercisesRepository;
+        private readonly IAddProgressiveOverload addProgressiveOverload;
 
-        public ExerciseController()
+        public ExerciseController(IExercisesRepository exercisesRepository, IAddProgressiveOverload addProgressiveOverload)
         {
-            _exercisesRepository = new ExercisesRepository(Context);
+            this.exercisesRepository = exercisesRepository;
+            this.addProgressiveOverload = addProgressiveOverload;
         }
 
         public ActionResult Index()
         {
-            var exercises = _exercisesRepository.GetList();
+            var exercises = exercisesRepository.GetList();
             return View(exercises);
         }
 
@@ -30,7 +31,7 @@ namespace GymTracker.Controllers
             if (id == null || routineId == null)
                 return HttpNotFound();
 
-            var exercise = _exercisesRepository.Get((int)id);
+            var exercise = exercisesRepository.Get((int)id);
 
             return View(exercise);
         }
@@ -67,7 +68,7 @@ namespace GymTracker.Controllers
 
                 exercise.AddProgress(progress);
 
-                _exercisesRepository.Add(exercise);
+                exercisesRepository.Add(exercise);
 
                 TempData["Message"] = $"{exercise.Name} was successfully added to the routine!";
 
@@ -86,7 +87,7 @@ namespace GymTracker.Controllers
                 return HttpNotFound(); 
             }
 
-            var exercise = _exercisesRepository.Get((int)id);
+            var exercise = exercisesRepository.Get((int)id);
 
             return View(exercise);
         }
@@ -98,11 +99,12 @@ namespace GymTracker.Controllers
 
             if (ModelState.IsValid)
             {
-                var progress = new AddProgressiveOverloadCommand(Context)
+                var progress = addProgressiveOverload
                     .Execute(exercise.Id, exercise.Weight, exercise.Repetitions, exercise.Sets);
+
                 exercise.AddProgress(progress);
 
-                _exercisesRepository.Update(exercise);
+                exercisesRepository.Update(exercise);
 
                 return RedirectToAction("Detail", new { Id = exercise .Id, routineId = exercise.RoutineId });
             }
@@ -117,7 +119,7 @@ namespace GymTracker.Controllers
                 return HttpNotFound();
             }
 
-            var exercise = _exercisesRepository.Get((int)id);
+            var exercise = exercisesRepository.Get((int)id);
 
             if (exercise == null)
             {
@@ -130,7 +132,7 @@ namespace GymTracker.Controllers
         [HttpPost]
         public ActionResult Delete(int id, int routineId)
         {
-            _exercisesRepository.Delete(id);
+            exercisesRepository.Delete(id);
 
             TempData["Message"] = "The exercise was successfully deleted";
 

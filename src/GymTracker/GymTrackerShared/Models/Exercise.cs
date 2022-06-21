@@ -18,22 +18,10 @@ namespace GymTrackerShared.Models
         [Required]
         public string Name { get; set; }
 
-        public string DisplayName
-        {
-            get
-            {
-                return $"{Name} - {MuscleTrained}";
-            }
-        }
+        public string DisplayName => Name.ToUpper();
 
-        public ProgressiveOverload CurrentProgress
-        {
-            get
-            {
-                return ProgressiveOverloads
+        public ProgressiveOverload CurrentProgress => ProgressiveOverloads
                     .LastOrDefault();
-            }
-        }
 
         public ProgressiveOverload LastPastMonthProgress
         {
@@ -67,9 +55,6 @@ namespace GymTrackerShared.Models
         public ICollection<ProgressiveOverload> ProgressiveOverloads { get; set; }
 
 
-        public void AddProgress(ProgressiveOverload progress)
-        {
-            ProgressiveOverloads.Add(progress);
-        }
+        public void AddProgress(ProgressiveOverload progress) => ProgressiveOverloads.Add(progress);
     }
 }

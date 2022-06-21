@@ -2,11 +2,12 @@
 body {
     min-height: 100vh;
     font: 400 1rem/1 'Oswald', sans-serif;
-    background-color: #F5F3F4;
+    background-color: #D8DEE9;
 }
 
 h1 {
     font: 400 3rem/1 'Anton', sans-serif;
+    color: #3B4252;
 }
 
 a {
@@ -28,30 +29,29 @@ a:hover {
 input,
 select,
 textarea {
+    background-color: #E5E9F0 !important;
     max-width: 280px;
 }
 
 .bg-primary {
-    background-color: #660708 !important;
+    background-color: #D8DEE9 !important;
 }
 
 .btn-primary {
-    background-color: #161A1D !important;
-    border-color: #161A1D !important;
+    background-color: #495057 !important;
+    border-color: #495057 !important;
 }
 
 .bg-secondary {
-    background-color: #D3D3D3 !important;
+    background-color: #ECEFF4 !important;
+}
+
+.navbar-brand {
+    font-weight: 700;
 }
 
 .exercise-detail {
     background-color: #f8f8f8;
-}
-
-.progress-history{
-    opacity: 0;
-    transform: scale(0.1);
-    text-align: center;
 }
 
 
@@ -76,5 +76,10 @@ textarea {
 
     .navbar-brand {
         font-size: 1.9rem;
+    }
+
+    .overflow-content{
+        max-height: 100vh;
+        overflow: auto;
     }
 }
