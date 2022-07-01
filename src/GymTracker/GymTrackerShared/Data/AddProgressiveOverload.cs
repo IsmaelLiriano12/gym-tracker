@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public class AddProgressiveOverload : IAddProgressiveOverload
+    public class AddProgressiveOverload
     {
-        private readonly Context context;
+        private readonly GymTrackerDbContext context;
 
-        public AddProgressiveOverload(Context context)
+        public AddProgressiveOverload(GymTrackerDbContext context)
         {
             this.context = context;
         }

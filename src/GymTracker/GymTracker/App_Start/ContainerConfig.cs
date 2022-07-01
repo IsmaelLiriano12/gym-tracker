@@ -24,11 +24,9 @@ namespace GymTracker
                 .As<IExercisesRepository>()
                 .InstancePerRequest();
 
-            builder.RegisterType<AddProgressiveOverload>()
-                .As<IAddProgressiveOverload>()
-                .InstancePerRequest();
+            builder.RegisterType<AddProgressiveOverload>().InstancePerRequest();
 
-            builder.RegisterType<Context>().InstancePerRequest();
+            builder.RegisterType<GymTrackerDbContext>().InstancePerRequest();
 
             var container = builder.Build();
 

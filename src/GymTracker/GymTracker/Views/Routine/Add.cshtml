@@ -9,6 +9,8 @@
 @using (Html.BeginForm())
 {
 
+    @Html.AntiForgeryToken()
+
     @Html.LabelFor(r => r.Name, new { @class = "form-label" })
     <div class="form-group mb-3">
         @Html.TextBoxFor(r => r.Name, new { @class = "form-control" })
@@ -19,3 +21,8 @@
     @Html.ActionLink("Cancel", "Index", new { @class = "btn btn-outline-secondary" })
 }
 
+@section Scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

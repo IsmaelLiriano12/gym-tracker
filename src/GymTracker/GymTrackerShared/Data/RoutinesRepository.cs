@@ -10,9 +10,9 @@ namespace GymTrackerShared.Data
 {
     public class RoutinesRepository : IRoutinesRepository
     {
-        private readonly Context context;
+        private readonly GymTrackerDbContext context;
 
-        public RoutinesRepository(Context context)
+        public RoutinesRepository(GymTrackerDbContext context)
         {
             this.context = context;
         }
@@ -44,7 +44,7 @@ namespace GymTrackerShared.Data
         public void Delete(int id)
         {
             var routine = Get(id);
-            context.Entry(routine).State = EntityState.Deleted;
+            context.Routines.Remove(routine);
             context.SaveChanges();
         }
     }

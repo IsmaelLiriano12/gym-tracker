@@ -9,9 +9,9 @@ using static GymTrackerShared.Models.Routine;
 
 namespace GymTrackerShared.Data
 {
-    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<GymTrackerDbContext>
     {
-        protected override void Seed(Context context)
+        protected override void Seed(GymTrackerDbContext context)
         {
 
             var myRoutine = new Routine()

@@ -12,9 +12,9 @@ namespace GymTracker.Controllers
     public class ExerciseController : Controller
     {
         private readonly IExercisesRepository exercisesRepository;
-        private readonly IAddProgressiveOverload addProgressiveOverload;
+        private readonly AddProgressiveOverload addProgressiveOverload;
 
-        public ExerciseController(IExercisesRepository exercisesRepository, IAddProgressiveOverload addProgressiveOverload)
+        public ExerciseController(IExercisesRepository exercisesRepository, AddProgressiveOverload addProgressiveOverload)
         {
             this.exercisesRepository = exercisesRepository;
             this.addProgressiveOverload = addProgressiveOverload;
@@ -52,6 +52,7 @@ namespace GymTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Exercise exercise)
         {
             AreSetsAndRepsGreaterThanZero(exercise);
@@ -93,6 +94,7 @@ namespace GymTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Exercise exercise)
         {
             AreSetsAndRepsGreaterThanZero(exercise);
@@ -130,6 +132,7 @@ namespace GymTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, int routineId)
         {
             exercisesRepository.Delete(id);

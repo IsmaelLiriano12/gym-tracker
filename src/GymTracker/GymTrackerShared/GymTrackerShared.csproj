@@ -79,12 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\AddProgressiveOverload.cs" />
-    <Compile Include="Data\IAddProgressiveOverload.cs" />
     <Compile Include="Data\IExercisesRepository.cs" />
     <Compile Include="Data\IRoutinesRepository.cs" />
-    <Compile Include="Data\Context.cs" />
+    <Compile Include="Data\GymTrackerDbContext.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\ExercisesRepository.cs" />
+    <Compile Include="Data\IWriteRepository.cs" />
     <Compile Include="Data\RoutinesRepository.cs" />
     <Compile Include="Models\Exercise.cs" />
     <Compile Include="Models\PhysicalActivity.cs" />

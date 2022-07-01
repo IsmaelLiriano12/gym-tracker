@@ -10,6 +10,8 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
     @Html.ActionLink("Cancel", "Index", new { @class = "btn btn-outline-default" })
 
     <button type="submit" class = "btn btn-outline-primary">Yes</button>

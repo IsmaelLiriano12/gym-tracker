@@ -34,12 +34,12 @@ namespace GymTracker.Controllers
 
             var routine = routinesRepository.Get((int)id);
 
-            var viewModel = new RoutineDetailViewModel()
+            var viewModel = new RoutineDetailViewModel(exercisesRepository)
             {
                 Routine = routine
             };
 
-            viewModel.Init(exercisesRepository, routine.Id);
+            viewModel.Init(routine.Id);
 
             return View(viewModel);
         }
@@ -51,6 +51,7 @@ namespace GymTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Routine routine)
         {
             //ValidateRoutine(routine);
@@ -76,6 +77,7 @@ namespace GymTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, string name)
         {
             var routine = routinesRepository.Get(id);
@@ -109,6 +111,7 @@ namespace GymTracker.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             routinesRepository.Delete(id);

@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public interface IExercisesRepository
+    public interface IExercisesRepository : IWriteRepository<Exercise>
     {
         IEnumerable<Exercise> GetList();
         IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> GetGroupedExercises(int routineId);
         Exercise Get(int id);
-        void Add(Exercise exercise);
-        void Update(Exercise exercise);
-        void Delete(int id);
     }
 }

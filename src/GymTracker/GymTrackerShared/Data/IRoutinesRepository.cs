@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public interface IRoutinesRepository
+    public interface IRoutinesRepository : IWriteRepository<Routine>
     {
         IEnumerable<Routine> GetList();
         Routine Get(int id);
-        void Add(Routine routine);
-        void Update(Routine routine);
-        void Delete(int id);
     }
 }

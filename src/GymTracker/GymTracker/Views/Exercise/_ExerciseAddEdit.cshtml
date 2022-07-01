@@ -4,6 +4,9 @@
 {
     @Html.HiddenFor(m => m.Id)
     @Html.HiddenFor(m => m.RoutineId)
+
+    @Html.AntiForgeryToken()
+
 <div class="mb-2">
     @Html.LabelFor(m => m.MuscleTrained, new { @class = "form-label" })
     @Html.EnumDropDownListFor(m => m.MuscleTrained, new { @class = "form-select" })

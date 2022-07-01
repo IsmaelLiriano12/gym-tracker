@@ -9,8 +9,14 @@ using System.Web;
 
 namespace GymTrackerShared.Data
 {
-    public class Context : IdentityDbContext<IdentityUser>
+    public class GymTrackerDbContext : IdentityDbContext
     {
+        public GymTrackerDbContext()
+            : base("GymTrackerDbContext")
+        {
+
+        }
+
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<ProgressiveOverload> ProgressiveOverloads { get; set; }
