@@ -4,6 +4,7 @@ using GymTrackerShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,18 +21,18 @@ namespace GymTracker.Controllers
             this.addProgressiveOverload = addProgressiveOverload;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var exercises = exercisesRepository.GetList();
+            var exercises = await exercisesRepository.GetList();
             return View(exercises);
         }
 
-        public ActionResult Detail(int? id, int? routineId)
+        public async Task<ActionResult> Detail(int? id, int? routineId)
         {
             if (id == null || routineId == null)
                 return HttpNotFound();
 
-            var exercise = exercisesRepository.Get((int)id);
+            var exercise = await exercisesRepository.Get((int)id);
 
             return View(exercise);
         }
@@ -53,7 +54,7 @@ namespace GymTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Exercise exercise)
+        public async Task<ActionResult> Add(Exercise exercise)
         {
             AreSetsAndRepsGreaterThanZero(exercise);
 
@@ -69,7 +70,7 @@ namespace GymTracker.Controllers
 
                 exercise.AddProgress(progress);
 
-                exercisesRepository.Add(exercise);
+                await exercisesRepository.Add(exercise);
 
                 TempData["Message"] = $"{exercise.Name} was successfully added to the routine!";
 
@@ -81,32 +82,32 @@ namespace GymTracker.Controllers
 
        
 
-        public ActionResult Edit(int? id, int? routineId)
+        public async Task<ActionResult> Edit(int? id, int? routineId)
         {
             if (id == null || routineId == null) 
             { 
                 return HttpNotFound(); 
             }
 
-            var exercise = exercisesRepository.Get((int)id);
+            var exercise = await exercisesRepository.Get((int)id);
 
             return View(exercise);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Exercise exercise)
+        public async Task<ActionResult> Edit(Exercise exercise)
         {
             AreSetsAndRepsGreaterThanZero(exercise);
 
             if (ModelState.IsValid)
             {
-                var progress = addProgressiveOverload
+                var progress = await addProgressiveOverload
                     .Execute(exercise.Id, exercise.Weight, exercise.Repetitions, exercise.Sets);
 
                 exercise.AddProgress(progress);
 
-                exercisesRepository.Update(exercise);
+                await exercisesRepository.Update(exercise);
 
                 return RedirectToAction("Detail", new { Id = exercise .Id, routineId = exercise.RoutineId });
             }
@@ -114,14 +115,14 @@ namespace GymTracker.Controllers
             return View(exercise);
         }
 
-        public ActionResult Delete(int? id, int? routineId)
+        public async Task<ActionResult> Delete(int? id, int? routineId)
         {
             if (id == null || routineId == null)
             {
                 return HttpNotFound();
             }
 
-            var exercise = exercisesRepository.Get((int)id);
+            var exercise = await exercisesRepository.Get((int)id);
 
             if (exercise == null)
             {
@@ -133,9 +134,9 @@ namespace GymTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, int routineId)
+        public async Task<ActionResult> Delete(int id, int routineId)
         {
-            exercisesRepository.Delete(id);
+            await exercisesRepository.Delete(id);
 
             TempData["Message"] = "The exercise was successfully deleted";
 

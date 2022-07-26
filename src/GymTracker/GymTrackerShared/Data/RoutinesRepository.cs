@@ -17,35 +17,36 @@ namespace GymTrackerShared.Data
             this.context = context;
         }
 
-        public IEnumerable<Routine> GetList()
+        public async Task<IEnumerable<Routine>> GetList()
         {
-            return context.Routines
-                .Include(r => r.Exercises);
-        }
-
-        public Routine Get(int id)
-        {
-            return context.Routines
+            return await context.Routines
                 .Include(r => r.Exercises)
-                .FirstOrDefault(r => r.Id == id);
-        }
-        public void Add(Routine routine)
-        {
-            context.Set<Routine>().Add(routine);
-            context.SaveChanges();
+                .ToListAsync();
         }
 
-        public void Update(Routine routine)
+        public async Task<Routine> Get(int id)
+        {
+            return await context.Routines
+                .Include(r => r.Exercises)
+                .FirstOrDefaultAsync(r => r.Id == id);
+        }
+        public async Task Add(Routine routine)
+        {
+            context.Routines.Add(routine);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task Update(Routine routine)
         {
             context.Entry(routine).State = EntityState.Modified;
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var routine = Get(id);
+            var routine = await Get(id);
             context.Routines.Remove(routine);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
 }

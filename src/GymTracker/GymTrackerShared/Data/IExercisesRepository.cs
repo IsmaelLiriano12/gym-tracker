@@ -9,8 +9,8 @@ namespace GymTrackerShared.Data
 {
     public interface IExercisesRepository : IWriteRepository<Exercise>
     {
-        IEnumerable<Exercise> GetList();
-        IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> GetGroupedExercises(int routineId);
-        Exercise Get(int id);
+        Task<IEnumerable<Exercise>> GetList();
+        Task<IEnumerable<IGrouping<Routine.TrainingDay, Exercise>>> GetGroupedExercises(int routineId);
+        Task<Exercise> Get(int id);
     }
 }

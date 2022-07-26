@@ -4,6 +4,7 @@ using GymTrackerShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,19 +21,19 @@ namespace GymTracker.Controllers
             this.exercisesRepository = exercisesRepository;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var routines = routinesRepository.GetList();
+            var routines = await routinesRepository.GetList();
 
             return View(routines);
         }
 
-        public ActionResult Detail(int? id)
+        public async Task<ActionResult> Detail(int? id)
         {
             if (id == null)
                 return HttpNotFound();
 
-            var routine = routinesRepository.Get((int)id);
+            var routine = await routinesRepository.Get((int)id);
 
             var viewModel = new RoutineDetailViewModel(exercisesRepository)
             {
@@ -52,13 +53,13 @@ namespace GymTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Routine routine)
+        public async Task<ActionResult> Add(Routine routine)
         {
             //ValidateRoutine(routine);
 
             if (ModelState.IsValid)
             {
-                routinesRepository.Add(routine);
+                await routinesRepository.Add(routine);
 
                 return RedirectToAction("Detail", new { id = routine.Id });
             }
@@ -66,41 +67,41 @@ namespace GymTracker.Controllers
             return View(routine);
         }
 
-        public ActionResult Edit(int? id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return HttpNotFound();
             }
-            var routine = routinesRepository.Get((int)id);
+            var routine = await routinesRepository.Get((int)id);
             return View(routine);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, string name)
+        public async Task<ActionResult> Edit(int id, string name)
         {
-            var routine = routinesRepository.Get(id);
+            var routine = await routinesRepository.Get(id);
             //ValidateRoutine(routine);
 
             if (ModelState.IsValid)
             {
                 routine.Name = name;
-                routinesRepository.Update(routine);
+                await routinesRepository.Update(routine);
                 return RedirectToAction("Index");
             }
 
             return View(routine);
         }
 
-        public ActionResult Delete(int? id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return HttpNotFound();
             }
 
-            var routine = routinesRepository.Get((int)id);
+            var routine = await routinesRepository.Get((int)id);
 
             if (routine == null)
             {
@@ -112,9 +113,9 @@ namespace GymTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            routinesRepository.Delete(id);
+            await routinesRepository.Delete(id);
 
             TempData["Message"] = "The routine was successfully deleted";
 

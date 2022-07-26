@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
@@ -14,45 +15,44 @@ namespace GymTrackerShared.Data
             this.context = context;
         }
 
-        public IEnumerable<Exercise> GetList()
+        public async Task<IEnumerable<Exercise>> GetList()
         {
-            return context.Exercises
-                .OrderBy(e => e.MuscleTrained);
+            return await context.Exercises.ToListAsync();
         }
 
-        public IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> GetGroupedExercises(int routineId)
+        public async Task<IEnumerable<IGrouping<Routine.TrainingDay, Exercise>>> GetGroupedExercises(int routineId)
         {
-            var listOfExercises = context.Exercises
-                .Where(e => e.RoutineId == routineId).ToList();
+            var listOfExercises = await context.Exercises
+                .Where(e => e.RoutineId == routineId).ToListAsync();
 
             return listOfExercises.GroupBy(e => e.DayOfTraining);
                 
         }
 
-        public Exercise Get(int id)
+        public async Task<Exercise> Get(int id)
         {
-            return context.Exercises
+            return await context.Exercises
                 .Include(e => e.ProgressiveOverloads)
-                .FirstOrDefault(e => e.Id == id);
+                .FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public void Add(Exercise exercise)
+        public async Task Add(Exercise exercise)
         {
-            context.Set<Exercise>().Add(exercise);
-            context.SaveChanges();
+            context.Exercises.Add(exercise);
+            await context.SaveChangesAsync();
         }
 
-        public void Update(Exercise exercise)
+        public async Task Update(Exercise exercise)
         {
             context.Entry(exercise).State = EntityState.Modified;
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var exercise = Get(id);
+            var exercise = await Get(id);
             context.Exercises.Remove(exercise);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
 }

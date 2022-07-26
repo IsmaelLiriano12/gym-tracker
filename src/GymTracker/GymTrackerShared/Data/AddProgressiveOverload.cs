@@ -16,7 +16,7 @@ namespace GymTrackerShared.Data
             this.context = context;
         }
 
-        public ProgressiveOverload Execute(int exerciseId, decimal weight, int reps, int sets)
+        public async Task<ProgressiveOverload> Execute(int exerciseId, decimal weight, int reps, int sets)
         {
             var progress = new ProgressiveOverload()
             {
@@ -28,7 +28,7 @@ namespace GymTrackerShared.Data
             };
 
             context.ProgressiveOverloads.Add(progress);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
 
             return progress;
         }
