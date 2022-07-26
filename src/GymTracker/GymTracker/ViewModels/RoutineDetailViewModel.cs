@@ -3,6 +3,7 @@ using GymTrackerShared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace GymTracker.ViewModels
@@ -20,9 +21,9 @@ namespace GymTracker.ViewModels
         public IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> Exercises { get; set; }
 
 
-        public void Init(int routineId) 
+        public async Task Init(int routineId) 
         {
-            Exercises = exercisesRepository.GetGroupedExercises(routineId);
+            Exercises = await exercisesRepository.GetGroupedExercises(routineId);
         }
     }
 }

@@ -40,7 +40,7 @@ namespace GymTracker.Controllers
                 Routine = routine
             };
 
-            viewModel.Init(routine.Id);
+            await viewModel.Init(routine.Id);
 
             return View(viewModel);
         }
