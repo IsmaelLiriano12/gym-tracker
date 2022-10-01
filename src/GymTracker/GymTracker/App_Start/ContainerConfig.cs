@@ -1,20 +1,45 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using AutoMapper;
 using GymTrackerShared.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace GymTracker
 {
     public class ContainerConfig
     {
-        internal static void RegisterContainer()
+        internal static void Register()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            var config = GlobalConfiguration.Configuration;
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            RegisterServices(builder);
+            builder.RegisterWebApiFilterProvider(config);
+            builder.RegisterWebApiModelBinderProvider();
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+        }
+
+        private static void RegisterServices(ContainerBuilder builder)
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new GymTrackerMappingProfile());
+            });
+
+            builder.RegisterInstance(config.CreateMapper())
+                .As<IMapper>()
+                .SingleInstance();
 
             builder.RegisterType<RoutinesRepository>()
                 .As<IRoutinesRepository>()
@@ -27,10 +52,6 @@ namespace GymTracker
             builder.RegisterType<AddProgressiveOverload>().InstancePerRequest();
 
             builder.RegisterType<GymTrackerDbContext>().InstancePerRequest();
-
-            var container = builder.Build();
-
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

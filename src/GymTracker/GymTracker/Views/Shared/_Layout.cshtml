@@ -21,19 +21,29 @@
 
     <div class="d-flex flex-column flex-lg-row min-vh-100">
 
+
         <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between bg-primary">
             <div class="navbar navbar-expand-sm navbar-light">
                 <div class="container-fluid flex-lg-column">
-                    @Html.ActionLink(applicationName, "Index", "Routine", new { area = "" }, new { @class = "navbar-brand mt-lg-3" })
+                    @Html.ActionLink(applicationName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand mt-lg-3" })
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbar-collapse">
                         <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
-                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Routine", new { @class = "nav-link" })</li>
-                            <li class="nav-item">@Html.ActionLink("Exercises", "Index", "Exercise", new { @class = "nav-link" })</li>
-                            <li class="nav-item">@Html.ActionLink("Routines", "Index", "Routine", new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-target="#dropdown-menu" data-bs-toggle="collapse" aria-expanded="false">
+                                    My routines
+                                </a>
+                                <div class="collapse" id="dropdown-menu">
+                                    <ul class="dropdown-menu bg-primary border-0">
+                                    </ul>
+                                </div>
+
+                            </li>
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -43,8 +53,8 @@
         </div>
 
 
-        <div class="col-lg-10 flex-grow-1">
-            <div class="container body-content overflow-content">
+        <div class="col-lg-10 flex-grow-1 background-image">
+            <div class="container body-content overflow-auto">
                 @RenderBody()
 
             </div>
@@ -66,7 +76,9 @@
 
     <script src="~/Scripts/jquery-3.6.0.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/get-routines.js"></script>
     @RenderSection("Scripts", required: false)
+
 
 </body>
 </html>

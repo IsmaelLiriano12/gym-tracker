@@ -21,20 +21,20 @@
                         <div class="col-11 col-lg-5 card m-2 shadow bg-secondary">
                             <div class="card-body">
                                 <h5 class="text-muted fw-normal fs-5 mt-0">Weight</h5>
-                                <h3 class="mt-3 mb-3 fs-3">@Model.CurrentProgress.Weight lbs</h3>
+                                <h3 class="mt-3 mb-3 fs-3">@Model.Weight lbs</h3>
                             </div>
                         </div>
 
                         <div class="col-11 col-lg-5 card m-2 shadow bg-secondary">
                             <div class="card-body">
                                 <h5 class="text-muted fw-normal fs-5 mt-0">Repetitions</h5>
-                                <h3 class="mt-3 mb-3 fs-3">@Model.CurrentProgress.Repetitions</h3>
+                                <h3 class="mt-3 mb-3 fs-3">@Model.Repetitions</h3>
                             </div>
                         </div>
                         <div class="col-11 col-lg-5 card m-2 shadow bg-secondary">
                             <div class="card-body">
                                 <h5 class="text-muted fw-normal fs-5 mt-0">Sets</h5>
-                                <h3 class="mt-3 mb-3 fs-3">@Model.CurrentProgress.Sets</h3>
+                                <h3 class="mt-3 mb-3 fs-3">@Model.Sets</h3>
                             </div>
                         </div>
                     </div>
@@ -91,8 +91,8 @@
                 label: '# Max Weight Lifted (pounds)',
                 data: [@Model.LastPastMonthProgress.Weight, @Model.Weight],
                 backgroundColor: [
-                    '#434C5E',
-                    '#434C5E'
+                    '#343d46',
+                    '#343d46'
                 ],
                 borderColor: [
                     '#3B4252',
@@ -110,6 +110,3 @@
         }
     });
 </script>
-
-
-<script src="~/Scripts/app.js"></script>

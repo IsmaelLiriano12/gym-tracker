@@ -2,16 +2,15 @@
 body {
     min-height: 100vh;
     font: 400 1rem/1 'Oswald', sans-serif;
-    background-color: #D8DEE9;
 }
 
 h1 {
     font: 400 3rem/1 'Anton', sans-serif;
-    color: #3B4252;
+    color: #f2f3f5;
 }
 
 a {
-    color: #161A1D;
+    color: #f2f3f5;
     text-decoration: none;
 }
 
@@ -34,7 +33,7 @@ textarea {
 }
 
 .bg-primary {
-    background-color: #D8DEE9 !important;
+    background-color: #f2f3f5 !important;
 }
 
 .btn-primary {
@@ -50,8 +49,26 @@ textarea {
     font-weight: 700;
 }
 
-.exercise-detail {
-    background-color: #f8f8f8;
+
+.background-image {
+    background-image: url(img/small-dummbells.PNG);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+    box-shadow: inset 1em 1em 90px 10px #1f242a;
+}
+
+.blur{
+    backdrop-filter: blur(10px);
+}
+
+.edit{
+    cursor: pointer;
+}
+
+.exercise-inputs {
+    border: none;
+    opacity: 0.5;
 }
 
 

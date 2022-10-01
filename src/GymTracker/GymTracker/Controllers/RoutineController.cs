@@ -23,7 +23,7 @@ namespace GymTracker.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var routines = await routinesRepository.GetList();
+            var routines = await routinesRepository.GetList(includeExercises: true);
 
             return View(routines);
         }

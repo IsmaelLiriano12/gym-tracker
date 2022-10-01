@@ -17,11 +17,14 @@ namespace GymTrackerShared.Data
             this.context = context;
         }
 
-        public async Task<IEnumerable<Routine>> GetList()
+        public async Task<IEnumerable<Routine>> GetList(bool includeExercises = false)
         {
-            return await context.Routines
-                .Include(r => r.Exercises)
-                .ToListAsync();
+            var query = context.Routines.AsQueryable();
+
+            if (includeExercises == true)
+                query.Include(r => r.Exercises);
+
+            return await query.ToListAsync();   
         }
 
         public async Task<Routine> Get(int id)

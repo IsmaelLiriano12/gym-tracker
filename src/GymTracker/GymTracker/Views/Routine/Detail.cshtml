@@ -4,54 +4,58 @@
     ViewBag.Title = "Detail";
 }
 
-<a href="@Url.Action("Index", "Routine")" class="d-block mt-3"><i class="fa-regular fa-circle-left fa-lg"></i></a>
-
-<h1 class="text-center mb-3 mt-lg-5 mb-lg-5">@Model.Routine.Name</h1>
+<h1 class="mb-3 mt-lg-5 mb-lg-5">@Model.Routine.Name</h1>
 
 @Html.Partial("_Message")
 
 @Html.ActionLink("Add Exercise", "Add", "Exercise", new { routineId = Model.Routine.Id }, new { @class = "btn btn-primary mb-3" })
 
-<div class="">
+
+<div class="text-light blur">
+
+    <div class="row" id="heading">
+        <div class="col-3">Name</div>
+        <div class="col-3">Weight</div>
+        <div class="col-3">Reps</div>
+        <div class="col-3">Sets</div>
+    </div>
 
     @foreach (var trainingDay in Model.Exercises)
     {
-     
-        <h3>@trainingDay.Key Day</h3>
-
-        <table class="table table-hover">
-            @foreach (var exercise in trainingDay)
-            {
-                <tr>
-                    <td class="w-50">@exercise.Name</td>
-
-                    <td class="w-25">
-                        <a href="@Url.Action("Detail", "Exercise",
-                                            new { Id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining })">
-                            <span class="fa-solid fa-magnifying-glass"></span>
-                        </a>
-                    </td>
-                    <td class="w-25">
-                        <a href="@Url.Action("Edit", "Exercise",
-                                            new { Id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining })">
-                            <span class="fa-regular fa-pen-to-square"></span>
-                        </a>
-                    </td>
-                    <td class="w-25">
-                        <a href="@Url.Action("Delete", "Exercise",
-                                    new { Id = exercise.Id, routineId = exercise.RoutineId })">
-                            <span class="fa-regular fa-trash-can"></span>
-                        </a>
-                    </td>
-
-                </tr>
-            }
-
-        </table>
+        foreach (var exercise in trainingDay)
+        {
+            <fieldset class="mt-4 mt-lg-2">
+                <div class="row">
+                    @Html.HiddenFor(r => exercise.Id)
+                    @Html.HiddenFor(r => exercise.RoutineId)
+                    @Html.HiddenFor(r => exercise.Name)
+                    <div class="col-3">
+                        @Html.ActionLink(exercise.Name, "Detail", "Exercise",
+                                            new { id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining },
+                                            new { })
+                    </div>
+                    <div class="col-3">
+                        @Html.TextBoxFor(r => exercise.Weight, new { disabled="", @class = "small exercise-inputs", size = "4" }) lbs
+                    </div>
+                    <div class="col-3">
+                        @Html.TextBoxFor(r => exercise.Repetitions, new { disabled="", @class = "small exercise-inputs", size = "4" })
+                    </div>
+                    <div class="col-3">
+                        @Html.TextBoxFor(r => exercise.Sets, new { disabled = "", @class = "small exercise-inputs", size = "4" })
+                        
+                        <span class="edit"><i class="fa-regular fa-pen-to-square"></i></span>
+                    </div>
+                </div>
+            </fieldset>
+        }
     }
 
-
 </div>
+
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/exercise.js"></script>
+}
+
 
 
 

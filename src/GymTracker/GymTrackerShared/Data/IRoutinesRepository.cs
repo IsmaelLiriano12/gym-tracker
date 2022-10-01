@@ -9,7 +9,7 @@ namespace GymTrackerShared.Data
 {
     public interface IRoutinesRepository : IWriteRepository<Routine>
     {
-        Task<IEnumerable<Routine>> GetList();
+        Task<IEnumerable<Routine>> GetList(bool includeExercises);
         Task<Routine> Get(int id);
     }
 }

@@ -25,7 +25,7 @@ namespace GymTrackerShared.Data
             var listOfExercises = await context.Exercises
                 .Where(e => e.RoutineId == routineId).ToListAsync();
 
-            return listOfExercises.GroupBy(e => e.DayOfTraining);
+            return listOfExercises.OrderBy(e => e.DayOfTraining).GroupBy(e => e.DayOfTraining);
                 
         }
 
