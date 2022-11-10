@@ -8,8 +8,9 @@ namespace GymTrackerShared.Data
 {
     public interface IWriteRepository<in T>
     {
-        Task Add(T entity);
-        Task Update(T entity);
-        Task Delete(int id);
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        Task<bool> SaveChangesAsync();
     }
 }

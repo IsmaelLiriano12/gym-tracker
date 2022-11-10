@@ -15,7 +15,7 @@ namespace GymTrackerShared.Data
             this.context = context;
         }
 
-        public async Task<IEnumerable<Exercise>> GetList()
+        public async Task<IEnumerable<Exercise>> GetExercisesAsync()
         {
             return await context.Exercises.ToListAsync();
         }
@@ -29,30 +29,31 @@ namespace GymTrackerShared.Data
                 
         }
 
-        public async Task<Exercise> Get(int id)
+        public async Task<Exercise> GetAsync(int id)
         {
             return await context.Exercises
                 .Include(e => e.ProgressiveOverloads)
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
 
-        public async Task Add(Exercise exercise)
+        public void Add(Exercise exercise)
         {
             context.Exercises.Add(exercise);
-            await context.SaveChangesAsync();
         }
 
-        public async Task Update(Exercise exercise)
+        public void Update(Exercise exercise)
         {
             context.Entry(exercise).State = EntityState.Modified;
-            await context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public void Delete(Exercise exercise)
         {
-            var exercise = await Get(id);
             context.Exercises.Remove(exercise);
-            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await context.SaveChangesAsync() > 0 ? true : false;
         }
     }
 }

@@ -4,11 +4,32 @@
     ViewBag.Title = "Detail";
 }
 
-<h1 class="mb-3 mt-lg-5 mb-lg-5">@Model.Routine.Name</h1>
+<div class="mb-3 mb-lg-5 mt-3 mt-lg-5 text-light">
+    <form id="routine-form">
+        @Html.HiddenFor(r => r.Routine.Id)
+        <h1 id="routine-name" class="d-inline">@Model.Routine.Name</h1>
+        @Html.TextBoxFor(r => r.Routine.Name, new { hidden = "", id = "routine-name-input" })
+        <i id="edit-routine-name" class="fa-solid fa-pen position-absolute p-1"></i>
+    </form>
+</div>
+
 
 @Html.Partial("_Message")
 
-@Html.ActionLink("Add Exercise", "Add", "Exercise", new { routineId = Model.Routine.Id }, new { @class = "btn btn-primary mb-3" })
+<div class="btn-group dropend">
+    <span class="add-exercise btn btn-primary mb-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Add Exercise
+    </span>
+    <ul class="dropdown-menu">
+        <li><a name="First" class="dropdown-item select-day-exercise" href="#">First Day</a></li>
+        <li><a name="Second" class="dropdown-item select-day-exercise" href="#">Second Day</a></li>
+        <li><a name="Third" class="dropdown-item select-day-exercise" href="#">Third Day</a></li>
+        <li><a name="Fourth" class="dropdown-item select-day-exercise" href="#">Fourth Day</a></li>
+        <li><a name="Fifth" class="dropdown-item select-day-exercise" href="#">Fifth Day</a></li>
+        <li><a name="Sixth" class="dropdown-item select-day-exercise" href="#">Sixth Day</a></li>
+        <li><a name="Seventh" class="dropdown-item select-day-exercise" href="#">Seventh Day</a></li>
+    </ul>
+</div>
 
 
 <div class="text-light blur">
@@ -22,37 +43,21 @@
 
     @foreach (var trainingDay in Model.Exercises)
     {
-        foreach (var exercise in trainingDay)
-        {
-            <fieldset class="mt-4 mt-lg-2">
-                <div class="row">
-                    @Html.HiddenFor(r => exercise.Id)
-                    @Html.HiddenFor(r => exercise.RoutineId)
-                    @Html.HiddenFor(r => exercise.Name)
-                    <div class="col-3">
-                        @Html.ActionLink(exercise.Name, "Detail", "Exercise",
-                                            new { id = exercise.Id, routineId = exercise.RoutineId, dayId = (int)exercise.DayOfTraining },
-                                            new { })
-                    </div>
-                    <div class="col-3">
-                        @Html.TextBoxFor(r => exercise.Weight, new { disabled="", @class = "small exercise-inputs", size = "4" }) lbs
-                    </div>
-                    <div class="col-3">
-                        @Html.TextBoxFor(r => exercise.Repetitions, new { disabled="", @class = "small exercise-inputs", size = "4" })
-                    </div>
-                    <div class="col-3">
-                        @Html.TextBoxFor(r => exercise.Sets, new { disabled = "", @class = "small exercise-inputs", size = "4" })
-                        
-                        <span class="edit"><i class="fa-regular fa-pen-to-square"></i></span>
-                    </div>
-                </div>
-            </fieldset>
-        }
+        <div id="@trainingDay.Key">
+            <h3>@trainingDay.Key Day</h3>
+
+            @foreach (var exercise in trainingDay)
+            {
+                @Html.Partial("_Inputs", exercise)
+            }
+        </div>
     }
 
 </div>
 
 @section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript" src="~/Scripts/exercise.js"></script>
 }
 

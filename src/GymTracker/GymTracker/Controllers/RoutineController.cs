@@ -23,7 +23,7 @@ namespace GymTracker.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var routines = await routinesRepository.GetList(includeExercises: true);
+            var routines = await routinesRepository.GetRoutinesAsync(includeExercises: true);
 
             return View(routines);
         }
@@ -33,7 +33,7 @@ namespace GymTracker.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            var routine = await routinesRepository.Get((int)id);
+            var routine = await routinesRepository.GetAsync((int)id, true);
 
             var viewModel = new RoutineDetailViewModel(exercisesRepository)
             {
@@ -45,55 +45,6 @@ namespace GymTracker.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Add()
-        {
-            var routine = new Routine();
-            return View(routine);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Add(Routine routine)
-        {
-            //ValidateRoutine(routine);
-
-            if (ModelState.IsValid)
-            {
-                await routinesRepository.Add(routine);
-
-                return RedirectToAction("Detail", new { id = routine.Id });
-            }
-
-            return View(routine);
-        }
-
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
-            var routine = await routinesRepository.Get((int)id);
-            return View(routine);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, string name)
-        {
-            var routine = await routinesRepository.Get(id);
-            //ValidateRoutine(routine);
-
-            if (ModelState.IsValid)
-            {
-                routine.Name = name;
-                await routinesRepository.Update(routine);
-                return RedirectToAction("Index");
-            }
-
-            return View(routine);
-        }
-
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -101,7 +52,7 @@ namespace GymTracker.Controllers
                 return HttpNotFound();
             }
 
-            var routine = await routinesRepository.Get((int)id);
+            var routine = await routinesRepository.GetAsync((int)id, false);
 
             if (routine == null)
             {
@@ -115,7 +66,14 @@ namespace GymTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Delete(int id)
         {
-            await routinesRepository.Delete(id);
+            var routine = await routinesRepository.GetAsync(id, true);
+
+            routinesRepository.Delete(routine);
+
+            if (await routinesRepository.SaveChangesAsync() == false)
+            {
+                return View();
+            }
 
             TempData["Message"] = "The routine was successfully deleted";
 

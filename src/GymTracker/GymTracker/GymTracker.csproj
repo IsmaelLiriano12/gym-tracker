@@ -170,23 +170,18 @@
     <Content Include="Content\img\small-dummbells.PNG" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <Content Include="lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js" />
+    <Content Include="lib\jquery-validation\dist\jquery.validate.min.js" />
+    <Content Include="lib\jquery\dist\jquery.min.js" />
+    <Content Include="libman.json" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css.map" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\exercise.js" />
     <Content Include="Scripts\get-routines.js" />
-    <Content Include="Scripts\jquery-3.6.0.js" />
-    <Content Include="Scripts\jquery-3.6.0.min.js" />
-    <Content Include="Scripts\jquery-3.6.0.slim.js" />
-    <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
-    <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
-    <Content Include="Scripts\jquery-3.6.0.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -213,16 +208,12 @@
     <Content Include="Views\Routine\Detail.cshtml" />
     <Content Include="Views\Exercise\Index.cshtml" />
     <Content Include="Views\Routine\Index.cshtml" />
-    <Content Include="Views\Routine\Add.cshtml" />
     <Content Include="Views\Routine\Delete.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
-    <Content Include="Views\Routine\Edit.cshtml" />
-    <Content Include="Views\Exercise\_ExerciseAddEdit.cshtml" />
     <Content Include="Views\Exercise\Detail.cshtml" />
-    <Content Include="Views\Exercise\Add.cshtml" />
-    <Content Include="Views\Exercise\Edit.cshtml" />
     <Content Include="Views\Exercise\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Routine\_Inputs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

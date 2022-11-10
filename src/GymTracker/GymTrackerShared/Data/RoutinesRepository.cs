@@ -17,39 +17,55 @@ namespace GymTrackerShared.Data
             this.context = context;
         }
 
-        public async Task<IEnumerable<Routine>> GetList(bool includeExercises = false)
+        public async Task<IEnumerable<Routine>> GetRoutinesAsync(bool includeExercises = false)
         {
-            var query = context.Routines.AsQueryable();
-
-            if (includeExercises == true)
-                query.Include(r => r.Exercises);
-
-            return await query.ToListAsync();   
+            if(includeExercises == true)
+            {
+                return await context.Routines
+                    .Include(r => r.Exercises)
+                    .ToListAsync();
+            }
+            else
+            {
+                return await context.Routines
+                    .ToListAsync();
+            }
         }
 
-        public async Task<Routine> Get(int id)
+        public async Task<Routine> GetAsync(int id, bool includeExercises = false)
         {
-            return await context.Routines
+            if (includeExercises == true)
+            {
+                return await context.Routines
                 .Include(r => r.Exercises)
                 .FirstOrDefaultAsync(r => r.Id == id);
+            }
+            else
+            {
+                return await context.Routines
+                .FirstOrDefaultAsync(r => r.Id == id);
+            }
+            
         }
-        public async Task Add(Routine routine)
+
+        public void Add(Routine routine)
         {
             context.Routines.Add(routine);
-            await context.SaveChangesAsync();
         }
 
-        public async Task Update(Routine routine)
+        public void Update(Routine routine)
         {
             context.Entry(routine).State = EntityState.Modified;
-            await context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public void Delete(Routine routine)
         {
-            var routine = await Get(id);
             context.Routines.Remove(routine);
-            await context.SaveChangesAsync();
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return await context.SaveChangesAsync() > 0 ? true : false;
         }
     }
 }

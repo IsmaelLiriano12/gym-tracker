@@ -1,0 +1,30 @@
+﻿@model GymTrackerShared.Models.Exercise
+
+
+<form class="mt-3 mt-lg-4">
+    <div class="row">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        @Html.HiddenFor(m => m.DayOfTraining)
+        <input type="hidden" name="RoutineId" value="@Model.RoutineId" />
+        @Html.HiddenFor(m => m.Name)
+        <div class="col-3">
+            @Html.ActionLink(Model.Name, "Detail", "Exercise",
+                                new { id = Model.Id, routineId = Model.RoutineId, dayId = (int)Model.DayOfTraining },
+                                new { })
+        </div>
+        <div class="col-3 position-relative">
+            @Html.ValidationMessageFor(m => m.Weight)
+            @Html.TextBoxFor(m => m.Weight, new { disabled = "", @class = "small exercise-inputs", size = "3" }) lbs
+        </div>
+        <div class="col-3 position-relative">
+            @Html.ValidationMessageFor(m => m.Repetitions)
+            @Html.TextBoxFor(m => m.Repetitions, new { disabled = "", @class = "small exercise-inputs", size = "3" })
+        </div>
+        <div class="col-3 position-relative">
+            @Html.ValidationMessageFor(m => m.Sets)
+            @Html.TextBoxFor(m => m.Sets, new { disabled = "", @class = "small exercise-inputs", size = "3" })
+
+            <span class="edit"><i class="fa-regular fa-pen-to-square"></i></span>
+        </div>
+    </div>
+</form>

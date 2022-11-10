@@ -3,6 +3,7 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using AutoMapper;
 using GymTrackerShared.Data;
+using Microsoft.Owin.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
