@@ -4,7 +4,7 @@
     ViewBag.Title = "Detail";
 }
 
-<div class="mb-3 mb-lg-5 mt-3 mt-lg-5 text-light">
+<div class="mb-3 mb-lg-5 mt-3 mt-lg-5">
     <form id="routine-form">
         @Html.HiddenFor(r => r.Routine.Id)
         <h1 id="routine-name" class="d-inline">@Model.Routine.Name</h1>
@@ -32,10 +32,10 @@
 </div>
 
 
-<div class="text-light blur">
+<div class="blur">
 
     <div class="row" id="heading">
-        <div class="col-3">Name</div>
+        <div class="col-3"></div>
         <div class="col-3">Weight</div>
         <div class="col-3">Reps</div>
         <div class="col-3">Sets</div>

@@ -9,7 +9,7 @@
         @Html.HiddenFor(m => m.Name)
         <div class="col-3">
             @Html.ActionLink(Model.Name, "Detail", "Exercise",
-                                new { id = Model.Id, routineId = Model.RoutineId, dayId = (int)Model.DayOfTraining },
+                                new { id = Model.Id, routineId = Model.RoutineId },
                                 new { })
         </div>
         <div class="col-3 position-relative">

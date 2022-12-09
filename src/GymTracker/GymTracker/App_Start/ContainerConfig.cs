@@ -3,6 +3,9 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using AutoMapper;
 using GymTrackerShared.Data;
+using GymTrackerShared.Identity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Logging;
 using System;
 using System.Collections.Generic;
@@ -38,6 +41,14 @@ namespace GymTracker
                 cfg.AddProfile(new GymTrackerMappingProfile());
             });
 
+            builder.RegisterType<ProfileDataRepository>()
+                .As<IProfileDataRepository>()
+                .InstancePerRequest();
+
+            builder.RegisterType<ProgressiveOverloadRepository>()
+                .As<IPogressiveOverloadRepository>()
+                .InstancePerRequest();
+
             builder.RegisterInstance(config.CreateMapper())
                 .As<IMapper>()
                 .SingleInstance();
@@ -50,9 +61,15 @@ namespace GymTracker
                 .As<IExercisesRepository>()
                 .InstancePerRequest();
 
-            builder.RegisterType<AddProgressiveOverload>().InstancePerRequest();
-
             builder.RegisterType<GymTrackerDbContext>().InstancePerRequest();
+
+            builder.RegisterType<GymUserStore<IdentityUser>>()
+                .As<IUserStore<IdentityUser>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<GymUserManager<IdentityUser, string>>().InstancePerRequest();
+
+            builder.RegisterType<GymSignInManager<IdentityUser, string>>().InstancePerRequest();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace GymTrackerShared.Data
 {
-    public class GymTrackerDbContext : IdentityDbContext
+    public class GymTrackerDbContext : IdentityDbContext<IdentityUser>
     {
         public GymTrackerDbContext()
             : base("GymTrackerDbContext")
@@ -20,6 +20,7 @@ namespace GymTrackerShared.Data
         public DbSet<Routine> Routines { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<ProgressiveOverload> ProgressiveOverloads { get; set; }
+        public DbSet<ProfileData> Profiles { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

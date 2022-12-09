@@ -6,11 +6,10 @@ body {
 
 h1 {
     font: 400 3rem/1 'Anton', sans-serif;
-    color: #f2f3f5;
+    color: #000;
 }
 
 a {
-    color: #f2f3f5;
     text-decoration: none;
 }
 
@@ -33,7 +32,7 @@ textarea {
 }
 
 .bg-primary {
-    background-color: #f2f3f5 !important;
+    background-color: #D8D7D5 !important;
 }
 
 .btn-primary {
@@ -42,20 +41,11 @@ textarea {
 }
 
 .bg-secondary {
-    background-color: #ECEFF4 !important;
+    background-color: #E9ECEF !important;
 }
 
 .navbar-brand {
     font-weight: 700;
-}
-
-
-.background-image {
-    background-image: url(img/small-dummbells.PNG);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-blend-mode: darken;
-    box-shadow: inset 1em 1em 90px 10px #1f242a;
 }
 
 
@@ -80,7 +70,6 @@ textarea {
 
 .exercise-inputs {
     border: none;
-    opacity: 0.5;
 }
 
 .input-validation-error,
@@ -99,6 +88,13 @@ textarea {
     font-size: .9rem;
 }
 
+
+.mychart {
+    border-radius: 5px;
+    width: 80vw;
+    height: 60vh;
+    background-color: #fff;
+}
 
 
 @media screen and (min-width: 640px) {

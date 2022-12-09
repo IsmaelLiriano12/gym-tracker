@@ -65,7 +65,7 @@ namespace GymTrackerShared.Data
 
         public async Task<bool> SaveChangesAsync()
         {
-            return await context.SaveChangesAsync() > 0 ? true : false;
+            return (await context.SaveChangesAsync()) > 0;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GymTrackerShared.Data
 {
@@ -53,7 +54,11 @@ namespace GymTrackerShared.Data
 
         public async Task<bool> SaveChangesAsync()
         {
-            return await context.SaveChangesAsync() > 0 ? true : false;
+            context.Database.Log = message => Debug.WriteLine(message);
+
+            var rowsSaved = await context.SaveChangesAsync();
+
+            return rowsSaved > 0;
         }
     }
 }

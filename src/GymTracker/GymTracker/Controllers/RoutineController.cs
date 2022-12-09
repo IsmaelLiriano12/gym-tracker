@@ -10,6 +10,8 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
+    [Authorize]
+    [RoutePrefix("routines")]
     public class RoutineController : Controller
     {
         private readonly IRoutinesRepository routinesRepository;
@@ -28,12 +30,12 @@ namespace GymTracker.Controllers
             return View(routines);
         }
 
-        public async Task<ActionResult> Detail(int? id)
+        [Route("{id:int}", Name = "RoutinesDetails")]
+        public async Task<ActionResult> Detail(int id)
         {
-            if (id == null)
-                return HttpNotFound();
-
             var routine = await routinesRepository.GetAsync((int)id, true);
+
+            if (routine == null) return HttpNotFound();
 
             var viewModel = new RoutineDetailViewModel(exercisesRepository)
             {

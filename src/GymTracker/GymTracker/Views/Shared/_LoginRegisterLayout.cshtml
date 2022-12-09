@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+<body class="bg-secondary">
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div class="w-75 h-75 row">
+            <div class="col-lg-6 d-flex justify-content-center align-items-center bg-white">
+                @RenderBody()
+            </div>
+            <div class="col-lg-6 bg-black d-flex justify-content-center align-items-center">
+                <h1 class="text-light">Gym Tracker</h1>
+            </div>
+        </div>
+    </div>
+   
+
+</body>
+</html>

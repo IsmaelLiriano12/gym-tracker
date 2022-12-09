@@ -52,8 +52,11 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
@@ -75,7 +78,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -104,19 +109,26 @@
   <ItemGroup>
     <Compile Include="ApiModels\ExerciseModel.cs" />
     <Compile Include="ApiModels\RoutineModel.cs" />
-    <Compile Include="Data\AddProgressiveOverload.cs" />
     <Compile Include="Data\GymTrackerMappingProfile.cs" />
     <Compile Include="Data\IExercisesRepository.cs" />
+    <Compile Include="Data\IPogressiveOverloadRepository.cs" />
+    <Compile Include="Data\IProfileDataRepository.cs" />
     <Compile Include="Data\IRoutinesRepository.cs" />
     <Compile Include="Data\GymTrackerDbContext.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\ExercisesRepository.cs" />
     <Compile Include="Data\IWriteRepository.cs" />
+    <Compile Include="Data\ProfileDataRepository.cs" />
+    <Compile Include="Data\ProgressiveOverloadRepository.cs" />
     <Compile Include="Data\RoutinesRepository.cs" />
+    <Compile Include="Identity\GymSignInManager.cs" />
+    <Compile Include="Identity\GymUserManager.cs" />
+    <Compile Include="Identity\GymUserStore.cs" />
     <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\Sex.cs" />
     <Compile Include="Models\PhysicalActivity.cs" />
+    <Compile Include="Models\ProfileData.cs" />
     <Compile Include="Models\ProgressiveOverload.cs" />
-    <Compile Include="Models\MuscleGroup.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\TrainingDay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

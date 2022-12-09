@@ -7,6 +7,7 @@ namespace GymTrackerShared.Models
 {
     public partial class Exercise : PhysicalActivity
     {
+
         public Exercise()
         {
             ProgressiveOverloads = new List<ProgressiveOverload>();
@@ -45,9 +46,6 @@ namespace GymTrackerShared.Models
             }
         }
 
-
-        [Display(Name = "Muscle Group")]
-        public MuscleGroup MuscleTrained { get; set; }
         [Display(Name = "Training Day")]
         public Routine.TrainingDay DayOfTraining { get; set; }
 
@@ -56,5 +54,6 @@ namespace GymTrackerShared.Models
 
 
         public void AddProgress(ProgressiveOverload progress) => ProgressiveOverloads.Add(progress);
+       
     }
 }

@@ -12,9 +12,6 @@ namespace GymTrackerShared.ApiModels
     public class ExerciseModel
     {
         [Required]
-        public int RoutineId { get; set; }
-
-        [Required]
         public string Name { get; set; }
 
         [Required] 

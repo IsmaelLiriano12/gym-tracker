@@ -22,7 +22,6 @@ namespace GymTrackerShared.Data
             var exercise1 = new Exercise()
             {
                 Name = "Bench Press",
-                MuscleTrained = MuscleGroup.Chest,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3,
@@ -42,7 +41,6 @@ namespace GymTrackerShared.Data
             var exercise2 = new Exercise()
             {
                 Name = "Squat",
-                MuscleTrained = MuscleGroup.Chest,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3,
@@ -62,7 +60,6 @@ namespace GymTrackerShared.Data
             var exercise3 = new Exercise()
             {
                 Name = "Row",
-                MuscleTrained = MuscleGroup.Back,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3,
@@ -82,7 +79,6 @@ namespace GymTrackerShared.Data
             var exercise4 = new Exercise()
             {
                 Name = "Deadlift",
-                MuscleTrained = MuscleGroup.Legs,
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3,

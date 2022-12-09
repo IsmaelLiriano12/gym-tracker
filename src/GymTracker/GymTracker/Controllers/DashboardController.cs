@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
-    public class HomeController : Controller
+    [Authorize]
+    public class DashboardController : Controller
     {
-        // GET: Home
         public ActionResult Index()
         {
             return View();

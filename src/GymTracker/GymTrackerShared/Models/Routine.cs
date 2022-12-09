@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace GymTrackerShared.Models
         public string Name { get; set; }
 
         public ICollection<Exercise> Exercises { get; set; }
+        public IdentityUser User { get; set; }
 
         public void AddExercise(Exercise exercise)
         {

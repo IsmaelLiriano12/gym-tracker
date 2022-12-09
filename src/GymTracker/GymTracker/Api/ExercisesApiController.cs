@@ -14,17 +14,17 @@ namespace GymTracker.Api
     [RoutePrefix("api/routines/{routineId}/exercises")]
     public class ExercisesApiController : ApiController
     {
-        private readonly IExercisesRepository exercisesRepository;
-        private readonly AddProgressiveOverload addProgressiveOverload;
+        private readonly IExercisesRepository repository;
+        private readonly IPogressiveOverloadRepository pogressiveOverloadRepository;
         private readonly IMapper mapper;
 
         public ExercisesApiController
-            (IExercisesRepository exercisesRepository, 
-            AddProgressiveOverload addProgressiveOverload, 
+            (IExercisesRepository repository, 
+            IPogressiveOverloadRepository pogressiveOverloadRepository,
             IMapper mapper)
         {
-            this.exercisesRepository = exercisesRepository;
-            this.addProgressiveOverload = addProgressiveOverload;
+            this.repository = repository;
+            this.pogressiveOverloadRepository = pogressiveOverloadRepository;
             this.mapper = mapper;
         }
 
@@ -33,7 +33,7 @@ namespace GymTracker.Api
         {
             try
             {
-                var result = await exercisesRepository.GetAsync(id);
+                var result = await repository.GetAsync(id);
                 if (result == null) return NotFound();
 
                 var mappedResult = mapper.Map<Exercise, ExerciseModel>(result);
@@ -56,25 +56,20 @@ namespace GymTracker.Api
                 {
                     var mappedResult = mapper.Map<ExerciseModel, Exercise>(model);
 
-                    exercisesRepository.Add(mappedResult);
+                    mappedResult.RoutineId = routineId;
 
-                    var progress = await addProgressiveOverload
-                           .Execute(mappedResult.Id, mappedResult.Weight, mappedResult.Repetitions, mappedResult.Sets);
+                    repository.Add(mappedResult);
+
+                    var progress = await pogressiveOverloadRepository.AddAndSaveAsync(mappedResult);
 
                     mappedResult.AddProgress(progress);
 
-                    if (await exercisesRepository.SaveChangesAsync() == false)
+                    if (await repository.SaveChangesAsync())
                     {
-                        return BadRequest();
+                        var newModel = mapper.Map<Exercise, ExerciseModel>(mappedResult);
+
+                        return CreatedAtRoute("GetExercise", new { routineId = mappedResult.RoutineId, id = mappedResult.Id }, newModel);
                     }
-
-                    var newModel = mapper.Map<Exercise, ExerciseModel>(mappedResult);
-
-                    return CreatedAtRoute("GetExercise", new { routineId = newModel.RoutineId, id = mappedResult.Id }, newModel);
-                }
-                else
-                {
-                    return BadRequest(ModelState);
                 }
                 
             }
@@ -82,6 +77,8 @@ namespace GymTracker.Api
             {
                 return InternalServerError(e);
             }
+
+            return BadRequest();
         }
 
         [Route("{id:int}")]
@@ -91,24 +88,21 @@ namespace GymTracker.Api
             {
                 if (ModelState.IsValid)
                 {
-                    var exercise = await exercisesRepository.GetAsync(id);
+                    var exercise = await repository.GetAsync(id);
                     if (exercise == null) return NotFound();
 
                     mapper.Map(model, exercise);
 
-                    var progress = await addProgressiveOverload
-                        .Execute(exercise.Id, exercise.Weight, exercise.Repetitions, exercise.Sets);
+                    var progress = await pogressiveOverloadRepository.AddAndSaveAsync(exercise);
 
                     exercise.AddProgress(progress);
 
-                    exercisesRepository.Update(exercise);
+                    repository.Update(exercise);
 
-                    if (await exercisesRepository.SaveChangesAsync() == false)
+                    if (await repository.SaveChangesAsync())
                     {
-                        return BadRequest();
+                        return Ok(mapper.Map<ExerciseModel>(exercise));
                     }
-
-                    return Ok(mapper.Map<ExerciseModel>(exercise));
                 }
             }
             catch (Exception e)

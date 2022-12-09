@@ -72,14 +72,13 @@ namespace GymTracker.Api
 
                     repository.Add(mappedResult);
 
-                    if (await repository.SaveChangesAsync() == false)
+                    if (await repository.SaveChangesAsync())
                     {
-                        return BadRequest();
+                        var newModel = mapper.Map<RoutineModel>(mappedResult);
+
+                        return CreatedAtRoute("GetRoutine", new { id = newModel.Id }, newModel);
                     }
 
-                    var newModel = mapper.Map<RoutineModel>(mappedResult);
-
-                    return CreatedAtRoute("GetRoutine", new { id = newModel.Id }, newModel);
                 }
             }
             catch (Exception ex)
@@ -104,12 +103,10 @@ namespace GymTracker.Api
 
                     repository.Update(result);
 
-                    if (await repository.SaveChangesAsync() == false)
+                    if (await repository.SaveChangesAsync())
                     {
-                        return BadRequest();
+                        return Ok(mapper.Map<RoutineModel>(result));
                     }
-
-                    return Ok(mapper.Map<RoutineModel>(result));
                 }
             }
             catch (Exception ex)

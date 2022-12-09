@@ -1,0 +1,62 @@
+﻿@model GymTracker.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginRegisterLayout.cshtml";
+}
+
+<div>
+    <h2 class="mb-5 text-center">Create account</h2>
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="mb-2">
+                @Html.LabelFor(m => m.Username, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            </div>
+            <div class="mb-2">
+                @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.ProfileData.Weight, new { @class = "form-label" })*
+                    @Html.TextBoxFor(m => m.ProfileData.Weight, new { @class = "form-control", placeholder = "Pounds" })
+                </div>
+
+                <div class="col-6">
+                    @Html.LabelFor(m => m.ProfileData.Age, new { @class = "form-label" })*
+                    @Html.TextBoxFor(m => m.ProfileData.Age, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-6">
+                    @Html.LabelFor(m => m.ProfileData.HeightInCentimeters, new { @class = "form-label" })*
+                    @Html.TextBoxFor(m => m.ProfileData.HeightInCentimeters, new { @class = "form-control", placeholder = "Centimeters" })
+                </div>
+                <div class="col-6">
+                    @Html.LabelFor(m => m.ProfileData.Sex, new { @class = "form-label" })*
+                    <div>
+                        <input type="radio" id="male" name="Sex" value="Male" />
+                        <label for="male">Male</label>
+
+                        <input type="radio" id="Female" name="Sex" value="Female" />
+                        <label for="Female">Female</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <input type="submit" class="btn btn-dark " value="Sign up" />
+
+        }
+        <p>Already have an account? <span>@Html.ActionLink("Log in here", "Login", "User", new { @class = "fw-bold" })</span></p>
+    </div>
+</div>
+
+
+
+

@@ -10,29 +10,30 @@ using System.Web.Mvc;
 
 namespace GymTracker.Controllers
 {
+    [Authorize]
+    [RoutePrefix("routines/{routineId}/exercises")]
     public class ExerciseController : Controller
     {
         private readonly IExercisesRepository exercisesRepository;
-        private readonly AddProgressiveOverload addProgressiveOverload;
 
-        public ExerciseController(IExercisesRepository exercisesRepository, AddProgressiveOverload addProgressiveOverload)
+        public ExerciseController(IExercisesRepository exercisesRepository)
         {
             this.exercisesRepository = exercisesRepository;
-            this.addProgressiveOverload = addProgressiveOverload;
         }
 
+        [Route()]
         public async Task<ActionResult> Index()
         {
             var exercises = await exercisesRepository.GetExercisesAsync();
             return View(exercises);
         }
 
-        public async Task<ActionResult> Detail(int? id, int? routineId)
+        [Route("{id:int}", Name = "Detail")]
+        public async Task<ActionResult> Detail(int id)
         {
-            if (id == null || routineId == null)
-                return HttpNotFound();
-
             var exercise = await exercisesRepository.GetAsync((int)id);
+
+            if (exercise == null) return HttpNotFound();
 
             return View(exercise);
         }

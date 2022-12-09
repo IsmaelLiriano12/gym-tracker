@@ -1,0 +1,28 @@
+﻿@model GymTracker.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginRegisterLayout.cshtml";
+}
+
+<div>
+    <h2 class="mb-5 text-center">Log in</h2>
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <div class="mb-2">
+                @Html.LabelFor(m => m.Username, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            </div>
+            <div class="mb-2">
+                @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+            <input type="submit" class="btn btn-dark " value="Log in" />
+
+        }
+
+        <p>Already have an account? <span>@Html.ActionLink("Log in here", "Register", "User", new { @class = "fw-bold" })</span></p>
+    </div>
+</div>
