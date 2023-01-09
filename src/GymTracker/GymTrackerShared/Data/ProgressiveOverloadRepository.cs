@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public class ProgressiveOverloadRepository : IPogressiveOverloadRepository
+    public class ProgressiveOverloadRepository : IProgressiveOverloadRepository
     {
         private readonly GymTrackerDbContext context;
 

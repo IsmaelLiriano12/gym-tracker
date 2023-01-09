@@ -25,10 +25,10 @@
                 labels: getMonths(progresses),
                 datasets: [
                     {
-                        backgroundColor: 'black',
+                        backgroundColor: '#2c7be5',
                         label: 'Last Weight Lifted (lbs)',
                         data: getWeightsLifted(progresses),
-                        borderColor: 'black'
+                        borderColor: '#2c7be5'
                     }
                 ]
             }

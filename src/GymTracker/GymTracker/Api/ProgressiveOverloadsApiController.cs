@@ -12,9 +12,9 @@ namespace GymTracker.Api
     [RoutePrefix("api/routines/{routineId}/exercises/{exerciseId}/progresses")]
     public class ProgressiveOverloadsApiController : ApiController
     {
-        private readonly IPogressiveOverloadRepository repository;
+        private readonly IProgressiveOverloadRepository repository;
 
-        public ProgressiveOverloadsApiController(IPogressiveOverloadRepository repository)
+        public ProgressiveOverloadsApiController(IProgressiveOverloadRepository repository)
         {
             this.repository = repository;
         }

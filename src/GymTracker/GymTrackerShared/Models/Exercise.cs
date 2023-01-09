@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GymTrackerShared.Models
 {
-    public partial class Exercise : PhysicalActivity
+    public partial class Exercise : LiftingStats
     {
 
         public Exercise()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public interface IPogressiveOverloadRepository
+    public interface IProgressiveOverloadRepository
     {
         Task<IEnumerable<ProgressiveOverload>> GetProgressiveOverloads(int exerciseId);
         Task<ProgressiveOverload> AddAndSaveAsync(Exercise exercise);

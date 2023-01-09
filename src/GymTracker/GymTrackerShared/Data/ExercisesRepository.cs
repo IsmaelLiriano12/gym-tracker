@@ -1,9 +1,9 @@
 ﻿using GymTrackerShared.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymTrackerShared.Data
 {
@@ -54,8 +54,6 @@ namespace GymTrackerShared.Data
 
         public async Task<bool> SaveChangesAsync()
         {
-            context.Database.Log = message => Debug.WriteLine(message);
-
             var rowsSaved = await context.SaveChangesAsync();
 
             return rowsSaved > 0;

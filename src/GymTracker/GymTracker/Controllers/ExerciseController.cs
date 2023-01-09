@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace GymTracker.Controllers
 {
     [Authorize]
-    [RoutePrefix("routines/{routineId}/exercises")]
+    [RoutePrefix("exercises")]
     public class ExerciseController : Controller
     {
         private readonly IExercisesRepository exercisesRepository;
@@ -22,11 +22,11 @@ namespace GymTracker.Controllers
         }
 
         [Route()]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var exercises = await exercisesRepository.GetExercisesAsync();
-            return View(exercises);
+            return View();
         }
+
 
         [Route("{id:int}", Name = "Detail")]
         public async Task<ActionResult> Detail(int id)

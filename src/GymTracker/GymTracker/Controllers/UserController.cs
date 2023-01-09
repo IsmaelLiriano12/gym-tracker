@@ -32,7 +32,7 @@ namespace GymTracker.Controllers
             var identity = await userManager.FindByIdAsync(id);
             if (identity == null) return HttpNotFound();
 
-            var profileData = await profileDataRepository.GetProfileData(identity.Id);
+            var profileData = await profileDataRepository.GetProfileDataAsync(identity.Id);
 
             var viewModel = new UserProfileViewModel(identity, profileData);
 
@@ -45,6 +45,7 @@ namespace GymTracker.Controllers
             return View();
         }
 
+        [Route("login")]
         [HttpPost]
         public async Task<ActionResult> Login(LoginViewModel model)
         {
@@ -60,7 +61,7 @@ namespace GymTracker.Controllers
             }
         }
 
-
+        [Route("register")]
         public ActionResult Register()
         {
             return View();

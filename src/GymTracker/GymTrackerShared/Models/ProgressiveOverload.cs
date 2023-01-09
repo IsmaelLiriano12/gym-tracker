@@ -2,7 +2,7 @@
 
 namespace GymTrackerShared.Models
 {
-    public class ProgressiveOverload : PhysicalActivity
+    public class ProgressiveOverload : LiftingStats
     {
         public int Id { get; set; }
         public int ExerciseId { get; set; }

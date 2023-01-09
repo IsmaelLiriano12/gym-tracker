@@ -22,16 +22,16 @@ namespace GymTracker
     {
         internal static void Register()
         {
-            var builder = new ContainerBuilder();
-            var config = GlobalConfiguration.Configuration;
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            RegisterServices(builder);
-            builder.RegisterWebApiFilterProvider(config);
-            builder.RegisterWebApiModelBinderProvider();
-            var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            //var builder = new ContainerBuilder();
+            //var config = GlobalConfiguration.Configuration;
+            //builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            //RegisterServices(builder);
+            //builder.RegisterWebApiFilterProvider(config);
+            //builder.RegisterWebApiModelBinderProvider();
+            //var container = builder.Build();
+            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            //config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -46,7 +46,7 @@ namespace GymTracker
                 .InstancePerRequest();
 
             builder.RegisterType<ProgressiveOverloadRepository>()
-                .As<IPogressiveOverloadRepository>()
+                .As<IProgressiveOverloadRepository>()
                 .InstancePerRequest();
 
             builder.RegisterInstance(config.CreateMapper())

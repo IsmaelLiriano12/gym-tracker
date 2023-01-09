@@ -15,12 +15,12 @@ namespace GymTracker.Api
     public class ExercisesApiController : ApiController
     {
         private readonly IExercisesRepository repository;
-        private readonly IPogressiveOverloadRepository pogressiveOverloadRepository;
+        private readonly IProgressiveOverloadRepository pogressiveOverloadRepository;
         private readonly IMapper mapper;
 
         public ExercisesApiController
             (IExercisesRepository repository, 
-            IPogressiveOverloadRepository pogressiveOverloadRepository,
+            IProgressiveOverloadRepository pogressiveOverloadRepository,
             IMapper mapper)
         {
             this.repository = repository;

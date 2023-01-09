@@ -23,7 +23,7 @@
             <div class="row mb-2">
                 <div class="col-6">
                     @Html.LabelFor(m => m.ProfileData.Weight, new { @class = "form-label" })*
-                    @Html.TextBoxFor(m => m.ProfileData.Weight, new { @class = "form-control", placeholder = "Pounds" })
+                    @Html.TextBoxFor(m => m.ProfileData.Weight, new { @class = "form-control", placeholder = "Kilograms" })
                 </div>
 
                 <div class="col-6">
@@ -34,8 +34,8 @@
 
             <div class="row mb-2">
                 <div class="col-6">
-                    @Html.LabelFor(m => m.ProfileData.HeightInCentimeters, new { @class = "form-label" })*
-                    @Html.TextBoxFor(m => m.ProfileData.HeightInCentimeters, new { @class = "form-control", placeholder = "Centimeters" })
+                    @Html.LabelFor(m => m.ProfileData.Height, new { @class = "form-label" })*
+                    @Html.TextBoxFor(m => m.ProfileData.Height, new { @class = "form-control", placeholder = "Centimeters" })
                 </div>
                 <div class="col-6">
                     @Html.LabelFor(m => m.ProfileData.Sex, new { @class = "form-label" })*
@@ -43,10 +43,15 @@
                         <input type="radio" id="male" name="Sex" value="Male" />
                         <label for="male">Male</label>
 
-                        <input type="radio" id="Female" name="Sex" value="Female" />
-                        <label for="Female">Female</label>
+                        <input type="radio" id="female" name="Sex" value="Female" />
+                        <label for="female">Female</label>
                     </div>
                 </div>
+            </div>
+
+            <div class="mb-2">
+                @Html.LabelFor(m => m.ProfileData.ActivityLevel, new { @class = "form-label"})*
+                @Html.EnumDropDownListFor(m => m.ProfileData.ActivityLevel)
             </div>
 
 

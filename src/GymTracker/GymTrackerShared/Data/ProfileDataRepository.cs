@@ -27,7 +27,7 @@ namespace GymTrackerShared.Data
             context.Profiles.Remove(entity);
         }
 
-        public async Task<ProfileData> GetProfileData(string UserId)
+        public async Task<ProfileData> GetProfileDataAsync(string UserId)
         {
             return await context.Profiles.FirstOrDefaultAsync(p => p.UserId == UserId);
         }

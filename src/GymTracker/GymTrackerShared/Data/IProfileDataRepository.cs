@@ -5,6 +5,6 @@ namespace GymTrackerShared.Data
 {
     public interface IProfileDataRepository : IWriteRepository<ProfileData>
     {
-        Task<ProfileData> GetProfileData(string UserId);
+        Task<ProfileData> GetProfileDataAsync(string UserId);
     }
 }

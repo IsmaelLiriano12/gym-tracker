@@ -4,7 +4,7 @@
     ViewBag.Title = "Detail";
 }
 
-<div class="mb-3 mb-lg-5 mt-3 mt-lg-5">
+<div class="mb-3 ">
     <form id="routine-form">
         @Html.HiddenFor(r => r.Routine.Id)
         <h1 id="routine-name" class="d-inline">@Model.Routine.Name</h1>
@@ -32,7 +32,7 @@
 </div>
 
 
-<div class="blur">
+<div class="bg-white rounded p-2 shadow">
 
     <div class="row" id="heading">
         <div class="col-3"></div>
@@ -43,7 +43,7 @@
 
     @foreach (var trainingDay in Model.Exercises)
     {
-        <div id="@trainingDay.Key">
+        <div id="@trainingDay.Key" class="border-bottom">
             <h3>@trainingDay.Key Day</h3>
 
             @foreach (var exercise in trainingDay)

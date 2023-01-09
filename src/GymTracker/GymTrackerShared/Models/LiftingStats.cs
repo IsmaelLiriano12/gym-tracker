@@ -2,7 +2,7 @@
 
 namespace GymTrackerShared.Models
 {
-    public abstract class PhysicalActivity
+    public abstract class LiftingStats
     {
         [Required, Range(1, 2000)]
         public decimal Weight { get; set; }

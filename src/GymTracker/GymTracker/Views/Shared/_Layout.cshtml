@@ -17,72 +17,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald&display=swap" rel="stylesheet">
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
-<body>
-    <div class="mb-3">
-        <div class="navbar navbar-expand-lg navbar-light bg-primary fixed-top border-bottom border-1 border-dark border-opacity-25 justify-content-between"
-             >
-            @Html.ActionLink(applicationName, "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand mx-5" })
+<body class="bg-primary">
 
-            <a href="~/user/profile" id="profile-link"><i class="fa-regular fa-circle-user mx-5"></i></a>
-        </div>
-    </div>
-    
+    <div class="container">
+        
+        <div class="row min-vh-100">
 
-    <div class="d-flex flex-column flex-lg-row min-vh-100">
+            <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between bg-primary">
+                <div class="navbar navbar-expand-lg navbar-light">
+                    <div class="container flex-lg-column">
+                        <div>
+                            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                            @Html.ActionLink(applicationName, "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                        
 
-        <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between bg-primary border border-1 border-dark border-opacity-25">
-            <div class="navbar navbar-expand-sm navbar-light">
-                <div class="container-fluid flex-lg-column">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbar-collapse">
-                        <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
-                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Dashboard", new { }, new { @class = "nav-link" })</li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-target="#dropdown-menu" data-bs-toggle="collapse" aria-expanded="false">
-                                    My routines
-                                </a>
-                                <div class="collapse" id="dropdown-menu">
-                                    <ul class="dropdown-menu bg-primary border-0">
-                                    </ul>
-                                </div>
+                        <div class="collapse navbar-collapse" id="navbar-collapse">
+                            <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
+                                <li class="nav-item">@Html.ActionLink("Home", "Index", "Dashboard", new { }, new { @class = "nav-link" })</li>
+                                <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-target="#dropdown-menu" data-bs-toggle="collapse" aria-expanded="false">
+                                        My routine
+                                    </a>
+                                    <div class="collapse" id="dropdown-menu">
+                                        <ul class="dropdown-menu bg-primary border-0">
+                                        </ul>
+                                    </div>
 
-                            </li>
-                        </ul>
+                                </li>
+                                <li class="nav-item">@Html.ActionLink("Exercises", "Index", "Exercise", new {}, new { @class = "nav-link"})</li>
+                                <li class="nav-item"><a class="nav-link" href="#">Today's meals</a></li>
+                            </ul>
 
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card-footer d-none d-lg-block bg-primary">
-                <p class="">&copy; @DateTime.Now.Year Ismael Liriano</p>
-            </div>
-        </div>
 
 
-        <div class="col-lg-10 flex-grow-1 bg-primary">
-            <div class="container body-content overflow-auto overflow-content">
-                <div class="mt-5 mb-3">
-                    @RenderBody()
+            <div class="col-lg-10 flex-grow-1 bg-primary">
+                <div class="container body-content overflow-auto overflow-content">
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <div class="navbar navbar-expand-lg navbar-light bg-primary justify-content-end container">
+
+                                <a href="~/user/profile" id="profile-link"><i class="fa-regular fa-circle-user mx-5"></i></a>
+                            </div>
+                        </div>
+                        @RenderBody()
+                    </div>
+                    <footer class="">
+                        <div class="col mt-3">
+                            <p class="fs-6">&copy; @DateTime.Now.Year Created by <a style="color: #2c7be5;" href="https://ismaelliriano.dev">ismaelliriano</a></p>
+                        </div>
+                    </footer>
                 </div>
-
+                
             </div>
+
+            
+
         </div>
-
-        <footer class="d-flex justify-content-around mb-auto d-lg-none bg-secondary">
-            <div class="mt-3">
-                <p class="">&copy; @DateTime.Now.Year Ismael Liriano</p>
-            </div>
-            <div class="mt-3">
-                <p>
-                    <a class="text-dark" href="https://github.com/ismaelliriano12/gym-tracker" target="_blank">
-                        <i class="fa-brands fa-github fa-lg"></i>
-                    </a>
-                </p>
-            </div>
-        </footer>
-
     </div>
+    
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
