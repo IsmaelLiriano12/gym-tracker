@@ -12,6 +12,6 @@ namespace GymTracker.ViewModels
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public ProfileData ProfileData { get; set; }
+        public AccountData ProfileData { get; set; }
     }
 }

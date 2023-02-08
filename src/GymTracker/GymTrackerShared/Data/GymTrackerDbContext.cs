@@ -1,10 +1,8 @@
 ﻿using GymTrackerShared.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
@@ -13,33 +11,27 @@ namespace GymTrackerShared.Data
 {
     public class GymTrackerDbContext : IdentityDbContext<IdentityUser>
     {
-
-        private readonly IConfiguration _config;
-
-        public GymTrackerDbContext(IConfiguration config)
+        public GymTrackerDbContext()
+            : base("GymTrackerDbContext")
         {
-            _config = config;
+
         }
 
         public DbSet<Routine> Routines { get; set; }
-        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<ExerciseStats> Exercises { get; set; }
         public DbSet<ProgressiveOverload> ProgressiveOverloads { get; set; }
-        public DbSet<ProfileData> Profiles { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder bldr)
-        {
-            base.OnConfiguring(bldr);
-
-            bldr.UseSqlServer(_config.GetConnectionString("GymTrackerDbContext"));
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<AccountData> Profiles { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Exercise>()
+            modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
+
+            modelBuilder.Entity<ExerciseStats>()
                 .Property(e => e.Weight)
                 .HasPrecision(5, 1);
+
+                
         }
     }
 }

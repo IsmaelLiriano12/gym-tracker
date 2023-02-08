@@ -9,7 +9,7 @@ using GymTrackerShared.Data;
 
 namespace GymTracker.Api
 {
-    [RoutePrefix("api/routines/{routineId}/exercises/{exerciseId}/progresses")]
+    [RoutePrefix("api/exercises/{exerciseId}/progresses")]
     public class ProgressiveOverloadsApiController : ApiController
     {
         private readonly IProgressiveOverloadRepository repository;
@@ -20,7 +20,7 @@ namespace GymTracker.Api
         }
 
         [Route()]
-        public async Task<IHttpActionResult> Get(int routineId, int exerciseId)
+        public async Task<IHttpActionResult> Get(int exerciseId)
         {
             try
             {

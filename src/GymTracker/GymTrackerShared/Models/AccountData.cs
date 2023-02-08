@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Models
 {
-    public class ProfileData
+    public class AccountData
     {
         public int Id { get; set; }
         public string UserId { get; set; }

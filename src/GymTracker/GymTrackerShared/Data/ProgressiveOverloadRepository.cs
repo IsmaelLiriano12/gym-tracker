@@ -29,6 +29,11 @@ namespace GymTrackerShared.Data
 
         private IEnumerable<ProgressiveOverload> GetLastProgressesForEachMonth(List<ProgressiveOverload> progressiveOverloads)
         {
+            if(progressiveOverloads.Count == 0)
+            {
+                return progressiveOverloads;
+            }
+
             List<ProgressiveOverload> lastProgresses = new List<ProgressiveOverload>();
 
             int currentMonth = progressiveOverloads[0].DateCreated.Month;
@@ -46,7 +51,7 @@ namespace GymTrackerShared.Data
             return lastProgresses;
         }
 
-        public async Task<ProgressiveOverload> AddAndSaveAsync(Exercise exercise)
+        public async Task<ProgressiveOverload> AddAndSaveAsync(ExerciseStats exercise)
         {
             var progress = new ProgressiveOverload()
             {

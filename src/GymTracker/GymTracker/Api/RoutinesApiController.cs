@@ -2,6 +2,7 @@
 using GymTracker.ApiModels;
 using GymTrackerShared.Data;
 using GymTrackerShared.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,24 +44,6 @@ namespace GymTracker.Api
             }
         }
 
-        [Route("{id:int}", Name ="GetRoutine")]
-        public async Task<IHttpActionResult> Get(int id, bool includeExercises = false)
-        {
-            try
-            {
-                var result = await repository.GetAsync(id, includeExercises);
-                if (result == null) return NotFound();
-
-                var mappedResult = mapper.Map<RoutineModel>(result);
-
-                return Ok(mappedResult);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
-
         [Route()]
         public async Task<IHttpActionResult> Post([FromBody]RoutineModel model)
         {
@@ -96,7 +79,7 @@ namespace GymTracker.Api
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await repository.GetAsync(id, false);
+                    var result = await repository.GetAsync(User.Identity.GetUserId(), false);
                     if (result == null) return NotFound();
 
                     mapper.Map(model, result);

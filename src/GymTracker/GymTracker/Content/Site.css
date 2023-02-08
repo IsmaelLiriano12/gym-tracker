@@ -37,6 +37,11 @@ textarea {
     max-width: 280px;
 }
 
+.shrink{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
 .bg-primary {
     background-color: #edf2f9 !important;
 }
@@ -71,7 +76,10 @@ textarea {
 
 #edit-routine-name,
 .edit,
-.add{
+.add,
+.J-paginationjs-page,
+.J-paginationjs-previous,
+.J-paginationjs-next {
     cursor: pointer;
 }
 
@@ -100,10 +108,21 @@ textarea {
 
 .mychart {
     border-radius: 5px;
-    width: 80vw;
-    height: 60vh;
+    width: 70%;
+    height: 40%;
     background-color: #fff;
 }
+
+.paginationjs-pages ul {
+    list-style: none;
+}
+
+.paginationjs-pages ul li {
+    display: inline-block;
+    margin: .7%;
+}
+
+
 
 
 @media screen and (min-width: 640px) {

@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Data
 {
-    public class ProfileDataRepository : IProfileDataRepository
+    public class AccountDataRepository : IAccountDataRepository
     {
         private readonly GymTrackerDbContext context;
 
-        public ProfileDataRepository(GymTrackerDbContext context)
+        public AccountDataRepository(GymTrackerDbContext context)
         {
             this.context = context;
         }
 
-        public void Add(ProfileData entity)
+        public void Add(AccountData entity)
         {
             context.Profiles.Add(entity);
         }
 
-        public void Delete(ProfileData entity)
+        public void Delete(AccountData entity)
         {
             context.Profiles.Remove(entity);
         }
 
-        public async Task<ProfileData> GetProfileDataAsync(string UserId)
+        public async Task<AccountData> GetAccountDataAsync(string UserId)
         {
-            return await context.Profiles.FirstOrDefaultAsync(p => p.UserId == UserId);
+            return await context.Profiles.FirstOrDefaultAsync(a => a.UserId == UserId);
         }
 
         public async Task<bool> SaveChangesAsync()
@@ -37,7 +37,7 @@ namespace GymTrackerShared.Data
             return (await context.SaveChangesAsync()) > 0;
         }
 
-        public void Update(ProfileData entity)
+        public void Update(AccountData entity)
         {
             context.Entry(entity).State = EntityState.Modified;
         }

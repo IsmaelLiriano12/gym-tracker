@@ -4,15 +4,10 @@ using Autofac.Integration.WebApi;
 using AutoMapper;
 using GymTrackerShared.Data;
 using GymTrackerShared.Identity;
+using GymTrackerShared.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -22,16 +17,16 @@ namespace GymTracker
     {
         internal static void Register()
         {
-            //var builder = new ContainerBuilder();
-            //var config = GlobalConfiguration.Configuration;
-            //builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            //RegisterServices(builder);
-            //builder.RegisterWebApiFilterProvider(config);
-            //builder.RegisterWebApiModelBinderProvider();
-            //var container = builder.Build();
-            //DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            //config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            var builder = new ContainerBuilder();
+            var config = GlobalConfiguration.Configuration;
+            builder.RegisterControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            RegisterServices(builder);
+            builder.RegisterWebApiFilterProvider(config);
+            builder.RegisterWebApiModelBinderProvider();
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -41,8 +36,12 @@ namespace GymTracker
                 cfg.AddProfile(new GymTrackerMappingProfile());
             });
 
-            builder.RegisterType<ProfileDataRepository>()
-                .As<IProfileDataRepository>()
+            builder.RegisterType<WgerService>()
+                .As<IWgerService>()
+                .InstancePerRequest();
+
+            builder.RegisterType<AccountDataRepository>()
+                .As<IAccountDataRepository>()
                 .InstancePerRequest();
 
             builder.RegisterType<ProgressiveOverloadRepository>()
@@ -57,8 +56,8 @@ namespace GymTracker
                 .As<IRoutinesRepository>()
                 .InstancePerRequest();
 
-            builder.RegisterType<ExercisesRepository>()
-                .As<IExercisesRepository>()
+            builder.RegisterType<ExercisesStatsRepository>()
+                .As<IExercisesStatsRepository>()
                 .InstancePerRequest();
 
             builder.RegisterType<GymTrackerDbContext>().InstancePerRequest();

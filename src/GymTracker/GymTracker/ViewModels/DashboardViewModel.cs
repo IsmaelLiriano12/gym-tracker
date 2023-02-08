@@ -10,9 +10,9 @@ namespace GymTracker.ViewModels
 {
     public class DashboardViewModel
     {
-        private readonly ProfileData profileData;
+        private readonly AccountData profileData;
 
-        public DashboardViewModel(ProfileData profileData)
+        public DashboardViewModel(AccountData profileData)
         {
             this.profileData = profileData;
         }

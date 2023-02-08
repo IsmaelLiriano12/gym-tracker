@@ -10,15 +10,15 @@ namespace GymTracker.ViewModels
 {
     public class RoutineDetailViewModel
     {
-        private readonly IExercisesRepository exercisesRepository;
+        private readonly IExercisesStatsRepository exercisesRepository;
 
-        public RoutineDetailViewModel(IExercisesRepository exercisesRepository)
+        public RoutineDetailViewModel(IExercisesStatsRepository exercisesRepository)
         {
             this.exercisesRepository = exercisesRepository;
         }
         public Routine Routine { get; set; }
 
-        public IEnumerable<IGrouping<Routine.TrainingDay, Exercise>> Exercises { get; set; }
+        public IEnumerable<IGrouping<Routine.TrainingDay, ExerciseStats>> Exercises { get; set; }
 
 
         public async Task Init(int routineId) 

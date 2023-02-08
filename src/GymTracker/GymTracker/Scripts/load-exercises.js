@@ -1,28 +1,65 @@
 ﻿$(document).ready(function () {
-    const URL = 'https://wger.de/api/v2/exercisebaseinfo/?offset=30&limit=7'; 
-    const $listOfExercises = $('#exercises');
+    const URL = 'https://localhost:44317/api/wger/exercisebaseinfo';
+    var $dataContainer = $('#exercises');
+
+    getPagination("");
+
+    $('form').submit(function (e) {
+        e.preventDefault();
+
+        $('body').css("cursor", "progress");
+
+        var $exerciseNameTried = $('input').val();
+
+        getPagination(`/suggestions/${$exerciseNameTried}`);
+    });
 
 
-    $.ajax(URL)
-        .done(function (data) {
-            appendExercises(data.results);
+    function getPagination(uri) {
+        $('#pagination').pagination({
+            dataSource: function (done) {
+                $.ajax({
+                    type: 'GET',
+                    url: URL + uri,
+                    success: function (response) {
+                        $('body').css("cursor", "default");
+                        done(response);
+                    }
+                });
+            },
+            callback: function (data, pagination) {
+                var html = template(data);
+                $dataContainer.html(html);
+            }
+
         });
-   
-    function appendExercises(exercises) {
+    }
 
-        for (const exercise of exercises) {
-            $listOfExercises.append(`<div class="card mb-2 col-lg-2" style="width: 16rem;">
-            <img src="${getImage(exercise.images)}" class="card-img-top" style="max-height: 14rem">
+
+    function template(exerciseCollection) {
+
+        let elements = ``;
+
+        for (const exercise of exerciseCollection) {
+            elements += `<div class="col-12 col-sm-4 col-lg-2 m-2"><a href="https://localhost:44317/exerciseinfo/${exercise.id}"><div class="card">
+            <img src="${getImage(exercise.images)}" class="card-img-top" style="height: 12rem;>
             <div class="card-body">
-            <h3 class="card-title">${getName(exercise.exercises)}</h3>
-            <div class="card-subtitle">${getMuscles(exercise.muscles)}</div>
+            <h5 class="card-title fs-5">${getName(exercise.exercises)}</h5>
+            <p class="card-text fs-6"><span class="badge rounded-pill text-bg-primary">${exercise.category.name}</span></p>
+            <a href="#" class="btn btn-primary w-50 m-auto" style="font-size: 60%;">Add</a>
             </div>
-            </div>`);
+            </div></a></div>`;
         }
-        
+
+        return elements;
     }
 
     function getImage(images) {
+
+        if (images.length === 0) {
+            return "https://localhost:44317/Content/Img/no-image.PNG";
+        }
+
         let imageAddress = "";
         for (const image of images) {
             imageAddress = image['image'];
@@ -42,11 +79,4 @@
         return name;
     }
 
-    function getMuscles(muscles) {
-        let elements = "";
-        for (const muscle of muscles) {
-            elements += `<span class="rounded-pill">${muscle.name_en} </span>`;
-        }
-        return elements;
-    }
 })

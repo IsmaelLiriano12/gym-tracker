@@ -2,6 +2,7 @@
 using GymTrackerShared.Data;
 using GymTrackerShared.Identity;
 using GymTrackerShared.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
@@ -15,26 +16,23 @@ namespace GymTracker.Controllers
     {
         private readonly GymUserManager<IdentityUser, string> userManager;
         private readonly GymSignInManager<IdentityUser, string> signInManager;
-        private readonly IProfileDataRepository profileDataRepository;
+        private readonly IAccountDataRepository accountDataRepository;
 
         public UserController(GymUserManager<IdentityUser, string> userManager, 
                               GymSignInManager<IdentityUser, string> signInManager,
-                              IProfileDataRepository profileDataRepository)
+                              IAccountDataRepository accountDataRepository)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.profileDataRepository = profileDataRepository;
+            this.accountDataRepository = accountDataRepository;
         }
 
-        [Route("profile/{id}")]
-        public async Task<ActionResult> ManageProfileData(string id)
+        [Route("account")]
+        public async Task<ActionResult> ManageAccountData(string id)
         {
-            var identity = await userManager.FindByIdAsync(id);
-            if (identity == null) return HttpNotFound();
+            var accountData = await accountDataRepository.GetAccountDataAsync(User.Identity.GetUserId());
 
-            var profileData = await profileDataRepository.GetProfileDataAsync(identity.Id);
-
-            var viewModel = new UserProfileViewModel(identity, profileData);
+            var viewModel = new UserProfileViewModel(User.Identity.Name, accountData);
 
             return View(viewModel);
         }
@@ -80,9 +78,9 @@ namespace GymTracker.Controllers
 
                 profileData.UserId = user.Id;
 
-                profileDataRepository.Add(profileData);
+                accountDataRepository.Add(profileData);
 
-                await profileDataRepository.SaveChangesAsync();
+                await accountDataRepository.SaveChangesAsync();
 
                 return RedirectToAction("Login");
             }

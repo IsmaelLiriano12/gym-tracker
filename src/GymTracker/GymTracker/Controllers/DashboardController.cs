@@ -16,22 +16,22 @@ namespace GymTracker.Controllers
     public class DashboardController : Controller
     {
         private readonly GymUserManager<IdentityUser, string> userManager;
-        private readonly IProfileDataRepository profileDataRepository;
+        private readonly IAccountDataRepository accountDataRepository;
 
         public DashboardController(GymUserManager<IdentityUser, string> userManager,
-                                   IProfileDataRepository profileDataRepository)
+                                   IAccountDataRepository accountDataRepository)
         {
             this.userManager = userManager;
-            this.profileDataRepository = profileDataRepository;
+            this.accountDataRepository = accountDataRepository;
         }
 
         public async Task<ActionResult> Index()
         {
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            var profileData = await profileDataRepository.GetProfileDataAsync(user.Id);
+            var accountData = await accountDataRepository.GetAccountDataAsync(user.Id);
 
 
-            return View(new DashboardViewModel(profileData));
+            return View(new DashboardViewModel(accountData));
         }
     }
 }

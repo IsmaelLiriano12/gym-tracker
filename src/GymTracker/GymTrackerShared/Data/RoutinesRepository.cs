@@ -32,18 +32,18 @@ namespace GymTrackerShared.Data
             }
         }
 
-        public async Task<Routine> GetAsync(int id, bool includeExercises = false)
+        public async Task<Routine> GetAsync(string userId, bool includeExercises = false)
         {
             if (includeExercises == true)
             {
                 return await context.Routines
                 .Include(r => r.Exercises)
-                .FirstOrDefaultAsync(r => r.Id == id);
+                .FirstOrDefaultAsync(r => r.UserId == userId);
             }
             else
             {
                 return await context.Routines
-                .FirstOrDefaultAsync(r => r.Id == id);
+                .FirstOrDefaultAsync(r => r.UserId == userId);
             }
             
         }

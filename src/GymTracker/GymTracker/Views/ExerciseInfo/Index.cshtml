@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    ViewBag.Title = "Exercises";
+}
+
+<div class="row">
+    <h1 class="col-8">Exercises</h1>
+    <div class="col-4">
+        <form>
+            <input class="form-control d-inline" type="text" name="term" placeholder="search" />
+            <button type="submit" class="btn btn-primary d-inline"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+</div>
+
+
+
+<div id="exercises" class="exercises row mt-3">
+    @for (int i = 0; i < 6; i++)
+    {
+        <div class="card col-12 col-sm-4 col-lg-3 m-1" aria-hidden="true">
+            <img src="..." class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-8"></span>
+                </p>
+                <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div id="pagination" class="text-center"></div>
+
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.5.0/pagination.min.js" integrity="sha512-To905O3HNAHQVrN6xCie4dwDWV0OO3lwZl4rqtCvf+4lfkbx9XlyLmSiLosdi1WWBcW+VMy4Lmu/M10R+FsOPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/Scripts/load-exercises.js"></script>
+}
+

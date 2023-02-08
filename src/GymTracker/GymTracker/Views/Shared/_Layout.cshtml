@@ -1,5 +1,4 @@
 ﻿@{ 
-    var applicationName = "Gym Tracker";
 }
 
 <!DOCTYPE html>
@@ -7,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - @applicationName</title>
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" runat="server" type="text/css"/>
     <link href="~/Content/Site.css" rel="stylesheet" runat="server" type="text/css" />
     <script src="https://kit.fontawesome.com/552a1cbc28.js" crossorigin="anonymous"></script>
@@ -15,11 +14,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald&display=swap" rel="stylesheet">
+    @RenderSection("Head", required: false)
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body class="bg-primary">
 
-    <div class="container">
+    <div class="shrink">
         
         <div class="row min-vh-100">
 
@@ -30,25 +30,16 @@
                             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fa-solid fa-bars"></i>
                             </button>
-                            @Html.ActionLink(applicationName, "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Gym Tracker", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
                         </div>
                         
 
                         <div class="collapse navbar-collapse" id="navbar-collapse">
                             <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
                                 <li class="nav-item">@Html.ActionLink("Home", "Index", "Dashboard", new { }, new { @class = "nav-link" })</li>
-                                <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-target="#dropdown-menu" data-bs-toggle="collapse" aria-expanded="false">
-                                        My routine
-                                    </a>
-                                    <div class="collapse" id="dropdown-menu">
-                                        <ul class="dropdown-menu bg-primary border-0">
-                                        </ul>
-                                    </div>
-
-                                </li>
-                                <li class="nav-item">@Html.ActionLink("Exercises", "Index", "Exercise", new {}, new { @class = "nav-link"})</li>
+                                <li class="nav-item">@Html.ActionLink("Account", "ManageAccountData", "User", new { }, new { @class = "nav-link" })</li>
+                                <li class="nav-item dropdown">@Html.ActionLink("My routine", "Detail", "Routine", new { }, new { @class = "nav-link" })</li>
+                                <li class="nav-item">@Html.ActionLink("Exercises", "Index", "ExerciseInfo", new {}, new { @class = "nav-link"})</li>
                                 <li class="nav-item"><a class="nav-link" href="#">Today's meals</a></li>
                             </ul>
 
@@ -58,8 +49,8 @@
             </div>
 
 
-            <div class="col-lg-10 flex-grow-1 bg-primary">
-                <div class="container body-content overflow-auto overflow-content">
+            <div class="col-lg-10 bg-primary">
+                <div class="body-content overflow-auto overflow-content">
                     <div class="mb-3">
                         <div class="mb-3">
                             <div class="navbar navbar-expand-lg navbar-light bg-primary justify-content-end container">
@@ -86,7 +77,6 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Scripts/get-routines.js"></script>
     @RenderSection("Scripts", required: false)
 
 

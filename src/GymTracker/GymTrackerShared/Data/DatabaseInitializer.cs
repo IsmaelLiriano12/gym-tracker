@@ -4,8 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using GymTrackerShared.Models;
-using static GymTrackerShared.Models.Exercise;
+using static GymTrackerShared.Models.ExerciseStats;
 using static GymTrackerShared.Models.Routine;
+using System.Threading.Tasks;
+using GymTrackerShared.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace GymTrackerShared.Data
 {
@@ -13,14 +17,35 @@ namespace GymTrackerShared.Data
     {
         protected override void Seed(GymTrackerDbContext context)
         {
+            var userStore = new GymUserStore<IdentityUser>(context);
+            var userManager = new GymUserManager<IdentityUser, string>(userStore);
+
+            var identityResult = userManager.Create(new IdentityUser("ismaelgymtracker"), "Liriano15");
+
+            var user = userManager.Find("ismaelgymtracker", "Liriano15");
+
+            var accountData = new AccountData()
+            {
+                Weight = 66.2,
+                Height = 185,
+                Age = 21,
+                ActivityLevel = ActivityLevel.ModeratelyActive,
+                Sex = Sex.Male
+            };
+
+            accountData.UserId = user.Id;
+
+            context.Profiles.Add(accountData);
 
             var myRoutine = new Routine()
             {
-                Name = "Upper-Lower"
+                Name = "Upper-Lower",
+                UserId = user.Id
             };
 
-            var exercise1 = new Exercise()
+            var exercise1 = new ExerciseStats()
             {
+                ExerciseBaseId = 73,
                 Name = "Bench Press",
                 Repetitions = 5,
                 Weight = 100,
@@ -38,8 +63,9 @@ namespace GymTrackerShared.Data
 
             exercise1.AddProgress(progress1);
 
-            var exercise2 = new Exercise()
+            var exercise2 = new ExerciseStats()
             {
+                ExerciseBaseId = 849,
                 Name = "Squat",
                 Repetitions = 5,
                 Weight = 100,
@@ -57,9 +83,10 @@ namespace GymTrackerShared.Data
 
             exercise2.AddProgress(progress2);
 
-            var exercise3 = new Exercise()
+            var exercise3 = new ExerciseStats()
             {
-                Name = "Row",
+                ExerciseBaseId = 81,
+                Name = "Bent Over Dumbbell Rows",
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3,
@@ -76,9 +103,10 @@ namespace GymTrackerShared.Data
 
             exercise3.AddProgress(progress3);
 
-            var exercise4 = new Exercise()
+            var exercise4 = new ExerciseStats()
             {
-                Name = "Deadlift",
+                ExerciseBaseId = 630,
+                Name = "Sumo Deadlift",
                 Repetitions = 5,
                 Weight = 100,
                 Sets = 3,

@@ -10,6 +10,6 @@ namespace GymTrackerShared.Data
     public interface IProgressiveOverloadRepository
     {
         Task<IEnumerable<ProgressiveOverload>> GetProgressiveOverloads(int exerciseId);
-        Task<ProgressiveOverload> AddAndSaveAsync(Exercise exercise);
+        Task<ProgressiveOverload> AddAndSaveAsync(ExerciseStats exercise);
     }
 }

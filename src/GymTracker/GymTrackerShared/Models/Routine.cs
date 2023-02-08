@@ -11,17 +11,18 @@ namespace GymTrackerShared.Models
     {
         public Routine()
         {
-            Exercises = new List<Exercise>();
+            Exercises = new List<ExerciseStats>();
         }
         public int Id { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Exercise> Exercises { get; set; }
+        public ICollection<ExerciseStats> Exercises { get; set; }
         public IdentityUser User { get; set; }
 
-        public void AddExercise(Exercise exercise)
+        public void AddExercise(ExerciseStats exercise)
         {
             Exercises.Add(exercise);
         }

@@ -17,7 +17,7 @@ namespace GymTrackerShared.Data
             CreateMap<Routine, RoutineModel>()
                 .ReverseMap();
 
-            CreateMap<Exercise, ExerciseModel>()
+            CreateMap<ExerciseStats, ExerciseModel>()
                 .ReverseMap();
         }
     }

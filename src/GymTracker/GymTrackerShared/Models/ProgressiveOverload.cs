@@ -10,7 +10,7 @@ namespace GymTrackerShared.Models
 
         public string Date => DateCreated.ToShortDateString();
 
-        public Exercise Exercise { get; set; }
+        public ExerciseStats Exercise { get; set; }
 
     }
 }

@@ -43,27 +43,27 @@ $(document).ready(function () {
 
 
 
-    var $dayOfTraining = $(".select-day-exercise");
+    //var $dayOfTraining = $(".select-day-exercise");
 
-    $dayOfTraining.click(function () {
+    //$dayOfTraining.click(function () {
 
-        var $routineId = $('#Routine_Id').val();
-        var $day = $(this).attr('name');
+    //    var $routineId = $('#Routine_Id').val();
+    //    var $day = $(this).attr('name');
 
-        var $dayDiv = $(`#${$day}`);
+    //    var $dayDiv = $(`#${$day}`);
 
-        //This is basically a new form to be inserted in the routine's detail page with default values.
-        // It is also setting the corresponding value of the DayOfTraining property on the ExerciseModel.
-        var inputs = `<form class="mt-3 mt-lg-4" novalidate="novalidate"> <div class="row"> <input type="hidden" name="RoutineId" value="${$routineId}"> <input data-val="true" data-val-required="The Training Day field is required." id="DayOfTraining" name="DayOfTraining" type="hidden" 	value="${$day}"><div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-required="The Name field is required." id="Name" name="Name" type="text" value=""> </div> <div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Weight" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-number="The field Weight must be a number." data-val-range="The field Weight must be between 1 and 2000." data-val-range-max="2000" data-val-range-min="1" data-val-required="The Weight field is required." id="Weight" name="Weight" size="3" type="text" value="0"> lbs </div> <div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Repetitions" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-number="The field Repetitions must be a number." data-val-required="The Repetitions field is required." id="Repetitions" name="Repetitions" size="3" type="text" value="0"> </div> <div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Sets" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-number="The field Sets must be a number." data-val-range="The field Sets must be between 1 and 10." data-val-range-max="10" data-val-range-min="1" data-val-required="The Sets field is required." id="Sets" name="Sets" size="3" type="text" value="0"> <span class="add"><i class="fa-solid fa-arrow-up-from-bracket"></i></span> </div> </div> </form>`;
+    //    //This is basically a new form to be inserted in the routine's detail page with default values.
+    //    // It is also setting the corresponding value of the DayOfTraining property on the ExerciseModel.
+    //    var inputs = `<form class="mt-3 mt-lg-4" novalidate="novalidate"> <div class="row"> <input type="hidden" name="RoutineId" value="${$routineId}"> <input data-val="true" data-val-required="The Training Day field is required." id="DayOfTraining" name="DayOfTraining" type="hidden" 	value="${$day}"><div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Name" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-required="The Name field is required." id="Name" name="Name" type="text" value=""> </div> <div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Weight" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-number="The field Weight must be a number." data-val-range="The field Weight must be between 1 and 2000." data-val-range-max="2000" data-val-range-min="1" data-val-required="The Weight field is required." id="Weight" name="Weight" size="3" type="text" value="0"> lbs </div> <div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Repetitions" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-number="The field Repetitions must be a number." data-val-required="The Repetitions field is required." id="Repetitions" name="Repetitions" size="3" type="text" value="0"> </div> <div class="col-3 position-relative"> <span class="field-validation-valid" data-valmsg-for="Sets" data-valmsg-replace="true"></span> <input class="small exercise-inputs" data-val="true" data-val-number="The field Sets must be a number." data-val-range="The field Sets must be between 1 and 10." data-val-range-max="10" data-val-range-min="1" data-val-required="The Sets field is required." id="Sets" name="Sets" size="3" type="text" value="0"> <span class="add"><i class="fa-solid fa-arrow-up-from-bracket"></i></span> </div> </div> </form>`;
 
-        $dayDiv.append(inputs);
+    //    $dayDiv.append(inputs);
 
-        var $add = $(".add");
+    //    var $add = $(".add");
 
-        $add.click(function () {
-            setUpToSubmit(this, "POST");
-        });
-    });
+    //    $add.click(function () {
+    //        setUpToSubmit(this, "POST");
+    //    });
+    //});
 
 
 

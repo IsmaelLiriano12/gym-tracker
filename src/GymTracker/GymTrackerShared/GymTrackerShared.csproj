@@ -94,12 +94,6 @@
     <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNetCore.Identity, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.Identity.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Identity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.Identity.EntityFrameworkCore.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
     </Reference>
@@ -120,9 +114,6 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.24.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.3.1.24\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=3.1.24.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.3.1.24\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=3.1.24.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.3.1.24\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
@@ -313,30 +304,43 @@
     <Compile Include="ApiModels\ExerciseModel.cs" />
     <Compile Include="ApiModels\RoutineModel.cs" />
     <Compile Include="Data\GymTrackerMappingProfile.cs" />
-    <Compile Include="Data\IExercisesRepository.cs" />
+    <Compile Include="Data\IExercisesStatsRepository.cs" />
     <Compile Include="Data\IProgressiveOverloadRepository.cs" />
-    <Compile Include="Data\IProfileDataRepository.cs" />
+    <Compile Include="Data\IAccountDataRepository.cs" />
     <Compile Include="Data\IRoutinesRepository.cs" />
     <Compile Include="Data\GymTrackerDbContext.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
-    <Compile Include="Data\ExercisesRepository.cs" />
+    <Compile Include="Data\ExercisesStatsRepository.cs" />
     <Compile Include="Data\IWriteRepository.cs" />
-    <Compile Include="Data\ProfileDataRepository.cs" />
+    <Compile Include="Data\AccountDataRepository.cs" />
     <Compile Include="Data\ProgressiveOverloadRepository.cs" />
     <Compile Include="Data\RoutinesRepository.cs" />
     <Compile Include="Identity\GymSignInManager.cs" />
     <Compile Include="Identity\GymUserManager.cs" />
     <Compile Include="Identity\GymUserStore.cs" />
     <Compile Include="Models\ActivityLevel.cs" />
-    <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\WgerModels\Category.cs" />
+    <Compile Include="Models\WgerModels\Equipment.cs" />
+    <Compile Include="Models\WgerModels\Exercise.cs" />
+    <Compile Include="Models\ExerciseStats.cs" />
+    <Compile Include="Models\WgerModels\ExerciseBaseInfo.cs" />
     <Compile Include="Models\Sex.cs" />
     <Compile Include="Models\LiftingStats.cs" />
-    <Compile Include="Models\ProfileData.cs" />
+    <Compile Include="Models\AccountData.cs" />
     <Compile Include="Models\ProgressiveOverload.cs" />
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\TrainingDay.cs" />
+    <Compile Include="Models\WgerModels\Image.cs" />
+    <Compile Include="Models\WgerModels\Muscle.cs" />
+    <Compile Include="Models\WgerModels\Note.cs" />
+    <Compile Include="Models\WgerModels\SuggestionsCollection.cs" />
+    <Compile Include="Models\WgerModels\SuggestionsResult.cs" />
+    <Compile Include="Models\WgerModels\WgerCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IWgerService.cs" />
+    <Compile Include="Services\WgerService.cs" />
     <Compile Include="Utility\CalorieCalculator.cs" />
+    <Compile Include="Utility\StreamExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

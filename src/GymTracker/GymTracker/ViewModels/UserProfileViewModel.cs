@@ -10,16 +10,17 @@ namespace GymTracker.ViewModels
 {
     public class UserProfileViewModel
     {
-        private readonly IdentityUser user;
-        private readonly ProfileData profileData;
+        private readonly string userName;
+        private readonly AccountData profileData;
 
-        public UserProfileViewModel(IdentityUser user, ProfileData profileData)
+
+        public UserProfileViewModel(string userName, AccountData profileData)
         {
-            this.user = user;
+            this.userName = userName;
             this.profileData = profileData;
         }
 
-        public string Username => user.UserName;
-        public ProfileData ProfileData => profileData;
+        public string Username => userName;
+        public AccountData ProfileData => profileData;
     }
 }

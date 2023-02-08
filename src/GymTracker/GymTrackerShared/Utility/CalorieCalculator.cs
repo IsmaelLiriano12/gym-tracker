@@ -22,25 +22,25 @@ namespace GymTrackerShared.Utility
             };
         }
 
-        public static int GetCaloricDeficit(this ProfileData profileData)
+        public static int GetCaloricDeficit(this AccountData profileData)
         {
             return (int)(GetMaintenanceCalories(profileData) * 0.9);
         }        
         
-        public static int GetCaloricSurplus(this ProfileData profileData)
+        public static int GetCaloricSurplus(this AccountData profileData)
         {
             var maintenanceCalories = GetMaintenanceCalories(profileData);
 
             return (int)(maintenanceCalories + (maintenanceCalories * 0.15));
         }
 
-        public static int GetMaintenanceCalories(this ProfileData profileData)
+        public static int GetMaintenanceCalories(this AccountData profileData)
         {
             return (int)(CalculateBasalMetabolicRate(profileData) * activitylevels[profileData.ActivityLevel]);
         }
 
 
-        private static double CalculateBasalMetabolicRate(ProfileData profileData)
+        private static double CalculateBasalMetabolicRate(AccountData profileData)
         {
             var BasalMetabolicRate = 0d;
 

@@ -14,12 +14,12 @@ namespace GymTracker.Api
     [RoutePrefix("api/routines/{routineId}/exercises")]
     public class ExercisesApiController : ApiController
     {
-        private readonly IExercisesRepository repository;
+        private readonly IExercisesStatsRepository repository;
         private readonly IProgressiveOverloadRepository pogressiveOverloadRepository;
         private readonly IMapper mapper;
 
         public ExercisesApiController
-            (IExercisesRepository repository, 
+            (IExercisesStatsRepository repository, 
             IProgressiveOverloadRepository pogressiveOverloadRepository,
             IMapper mapper)
         {
@@ -36,7 +36,7 @@ namespace GymTracker.Api
                 var result = await repository.GetAsync(id);
                 if (result == null) return NotFound();
 
-                var mappedResult = mapper.Map<Exercise, ExerciseModel>(result);
+                var mappedResult = mapper.Map<ExerciseStats, ExerciseModel>(result);
 
                 return Ok(mappedResult);
             }
@@ -54,7 +54,7 @@ namespace GymTracker.Api
             {
                 if (ModelState.IsValid)
                 {
-                    var mappedResult = mapper.Map<ExerciseModel, Exercise>(model);
+                    var mappedResult = mapper.Map<ExerciseModel, ExerciseStats>(model);
 
                     mappedResult.RoutineId = routineId;
 
@@ -66,7 +66,7 @@ namespace GymTracker.Api
 
                     if (await repository.SaveChangesAsync())
                     {
-                        var newModel = mapper.Map<Exercise, ExerciseModel>(mappedResult);
+                        var newModel = mapper.Map<ExerciseStats, ExerciseModel>(mappedResult);
 
                         return CreatedAtRoute("GetExercise", new { routineId = mappedResult.RoutineId, id = mappedResult.Id }, newModel);
                     }
