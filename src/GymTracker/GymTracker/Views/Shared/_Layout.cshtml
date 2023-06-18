@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" runat="server" type="text/css"/>
     <link href="~/Content/Site.css" rel="stylesheet" runat="server" type="text/css" />
     <script src="https://kit.fontawesome.com/552a1cbc28.js" crossorigin="anonymous"></script>
-    <script src="~/Scripts/chart.min.js"></script>
+    <script src="~/Scripts/chart.min.js"></script> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald&display=swap" rel="stylesheet">
@@ -19,61 +19,67 @@
 </head>
 <body class="bg-primary">
 
-    <div class="shrink">
-        
-        <div class="row min-vh-100">
+    <div class="logout mx-3 mt-2 mx-lg-5 overflow-hidden">
+        @using (Html.BeginForm("Logout", "User", FormMethod.Get, new { id = "logout-form" })) { }
+        <button form="logout-form" type="submit" class="border-0 bg-transparent"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</button>
+    </div>
 
-            <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between bg-primary">
-                <div class="navbar navbar-expand-lg navbar-light">
-                    <div class="container flex-lg-column">
-                        <div>
-                            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>
-                            @Html.ActionLink("Gym Tracker", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
-                        </div>
-                        
 
-                        <div class="collapse navbar-collapse" id="navbar-collapse">
-                            <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
-                                <li class="nav-item">@Html.ActionLink("Home", "Index", "Dashboard", new { }, new { @class = "nav-link" })</li>
-                                <li class="nav-item">@Html.ActionLink("Account", "ManageAccountData", "User", new { }, new { @class = "nav-link" })</li>
-                                <li class="nav-item dropdown">@Html.ActionLink("My routine", "Detail", "Routine", new { }, new { @class = "nav-link" })</li>
-                                <li class="nav-item">@Html.ActionLink("Exercises", "Index", "ExerciseInfo", new {}, new { @class = "nav-link"})</li>
-                                <li class="nav-item"><a class="nav-link" href="#">Today's meals</a></li>
-                            </ul>
+    <div class="row">
 
-                        </div>
+        <div class="col-lg-2 d-lg-flex flex-lg-column justify-content-lg-between">
+            <div class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid flex-lg-column">
+                    <div>
+                        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        @Html.ActionLink("Gym Tracker", "Index", "Dashboard", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+
+
+                    <div class="collapse navbar-collapse" id="navbar-collapse">
+                        <ul class="nav navbar-nav text-lg-center flex-lg-column mt-lg-5">
+                            <li class="nav-item">@Html.ActionLink("Home", "Index", "Dashboard", new { }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Account", "ManageAccountData", "User", new { }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("My routine", "Detail", "Routine", new { }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Exercises", "Index", "ExerciseInfo", new { }, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Diary", "Index", "Diary", new { }, new { @class = "nav-link" })</li>
+                        </ul>
+
                     </div>
                 </div>
+
+
             </div>
-
-
-            <div class="col-lg-10 bg-primary">
-                <div class="body-content overflow-auto overflow-content">
-                    <div class="mb-3">
-                        <div class="mb-3">
-                            <div class="navbar navbar-expand-lg navbar-light bg-primary justify-content-end container">
-
-                                <a href="~/user/profile" id="profile-link"><i class="fa-regular fa-circle-user mx-5"></i></a>
-                            </div>
-                        </div>
-                        @RenderBody()
-                    </div>
-                    <footer class="">
-                        <div class="col mt-3">
-                            <p class="fs-6">&copy; @DateTime.Now.Year Created by <a style="color: #2c7be5;" href="https://ismaelliriano.dev">ismaelliriano</a></p>
-                        </div>
-                    </footer>
-                </div>
-                
-            </div>
-
-            
 
         </div>
+
+
+        <div class="col-lg-10 bg-primary">
+            <div class="body-content overflow-content">
+                <div class="mb-3 mt-lg-5">
+                    @RenderBody()
+                </div>
+                <footer class="d-none d-lg-block">
+                    <div class="col mt-3">
+                        <p class="fs-6">&copy; @DateTime.Now.Year Created by <a style="color: #2c7be5;" href="https://ismaelliriano.dev">ismaelliriano</a></p>
+                    </div>
+                </footer>
+            </div>
+
+        </div>
+
+        <div>
+            <footer class="d-block d-lg-none">
+                <div class="col">
+                    <p class="fs-6">&copy; @DateTime.Now.Year Created by <a style="color: #2c7be5;" href="https://ismaelliriano.dev">ismaelliriano</a></p>
+                </div>
+            </footer>
+        </div>
+
     </div>
-    
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

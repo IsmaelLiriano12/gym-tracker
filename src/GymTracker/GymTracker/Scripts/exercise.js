@@ -90,12 +90,11 @@ $(document).ready(function () {
 
     function submitExerciseInput(httpVerb, inputs, icon) {
 
-        const routineId = inputs.siblings("input[name='RoutineId']").val();
         const id = inputs.siblings("input[name='Id']").val();
-        let URL = `https://localhost:44317/api/routines/${routineId}/exercises/${id}`;
+        let URL = `https://localhost:44317/api/exercises/${id}`;
 
         if (httpVerb === "POST") {
-            URL = `https://localhost:44317/api/routines/${routineId}/exercises`;
+            URL = `https://localhost:44317/api/exercises`;
         }
 
         $.ajax({

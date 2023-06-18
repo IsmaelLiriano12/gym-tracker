@@ -36,6 +36,10 @@ namespace GymTracker
                 cfg.AddProfile(new GymTrackerMappingProfile());
             });
 
+            builder.RegisterType<IngredientsRepository>()
+                .As<IIngredientsRepository>()
+                .InstancePerRequest();
+
             builder.RegisterType<WgerService>()
                 .As<IWgerService>()
                 .InstancePerRequest();

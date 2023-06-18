@@ -1,4 +1,5 @@
 ﻿using GymTrackerShared.Models;
+using GymTrackerShared.Models.WgerModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,9 @@ namespace GymTrackerShared.Data
         public DbSet<Routine> Routines { get; set; }
         public DbSet<ExerciseStats> Exercises { get; set; }
         public DbSet<ProgressiveOverload> ProgressiveOverloads { get; set; }
-        public DbSet<AccountData> Profiles { get; set; }
+        public DbSet<AccountData> Accounts { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -31,7 +34,11 @@ namespace GymTrackerShared.Data
                 .Property(e => e.Weight)
                 .HasPrecision(5, 1);
 
-                
+            modelBuilder.Entity<Ingredient>()
+                .Property(i => i.Amount)
+                .HasPrecision(4, 1);
+
+            
         }
     }
 }

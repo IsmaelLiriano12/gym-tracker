@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Models.WgerModels
 {
-    public class SuggestionsResult
+    public class ExerciseSuggestionsResult
     {
         [JsonProperty("value")]
         public string Value { get; set; }

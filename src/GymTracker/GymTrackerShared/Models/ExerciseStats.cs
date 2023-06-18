@@ -20,8 +20,6 @@ namespace GymTrackerShared.Models
         [Required]
         public string Name { get; set; }
 
-        public string DisplayName => Name.ToUpper();
-
         [Display(Name = "Training Day")]
         public Routine.TrainingDay DayOfTraining { get; set; }
 

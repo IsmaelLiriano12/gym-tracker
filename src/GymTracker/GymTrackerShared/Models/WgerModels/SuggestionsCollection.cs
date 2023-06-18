@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace GymTrackerShared.Models.WgerModels
 {
-    public class SuggestionsCollection
+    public class SuggestionsCollection<T>
     {
         [JsonProperty("suggestions")]
-        public IEnumerable<SuggestionsResult> Suggestions { get; set; }
+        public IEnumerable<T> Suggestions { get; set; }
     }
 }

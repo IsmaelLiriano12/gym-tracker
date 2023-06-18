@@ -12,6 +12,6 @@ namespace GymTracker.ApiModels
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<ExerciseModel> Exercises { get; set; }
+        public ICollection<ExerciseStatsModel> Exercises { get; set; }
     }
 }

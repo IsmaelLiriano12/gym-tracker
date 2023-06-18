@@ -7,7 +7,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GymTracker.Controllers
 {
@@ -17,14 +19,17 @@ namespace GymTracker.Controllers
         private readonly GymUserManager<IdentityUser, string> userManager;
         private readonly GymSignInManager<IdentityUser, string> signInManager;
         private readonly IAccountDataRepository accountDataRepository;
+        private readonly IRoutinesRepository routinesRepository;
 
         public UserController(GymUserManager<IdentityUser, string> userManager, 
                               GymSignInManager<IdentityUser, string> signInManager,
-                              IAccountDataRepository accountDataRepository)
+                              IAccountDataRepository accountDataRepository,
+                              IRoutinesRepository routinesRepository)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.accountDataRepository = accountDataRepository;
+            this.routinesRepository = routinesRepository;
         }
 
         [Route("account")]
@@ -59,6 +64,14 @@ namespace GymTracker.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
+
+
         [Route("register")]
         public ActionResult Register()
         {
@@ -79,6 +92,14 @@ namespace GymTracker.Controllers
                 profileData.UserId = user.Id;
 
                 accountDataRepository.Add(profileData);
+
+                var routine = new Routine()
+                {
+                    Name = "My routine",
+                    UserId = user.Id
+                };
+
+                routinesRepository.Add(routine);
 
                 await accountDataRepository.SaveChangesAsync();
 

@@ -19,17 +19,17 @@ namespace GymTrackerShared.Data
 
         public void Add(AccountData entity)
         {
-            context.Profiles.Add(entity);
+            context.Accounts.Add(entity);
         }
 
         public void Delete(AccountData entity)
         {
-            context.Profiles.Remove(entity);
+            context.Accounts.Remove(entity);
         }
 
         public async Task<AccountData> GetAccountDataAsync(string UserId)
         {
-            return await context.Profiles.FirstOrDefaultAsync(a => a.UserId == UserId);
+            return await context.Accounts.FirstOrDefaultAsync(a => a.UserId == UserId);
         }
 
         public async Task<bool> SaveChangesAsync()

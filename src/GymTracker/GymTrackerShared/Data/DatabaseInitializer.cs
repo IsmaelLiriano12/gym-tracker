@@ -35,7 +35,7 @@ namespace GymTrackerShared.Data
 
             accountData.UserId = user.Id;
 
-            context.Profiles.Add(accountData);
+            context.Accounts.Add(accountData);
 
             var myRoutine = new Routine()
             {

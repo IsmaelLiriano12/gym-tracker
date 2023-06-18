@@ -7,8 +7,8 @@
             @Html.HiddenFor(m => m.DayOfTraining)
             <input type="hidden" name="RoutineId" value="@Model.RoutineId" />
             @Html.HiddenFor(m => m.Name)
-            <div class="col-3">
-                <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse-@(Model.Id)_@Model.ExerciseBaseId" aria-expanded="true" aria-controls="collapse-@(Model.Id)_@Model.ExerciseBaseId">@Model.Name</a>
+            <div class="col-3 text-truncate">
+                <a href="#"  data-bs-toggle="collapse" data-bs-target="#collapse-@(Model.Id)_@Model.ExerciseBaseId" aria-expanded="true" aria-controls="collapse-@(Model.Id)_@Model.ExerciseBaseId">@Model.Name</a>
             </div>
             <div class="col-3 position-relative">
                 @Html.ValidationMessageFor(m => m.Weight)

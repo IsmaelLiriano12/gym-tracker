@@ -301,10 +301,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiModels\ExerciseModel.cs" />
+    <Compile Include="ApiModels\ExerciseInfoModel.cs" />
+    <Compile Include="ApiModels\ExerciseStatsModel.cs" />
+    <Compile Include="ApiModels\IngredientModel.cs" />
     <Compile Include="ApiModels\RoutineModel.cs" />
     <Compile Include="Data\GymTrackerMappingProfile.cs" />
     <Compile Include="Data\IExercisesStatsRepository.cs" />
+    <Compile Include="Data\IIngredientsRepository.cs" />
+    <Compile Include="Data\IngredientsRepository.cs" />
     <Compile Include="Data\IProgressiveOverloadRepository.cs" />
     <Compile Include="Data\IAccountDataRepository.cs" />
     <Compile Include="Data\IRoutinesRepository.cs" />
@@ -319,6 +323,8 @@
     <Compile Include="Identity\GymUserManager.cs" />
     <Compile Include="Identity\GymUserStore.cs" />
     <Compile Include="Models\ActivityLevel.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\Meal.cs" />
     <Compile Include="Models\WgerModels\Category.cs" />
     <Compile Include="Models\WgerModels\Equipment.cs" />
     <Compile Include="Models\WgerModels\Exercise.cs" />
@@ -331,10 +337,12 @@
     <Compile Include="Models\Routine.cs" />
     <Compile Include="Models\TrainingDay.cs" />
     <Compile Include="Models\WgerModels\Image.cs" />
+    <Compile Include="Models\WgerModels\IngredientSuggestionResult.cs" />
     <Compile Include="Models\WgerModels\Muscle.cs" />
     <Compile Include="Models\WgerModels\Note.cs" />
+    <Compile Include="Models\WgerModels\NutritionFacts.cs" />
     <Compile Include="Models\WgerModels\SuggestionsCollection.cs" />
-    <Compile Include="Models\WgerModels\SuggestionsResult.cs" />
+    <Compile Include="Models\WgerModels\ExerciseSuggestionsResult.cs" />
     <Compile Include="Models\WgerModels\WgerCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IWgerService.cs" />

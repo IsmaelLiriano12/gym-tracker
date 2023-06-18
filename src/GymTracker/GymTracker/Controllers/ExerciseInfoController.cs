@@ -10,6 +10,7 @@ using System.Web.Mvc;
 namespace GymTracker.Controllers
 {
     [RoutePrefix("exerciseinfo")]
+    [Authorize]
     public class ExerciseInfoController : Controller
     {
         private readonly IWgerService wgerService;

@@ -1,21 +1,23 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-}
-
-@{
     ViewBag.Title = "Exercises";
 }
 
 <div class="row">
-    <h1 class="col-8">Exercises</h1>
-    <div class="col-4">
+    <h1 class="col-12 col-lg-8">Exercises</h1>
+    <div class="col-12 col-lg-4">
         <form>
-            <input class="form-control d-inline" type="text" name="term" placeholder="search" />
-            <button type="submit" class="btn btn-primary d-inline"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="input-group">
+                <input type="text" name="term" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon">
+                <button class="btn btn-primary" type="submit" id="button-addon"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
         </form>
     </div>
 </div>
+
+<div class="alert-container">
+</div>
+
 
 
 

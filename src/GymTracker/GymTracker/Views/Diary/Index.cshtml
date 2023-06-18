@@ -1,0 +1,270 @@
+﻿@model Dictionary<GymTrackerShared.Models.Meal, List<GymTrackerShared.Models.Ingredient>>
+@{
+    ViewBag.Title = "Diary";
+}
+
+
+<h1 class="my-2">Diary</h1>
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="card mb-2">
+            <div class="card-header">
+                <h3>Breakfast</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.ContainsKey(GymTrackerShared.Models.Meal.Breakfast))
+                {
+                    foreach (var ingredient in Model[GymTrackerShared.Models.Meal.Breakfast])
+                    {
+                        <div class="row">
+                            <div class="col-10 row">
+                                <div class="col-12">
+                                    <p>@ingredient.Name</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-lighter fs-6">@ingredient.Amount g</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <p class="calories">@ingredient.NutritionFacts.Energy </p>
+                                <span>kcal</span>
+                            </div>
+                        </div>
+                        <p class="d-none protein">@ingredient.NutritionFacts.Protein</p>
+                        <p class="d-none carbs">@ingredient.NutritionFacts.Carbohydrates</p>
+                        <p class="d-none fat">@ingredient.NutritionFacts.Fat</p>
+                    }
+                }
+
+                <button id="add-breakfast" class="text-primary border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#breakfast-modal">ADD FOOD</button>
+            </div>
+
+            <div class="modal fade" id="breakfast-modal" tabindex="-1" aria-labelledby="breakfastModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="breakfastModalLabel">Add food</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="breakfast-form" method="post">
+                                <input type="hidden" name="meal" value="Breakfast"/>
+                                <input type="hidden" name="wgerNutritionResultId" value=""/>
+
+                                <label for="ingredient-breakfast" class="form-label">Food</label>
+                                <div class="dropdown">
+                                    <input id="ingredient-breakfast" name="name" class="form-control w-100" data-bs-toggle="dropdown" aria-expanded="false" />
+                                    <ul class="dropdown-menu w-100"></ul>
+                                </div>
+
+                                <label for="amount-breakfast" class="form-label">Amount(grams)</label>
+                                <input id="amount-breakfast" name="amount" class="form-control" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="breakfast" type="submit" class="btn btn-primary save-button">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-2">
+            <div class="card-header">
+                <h3>Lunch</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.ContainsKey(GymTrackerShared.Models.Meal.Lunch))
+                {
+                    foreach (var ingredient in Model[GymTrackerShared.Models.Meal.Lunch])
+                    {
+                        <div class="row">
+                            <div class="col-10 row">
+                                <div class="col-12">
+                                    <p>@ingredient.Name</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-lighter fs-6">@ingredient.Amount g</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <p class="calories">@ingredient.NutritionFacts.Energy </p>
+                                <span>kcal</span>
+                            </div>
+                        </div>
+                        <p class="d-none protein">@ingredient.NutritionFacts.Protein</p>
+                        <p class="d-none carbs">@ingredient.NutritionFacts.Carbohydrates</p>
+                        <p class="d-none fat">@ingredient.NutritionFacts.Fat</p>
+                    }
+                }
+                <button id="add-lunch" class="text-primary border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#lunch-modal">ADD FOOD</button>
+            </div>
+
+            <div class="modal fade" id="lunch-modal" tabindex="-1" aria-labelledby="lunchModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="lunchModalLabel">Add food</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="lunch-form" method="post">
+                                <input type="hidden" name="meal" value="Lunch" />
+                                <input type="hidden" name="wgerNutritionResultId" value=""/>
+
+                                <label for="ingredient-lunch" class="form-label">Food</label>
+                                <div class="dropdown">
+                                    <input id="ingredient-lunch" name="name" class="form-control w-100" data-bs-toggle="dropdown" aria-expanded="false" />
+                                    <ul class="dropdown-menu w-100"></ul>
+                                </div>
+
+                                <label for="amount-lunch" class="form-label">Amount(grams)</label>
+                                <input id="amount-lunch" name="amount" class="form-control" />
+                            </form>
+                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="lunch" type="submit" class="btn btn-primary save-button">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-2">
+            <div class="card-header">
+                <h3>Dinner</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.ContainsKey(GymTrackerShared.Models.Meal.Dinner))
+                {
+                    foreach (var ingredient in Model[GymTrackerShared.Models.Meal.Dinner])
+                    {
+                        <div class="row">
+                            <div class="col-10 row">
+                                <div class="col-12">
+                                    <p>@ingredient.Name</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-lighter fs-6">@ingredient.Amount g</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <p class="calories">@ingredient.NutritionFacts.Energy </p>
+                                <span>kcal</span>
+                            </div>
+                        </div>
+                        <p class="d-none protein">@ingredient.NutritionFacts.Protein</p>
+                        <p class="d-none carbs">@ingredient.NutritionFacts.Carbohydrates</p>
+                        <p class="d-none fat">@ingredient.NutritionFacts.Fat</p>
+                    }
+                }
+                <button id="add-dinner" class="text-primary border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#dinner-modal">ADD FOOD</button>
+            </div>
+
+            <div class="modal fade" id="dinner-modal" tabindex="-1" aria-labelledby="dinnerModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="dinnerModalLabel">Add food</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="dinner-form" method="post">
+                                <input type="hidden" name="meal" value="Dinner" />
+                                <input type="hidden" name="wgerNutritionResultId" value="" />
+
+                                <label for="ingredient-dinner" class="form-label">Food</label>
+                                <div class="dropdown">
+                                    <input id="ingredient-dinner" name="name" class="form-control w-100" data-bs-toggle="dropdown" aria-expanded="false" />
+                                    <ul class="dropdown-menu w-100"></ul>
+                                </div>
+
+                                <label for="amount-dinner" class="form-label">Amount(grams)</label>
+                                <input id="amount-dinner" name="amount" class="form-control" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="dinner" type="submit" class="btn btn-primary save-button">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Snacks</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.ContainsKey(GymTrackerShared.Models.Meal.Snacks))
+                {
+                    foreach (var ingredient in Model[GymTrackerShared.Models.Meal.Snacks])
+                    {
+                        <div class="row">
+                            <div class="col-10 row">
+                                <div class="col-12">
+                                    <p>@ingredient.Name</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="fw-lighter fs-6">@ingredient.Amount g</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <p class="calories">@ingredient.NutritionFacts.Energy </p>
+                                <span>kcal</span>
+                            </div>
+                        </div>
+                        <p class="d-none protein">@ingredient.NutritionFacts.Protein</p>
+                        <p class="d-none carbs">@ingredient.NutritionFacts.Carbohydrates</p>
+                        <p class="d-none fat">@ingredient.NutritionFacts.Fat</p>
+                    }
+                }
+                <button id="add-snacks" class="text-primary border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#snacks-modal">ADD FOOD</button>
+            </div>
+
+            <div class="modal fade" id="snacks-modal" tabindex="-1" aria-labelledby="snacksModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="snacksModalLabel">Add food</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="snacks-form" method="post">
+                                <input type="hidden" name="meal" value="Snacks" />
+                                <input type="hidden" name="wgerNutritionResultId"/>
+
+                                <label for="ingredient-snacks" class="form-label">Food</label>
+                                <div class="dropdown">
+                                    <input id="ingredient-snacks" name="name" class="form-control w-100" data-bs-toggle="dropdown" aria-expanded="false" />
+                                    <ul class="dropdown-menu w-100"></ul>
+                                </div>
+
+                                <label for="amount-snacks" class="form-label">Amount(grams)</label>
+                                <input id="amount-snacks" name="amount" class="form-control" />
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="snacks" type="submit" class="btn btn-primary save-button">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <p class="card p-3" id="total-calories">Calories:</p>
+        <canvas id="macros-chart" class="mychart" style="max-height:562px;"></canvas>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/Scripts/ingredients.js"></script>
+}

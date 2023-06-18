@@ -340,7 +340,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Img\no-image.PNG" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -352,10 +351,12 @@
     <Content Include="libman.json" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-grid.css.map" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="Scripts\add-exercise.js" />
     <Content Include="Scripts\chart.js" />
     <Content Include="Scripts\chart.min.js" />
     <Content Include="Scripts\exercise.js" />
     <Content Include="Scripts\graphics-exercise-detail.js" />
+    <Content Include="Scripts\ingredients.js" />
     <Content Include="Scripts\load-exercises.js" />
     <Content Include="Scripts\variations.js" />
     <Content Include="Web.config" />
@@ -370,6 +371,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ExerciseInfoController.cs" />
+    <Compile Include="Controllers\DiaryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\RoutineController.cs" />
@@ -395,7 +397,6 @@
     <Content Include="Views\Routine\Detail.cshtml" />
     <Content Include="Views\Routine\Index.cshtml" />
     <Content Include="Views\Routine\Delete.cshtml" />
-    <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\Routine\_Inputs.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
@@ -404,6 +405,7 @@
     <Content Include="Views\User\ManageAccountData.cshtml" />
     <Content Include="Views\ExerciseInfo\Details.cshtml" />
     <Content Include="Views\ExerciseInfo\Index.cshtml" />
+    <Content Include="Views\Diary\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
